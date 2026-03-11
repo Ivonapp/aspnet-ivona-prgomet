@@ -176,7 +176,6 @@
     }
 }
 
-
     /*HERO - MOBILE FIRST*/
     .hero-wrapper {
     background: var(--navbar-background);
@@ -251,13 +250,34 @@
     }
 }
 
+/*LOGOIPSUM*/
+    .logoipsum-text {
+    font-family: "Poppins", sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-left: 2.5rem;
+    }
+    .logoipsum-wrapper {
+    display: flex;
+    background-color: var(--lightgreen-color);
+    padding: 1rem;
+    border-radius: 20px;
+    margin-top: 1rem;
+    gap: 1rem;
+    }
+    .logoipsum-text, .logoipsum5-img {
+    display: none;
+    }
 
+    @media (min-width: 769px) {
+    .logoipsum-text, .logoipsum4-img, .logoipsum5-img {
+    display: block;
+    }
+}
+    .logoipsum1-img, .logoipsum2-img, .logoipsum3-img, .logoipsum4-img, .logoipsum5-img {
+    width: 150px; 
+    height: auto;
+    }
 
-
-
-
-
-
-
-
+    
 
