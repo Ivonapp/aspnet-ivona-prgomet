@@ -80,6 +80,9 @@
     :root {
         --navbar-background: #161320;
         --lightgreen-color: #D6EB31;
+
+        /*HOVER COLORS, DARK*/
+        --hovergreen-color:  #aec11e;
     }
     h1,h2,h3,h4,h5,h6 {
     font-family: "Poppins", sans-serif;
@@ -98,15 +101,10 @@
         }
     }
   
-
-
-
-
-    /*NAVBAR*/
-    /*mobile first*/
+    /* NAVBAR - MOBILE FIRST */
     .navbar {
     padding: 1rem;
-    background-color: #161320;
+    background-color: var(--navbar-background);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -120,26 +118,37 @@
     border-radius: 50px;
     background-color: var(--lightgreen-color);
     color:black;
-    padding: 0.5rem 1rem 0.5rem 1rem;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
+    padding: 1rem 1.5rem 0.5rem 1.5rem;
+    font-family: "DM sans", sans-serif;
+    font-weight: 800;
+    cursor: pointer;
+    }
+    .green-btn:hover {
+    background-color: var(--hovergreen-color);
     }
     .btn-icon {
     padding-left: 0.5rem;
-    padding-top: 0.2rem;
+    padding-top: 0.1rem;
+    }
+    .dropdown-container {
+       display: flex;
     }
     .dropdown {
+        display: flex;
+        align-items: center;
         color:var(--lightgreen-color);
         padding: 0.5rem;
     }
+    .desktop-only { 
+    display: none; 
+    }
 
-    /*NAVBAR*/
-    /*DESKTOP MODE*/
+    /* NAVBAR - DESKTOP */
     @media (min-width: 769px) {
     .navbar-text-s {
     display: block;
     color: white;
-    font-family: "Poppins", sans-serif;
+    font-family: "DM sans", sans-serif;
     font-size: 1rem;
     }
     .navbar-text-s:hover {
@@ -148,55 +157,34 @@
     .dropdown {
         display: none;
     }
+    .desktop-only { 
+        display: flex; 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-.navbar {
-    padding: 1rem;
-    background-color: #161320;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
+    .nav-links{
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+    .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
 }
-.navbar-text-s {
-    color: white;
-    font-family: "Poppins", sans-serif;
-    font-size: 1rem;
-}
-.navbar-text-s:hover {
-    color: var(--lightgreen-color);
-}
-.green-btn {
-    display: flex;
-    border-radius: 50px;
-    background-color: var(--lightgreen-color);
-    color:black;
-    padding: 0.5rem 1rem 0.5rem 1rem;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-}
-.btn-icon {
-    padding-left: 0.5rem;
-    padding-top: 0.2rem;
-}
-    */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
