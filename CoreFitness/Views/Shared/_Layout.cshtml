@@ -16,8 +16,9 @@
 
 
     <div class="wrapper">
-        <div class="container"></div>
+        
         <partial name="Partials/_Navbar" />
+        <div class="container">
         <header> HEADER </header>
         <main>
             @RenderBody()
@@ -25,7 +26,7 @@
         <footer> FOOTER </footer>
     </div>
 </div>
-
+</div>
    
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)

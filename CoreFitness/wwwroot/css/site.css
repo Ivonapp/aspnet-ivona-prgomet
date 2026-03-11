@@ -1,7 +1,18 @@
 
                                              /*LÄGGA IN ALL STYLING HÄR*/
 
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+}
 
+    @font-face {
+    font-family: Poppins;
+    src: url('../fonts/poppins/Poppins-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    }
     @font-face {
     font-family: Poppins;
     src: url('../fonts/poppins/Poppins-Medium.ttf') format('truetype');
@@ -31,21 +42,48 @@
     font-display: swap;
     }
 
-
-
-
-
+     @font-face {
+    font-family: DM sans;
+    src: url('../fonts/dm-sans/DMSans-Regular.ttf');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    }
+     @font-face {
+    font-family: DM sans;
+    src: url('../fonts/dm-sans/DMSans-Medium.ttf');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+    }
+    @font-face {
+    font-family: DM sans;
+    src: url('../fonts/dm-sans/DMSans-SemiBold.ttf');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+    }
+    @font-face {
+    font-family: DM sans;
+    src: url('../fonts/dm-sans/DMSans-Bold.ttf');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    }
+    @font-face {
+    font-family: DM sans;
+    src: url('../fonts/dm-sans/DMSans-ExtraBold.ttf');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+    }
     :root {
         --navbar-background: #161320;
         --lightgreen-color: #D6EB31;
     }
-
-
     h1,h2,h3,h4,h5,h6 {
     font-family: "Poppins", sans-serif;
     }
-
-
     .container {
     max-width: 768px;
     width: 100%;
@@ -54,31 +92,111 @@
     padding-left: 1rem;
     padding-right: 1rem;
     }
-
-    
     @media (min-width: 768px) {
     .container {
-        max-width: 768px;
+        max-width: 1296px;
         }
     }
+  
 
 
-    @media (min-width: 1296px) {
-    .container {
-     max-width: 1296px;
-    }
-}
 
 
-.navbar {
+    /*NAVBAR*/
+    /*mobile first*/
+    .navbar {
+    padding: 1rem;
     background-color: #161320;
-}
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    }
+    .navbar-text-s {
+    display: none;
+    }
+    .green-btn {
+    display: flex;
+    border-radius: 50px;
+    background-color: var(--lightgreen-color);
+    color:black;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    }
+    .btn-icon {
+    padding-left: 0.5rem;
+    padding-top: 0.2rem;
+    }
+    .dropdown {
+        color:var(--lightgreen-color);
+        padding: 0.5rem;
+    }
 
+    /*NAVBAR*/
+    /*DESKTOP MODE*/
+    @media (min-width: 769px) {
+    .navbar-text-s {
+    display: block;
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-size: 1rem;
+    }
+    .navbar-text-s:hover {
+        color: var(--lightgreen-color);
+    }
+    .dropdown {
+        display: none;
+    }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+.navbar {
+    padding: 1rem;
+    background-color: #161320;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
 .navbar-text-s {
     color: white;
     font-family: "Poppins", sans-serif;
+    font-size: 1rem;
 }
-
 .navbar-text-s:hover {
     color: var(--lightgreen-color);
 }
+.green-btn {
+    display: flex;
+    border-radius: 50px;
+    background-color: var(--lightgreen-color);
+    color:black;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+.btn-icon {
+    padding-left: 0.5rem;
+    padding-top: 0.2rem;
+}
+    */
+
