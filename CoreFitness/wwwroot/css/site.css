@@ -177,38 +177,32 @@
 }
 
 
-/*HERO - MOBILE FIRST*/
-/*VÄNSTER*/
-.hero-wrapper {
+    /*HERO - MOBILE FIRST*/
+    .hero-wrapper {
     background: var(--navbar-background);
     padding: 3rem;
     display: grid;
     grid-template-columns: 1fr auto; 
     gap: 4rem;
-}
-.hero-left {
+    }
+    .hero-left {
     width: 570px;
-}
-
-.hero-title {
+    }
+    .hero-title {
     border-radius: 50px;
     background: #27252F;
     display: inline-block;
     padding: 1rem;
     margin-top: 2rem;
-}
-
-.hero-rubrik {
+    }
+    .hero-rubrik {
     margin-top: 2rem;
     margin-bottom: 2rem;
     max-width: 700px;
     font-size: 3rem;
     font-weight: 600;
     font-family: "Poppins", sans-serif;
-}
-
-
-
+    }
     .green-btn-hero {
     margin-top: 3rem;
     display: flex;
@@ -225,30 +219,36 @@
     .green-btn-hero:hover {
     background-color: var(--hovergreen-color);
     }
-
     .hero-text, .hero-icon {
         font-family: "DM sans", sans-serif;
     }
-
     .hero-icon, .hero-title, .hero-rubrik, .hero-text {
         color: white;
     }
-
     .hero-icon-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin-bottom: 2rem;
     margin-top: 2rem;
-}
-.hero-icon {
+    }
+    .hero-icon {
     padding-right: 0.5rem;
     padding-bottom: 1rem;
-}
-
-hr {
+    }
+    hr {
     height: 1px;
     background-color: var(--navbar-border);
     border: none
+    }
+    .gymcouple-img {
+        display: none;
+    }
+
+    /* HERO - DESKTOP */
+    @media (min-width: 769px) {
+    .gymcouple-img {
+    display: block;
+    }
 }
 
 
