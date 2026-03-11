@@ -80,6 +80,7 @@
     :root {
         --navbar-background: #161320;
         --lightgreen-color: #D6EB31;
+        --navbar-border: #3A3C24;
 
         /*HOVER COLORS, DARK*/
         --hovergreen-color:  #aec11e;
@@ -103,6 +104,7 @@
   
     /* NAVBAR - MOBILE FIRST */
     .navbar {
+    border: 2px solid var(--navbar-border);
     padding: 1rem;
     background-color: var(--navbar-background);
     display: flex;
@@ -122,6 +124,8 @@
     font-family: "DM sans", sans-serif;
     font-weight: 800;
     cursor: pointer;
+    border: none;
+    outline: none;
     }
     .green-btn:hover {
     background-color: var(--hovergreen-color);
@@ -173,17 +177,57 @@
 }
 
 
+/*HERO - MOBILE FIRST*/
+/*VÄNSTER*/
+.hero-wrapper {
+    background: var(--navbar-background);
+    padding: 3rem;
+}
+
+.hero-title {
+    border-radius: 50px;
+    background: #27252F;
+    display: inline-block;
+}
+
+.hero-icon, .hero-title, .hero-rubrik, .hero-text {
+    color: white;
+}
+
+.hero-icon-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 1rem;
+}
+
+hr {
+    height: 1px;
+    background-color: var(--navbar-border);
+    border: none
+}
 
 
 
 
 
 
+/*HÖGER*/
+.hero-wrapper {
+    display: grid;
+    grid-template-columns: 1fr auto; 
+    align-items: center;
+    gap: 4rem;
+    
+    background: var(--navbar-background);
+    padding: 3rem;
+}
 
-
-
-
-
+.hero-right img {
+    max-width: 500px; 
+    width: 100%;
+    height: auto;
+    display: block;
+}
 
 
 

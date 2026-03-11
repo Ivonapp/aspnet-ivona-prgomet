@@ -16,16 +16,18 @@
 
 
     <div class="wrapper">
-        
-        <partial name="Partials/_Navbar" />
         <div class="container">
-        <header> HEADER </header>
+        <header>
+            <partial name="Partials/_Navbar" />
+        </header>
+
+        
+         
         <main>
             @RenderBody()
         </main>
         <footer> FOOTER </footer>
     </div>
-</div>
 </div>
    
     <script src="~/js/site.js" asp-append-version="true"></script>
