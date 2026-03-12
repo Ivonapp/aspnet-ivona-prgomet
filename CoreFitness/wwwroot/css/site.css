@@ -177,9 +177,23 @@
 }
 
     /*HERO - MOBILE FIRST*/
+    .bulletin-label {
+    border-radius: 50px;
+    background: #27252F;
+    display: inline-block;
+    padding: 1rem;
+    margin-top: 2rem;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: "DM sans", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    }
     .hero-wrapper {
     background: var(--navbar-background);
-    padding: 3rem;
+    padding-left: 3rem;
     display: grid;
     grid-template-columns: 1fr auto; 
     gap: 4rem;
@@ -262,13 +276,12 @@
     background-color: var(--lightgreen-color);
     padding: 1rem;
     border-radius: 20px;
-    margin-top: 1rem;
     gap: 1rem;
+    margin-bottom: 3rem;
     }
     .logoipsum-text, .logoipsum5-img {
     display: none;
     }
-
     @media (min-width: 769px) {
     .logoipsum-text, .logoipsum4-img, .logoipsum5-img {
     display: block;
@@ -279,5 +292,86 @@
     height: auto;
     }
 
-    
 
+
+
+
+    /* BRANDS */ 
+    .brands-bg {
+    background-color: #F7F7F7;
+    padding-top: 1rem;
+    }
+    .about-label {
+    padding-right: 0.5rem;
+    }
+    .brands-title {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 2.5rem;
+    }
+    .brands-text {
+    font-family: "DM sans", sans-serif;
+    font-weight: 400;
+
+    }
+
+
+
+    .quote-wrapper {
+    background-color: white;
+    border-radius: 20px;
+    display:flex;
+    }
+    .quote-text {
+    position: relative;
+    z-index: 1;
+    }
+
+
+
+
+
+
+    .brands-divider {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start; 
+    }
+    /* VÄNSTER SIDA */
+    .brands-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    }
+    /* HÖGER SIDA */
+    .brands-text-wrapper {
+    flex: 1;
+    display: flex;
+     display: inline-block;
+    }
+
+
+
+
+    .brands-wrapper {
+    position: relative;
+    height: 650px;
+    }
+
+    .training1-img {
+    position: absolute;
+    top: 35px;
+    left: 15px;
+    }
+
+    .image-box-img {
+    position: absolute;
+    bottom: 0px;
+    left: 20px;
+    }
+
+    .training2-img {
+    position: absolute;
+    top: 5px;
+    right: 20px;
+    }
