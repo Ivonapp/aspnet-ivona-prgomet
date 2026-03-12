@@ -378,122 +378,38 @@
     }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*
-    .brands-bg {
-    background-color: #F7F7F7;
-    padding-top: 1rem;
+    /*PROGRAM SECTION*/
+    .programs-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
     }
-    .about-label {
-    padding-right: 0.5rem;
+    .programs-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
     }
-    .brands-title, .brands-text, .quote-wrapper {
-        width: 600px;
+    .programs-title1, .programs-title2 {
+        font-family: "Poppins", sans-serif;
+        font-size: 3rem;
     }
-    .brands-title {
-    font-family: "Poppins", sans-serif;
-    font-weight: 500;
-    font-size: 2.9rem;
+    .programs-title1 {
+    padding-top: 2rem;
+    }
+    .programs-title2 {
     padding-bottom: 2rem;
-    padding-top: 0.5rem;
     }
-    .brands-text {
-    font-family: "DM sans", sans-serif;
-    font-weight: 400;
-    padding-bottom: 2.5rem;
+    .program-text {
+        font-family: "DM sans", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 600;
+        padding: 2rem;
     }
-    .quote-wrapper {
-    background-color: white;
-    border-radius: 20px;
-    padding: 1rem;
-    margin-right: 1.5rem;
-    font-family: "DM sans", sans-serif;
-    font-weight: 600;
+    /*PROGRAM DESKTOP*/
+    @media (min-width: 769px) {
+        .programs-wrapper {
+        flex-direction: row;
+        
     }
-    .quote-text {
-    position: relative;
-    z-index: 1;
-    padding: 20px;
-    }
-    .quote-icon {
-    position: absolute;
-    z-index: -1;
-    top: 15px;
-    right: 10px;
-    }
-    .brands-divider {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start; 
-    }
-    .brands-wrapper {
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-    }
-    .brands-text-wrapper {
-    flex: 1;
-    display: flex;
-     display: inline-block;
-    }
-    .brands-wrapper {
-    position: relative;
-    height: 650px;
-    }
-    .training1-img {
-    position: absolute;
-    top: 35px;
-    left: 15px;
-    }
-    .image-box-img {
-    position: absolute;
-    bottom: 60px;
-    left: 20px;
-    }
-    .training2-img {
-    position: absolute;
-    top: 5px;
-    right: 20px;
-    }*/
+}
