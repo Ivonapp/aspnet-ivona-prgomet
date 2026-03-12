@@ -291,13 +291,141 @@
     width: 150px; 
     height: auto;
     }
-
     /* BRANDS */ 
     .brands-bg {
     background-color: #F7F7F7;
     padding-top: 1rem;
+    padding-bottom: 1rem;
     }
     /* VÄNSTER RUBRIK, TEXT */
+    .about-label {
+    padding-right: 0.5rem;
+    }
+    .brands-title {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 2.9rem;
+    padding-bottom: 2rem;
+    padding-top: 0.5rem;
+    }
+    .brands-text {
+    font-family: "DM sans", sans-serif;
+    font-weight: 400;
+    padding-bottom: 2.5rem;
+    }
+    .quote-wrapper {
+    background-color: white;
+    border-radius: 20px;
+    padding: 1rem;
+    font-family: "DM sans", sans-serif;
+    font-weight: 600;
+    }
+    .quote-text {
+    position: relative;
+    z-index: 1;
+    padding: 1rem;
+    }
+    .quote-icon {
+    position: absolute;
+    z-index: -1;
+    top: 15px;
+    right: 10px;
+    }
+    .brands-divider {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    }
+    /* HÖGER SIDA */
+    .brands-text-wrapper {
+    flex: 1;
+    display: inline-block;
+    padding: 1rem;
+    }
+    .brands-wrapper,
+    .training1-img,
+    .image-box-img,
+    .training2-img {
+        display: none;
+    }
+    /* VÄNSTER SIDA - ENDAST DESKTOP */
+    @media (min-width: 769px) {
+    .brands-wrapper {
+    display: block;
+    position: relative;
+    height: 650px;  
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    }
+    .training1-img {
+    display: block;
+    position: absolute;
+    top: 35px;
+    left: 15px;
+    }
+    .image-box-img {
+    display: block;
+    position: absolute;
+    bottom: 60px;
+    left: 20px;
+    }
+    .training2-img {
+    display: block;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
+    .brands-bg {
+    background-color: #F7F7F7;
+    padding-top: 1rem;
+    }
     .about-label {
     padding-right: 0.5rem;
     }
@@ -340,16 +468,11 @@
     flex-direction: row;
     align-items: flex-start; 
     }
-
-
-    /* VÄNSTER SIDA */
     .brands-wrapper {
     flex: 1;
     display: flex;
     flex-direction: row;
     }
-
-    /* HÖGER SIDA */
     .brands-text-wrapper {
     flex: 1;
     display: flex;
@@ -373,4 +496,4 @@
     position: absolute;
     top: 5px;
     right: 20px;
-    }
+    }*/
