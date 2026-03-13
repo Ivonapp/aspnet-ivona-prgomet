@@ -198,6 +198,12 @@
     display: grid;
     grid-template-columns: 1fr auto; 
     gap: 4rem;
+    padding-bottom: 2rem;
+    }
+     @media (min-width: 769px) {
+        .hero-wrapper {
+            padding-bottom: 0;
+        }
     }
     .hero-left {
     width: 570px;
@@ -509,12 +515,14 @@ font-size: 1.7rem;
     padding-bottom: 1rem;
     padding-top: 2rem;
 }
-.footer-hours,
+.footer-hours, .footer-hours-end,
 .footer-end-text {
     font-family: "DM sans", sans-serif;
     font-weight: 400;    
 }
-
+.footer-hours-end {
+    padding-bottom: 2rem;
+}
 .footer-location2 {
     display: none;
 }
@@ -560,9 +568,6 @@ font-size: 1.7rem;
     justify-content: center;
     padding-top: 2rem;
 }
-
-
-
 .footer-map {
     display: none;
 }
@@ -571,94 +576,3 @@ font-size: 1.7rem;
     display: block;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-.footer-box {
-    border-radius: 20px;
-    background-color: var(--navbar-background);
-    margin: 0 auto;
-    width: 60%;
-    padding: 2rem;
-}
-.footer-title {
-    font-family: "Poppins", sans-serif;
-    font-size: 1.7rem;
-    text-align: end;
-    width: 70%; 
-    padding-bottom: 2rem;
-}
-
-.footer-right,
-.footer-left,
-.footer-end-text,
-.footer-title {
-    color: white;
-}
-.footer-location,
-.footer-workinghours,
-.footer-openinghours {
-    font-family: "Poppins", sans-serif;
-    font-weight: 600;
-    padding-bottom: 1rem;
-    padding-top: 2rem;
-}
-.footer-location2,
-.footer-hours,
-.footer-end-text {
-    font-family: "DM sans", sans-serif;
-    font-weight: 400;    
-}
-.footer-location2 {
-padding-bottom: 2rem;
-}
-.footer-address {
-    font-family: "DM sans", sans-serif;
-    font-weight: 400;    
-    font-size: 0.8rem;
-    padding-bottom: 2rem;
-    padding-top: 0.5rem;
-}
-.title-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: start;
-}
-.footer-hours {
-    text-align: justify;
-    text-align-last: justify;
-}
-.footer-container {
-    display: flex;
-    flex-direction: column;
-}
-.footer-divider {
-    display: flex;
-    justify-content: space-between;
-}
-.footer-left {
-    width: 45%;
-}
-.footer-end {
-    display: flex;
-    justify-content: center;
-    padding-top: 2rem;
-}
-*/
