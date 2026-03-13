@@ -469,17 +469,53 @@
 .footer-box {
     border-radius: 20px;
     background-color: var(--navbar-background);
+    margin: 0 auto;
+    width: 60%;
+    padding: 2rem;
+    
+}
+
+.footer-right,
+.footer-left,
+.footer-end-text,
+.footer-title {
+    color: white;
 }
 
 .title-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    border: 2px solid red;
 }
 
 .footer-title {
-    color: white;
     font-family: "Poppins", sans-serif;
     font-size: 1.7rem;
     text-align: end;
+    width: 70%; 
 }
+
+
+
+
+
+.footer-big-divide {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid blue;
+}
+
+.footer-divider {
+    display: flex;
+    justify-content: space-between;
+}
+.footer-left {
+    border: 2px solid green;
+}
+.footer-right {
+    border: 2px solid green;
+}
+
+
+
