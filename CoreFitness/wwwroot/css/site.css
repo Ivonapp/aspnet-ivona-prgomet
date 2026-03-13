@@ -81,6 +81,7 @@
         --navbar-background: #161320;
         --lightgreen-color: #D6EB31;
         --navbar-border: #3A3C24;
+        --gray-background-color: #f7f7f7;
 
         /*HOVER COLORS, DARK*/
         --hovergreen-color:  #aec11e;
@@ -293,7 +294,7 @@
     }
     /* BRANDS */ 
     .brands-bg {
-    background-color: #F7F7F7;
+    background-color: var(--gray-background-color);
     padding-top: 1rem;
     padding-bottom: 1rem;
     }
@@ -412,4 +413,73 @@
         flex-direction: row;
         
     }
+}
+
+    /*PRODUCTS SECTION*/
+    .products-container {
+        background-color: var(--gray-background-color);
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+    }
+    .products-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+    .products-title1, .products-title2 {
+        font-family: "Poppins", sans-serif;
+        font-size: 3rem;
+    }
+    .products-title1 {
+    padding-top: 2rem;
+    }
+    .products-title2 {
+    padding-bottom: 2rem;
+    }
+    .products-text {
+        font-family: "DM sans", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 600;
+        padding: 2rem;
+    }
+    /*PROGRAM DESKTOP*/
+    @media (min-width: 769px) {
+        .products-wrapper {
+        flex-direction: row;
+        
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*FOOTER*/
+
+.footer-box {
+    border-radius: 20px;
+    background-color: var(--navbar-background);
+}
+
+.title-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.footer-title {
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.7rem;
+    text-align: end;
 }
