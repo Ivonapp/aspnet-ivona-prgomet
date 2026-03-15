@@ -457,21 +457,32 @@
         
     }
 }
+/*ERROR START*/
+.error-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+.button {
+    display: flex;
+    justify-content: center;
+}
+.error-title {
+font-family: "Poppins", sans-serif;
+font-size: 3.3rem;
+font-weight: 700;
+}
+.error-text {
+font-family: "DM sans", sans-serif;
+font-weight: 700;
+color: #575757;
+padding-top: 1rem;
+}
+/*ERROR END*/
 
-
-
-
-
-
-
-
-
-
-
-
-
-/*FOOTER*/
-
+/*FOOTER START*/
 .footer-box {
     border-radius: 20px;
     background-color: var(--navbar-background);
@@ -576,3 +587,4 @@ font-size: 1.7rem;
     display: block;
     }
 }
+/*FOOTER END*/
