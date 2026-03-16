@@ -116,6 +116,17 @@
     .navbar-text-s {
     display: none;
     }
+    @media (min-width: 769px) {
+    .navbar-text-s {
+    display: block;
+    color: white;
+    font-family: "DM sans", sans-serif;
+    font-size: 1rem;
+    text-decoration: none;
+    }
+    .navbar-text-s:hover {
+        color: var(--lightgreen-color);
+    }
     .green-btn {
     display: flex;
     border-radius: 50px;
@@ -149,16 +160,6 @@
     }
 
     /* NAVBAR - DESKTOP */
-    @media (min-width: 769px) {
-    .navbar-text-s {
-    display: block;
-    color: white;
-    font-family: "DM sans", sans-serif;
-    font-size: 1rem;
-    }
-    .navbar-text-s:hover {
-        color: var(--lightgreen-color);
-    }
     .dropdown {
         display: none;
     }
