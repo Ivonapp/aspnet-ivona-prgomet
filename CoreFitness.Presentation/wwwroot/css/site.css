@@ -84,6 +84,7 @@
         --gray-background-color: #f7f7f7;
         --light-gray-color: #6F6F6F;
         --light-gray-solid: #E6E6E6;
+        --dark-gray-solid: #27252F;
 
         /*HOVER COLORS, DARK*/
         --hovergreen-color:  #aec11e;
@@ -632,7 +633,7 @@ font-size: 1.7rem;
 }
 .light-solid {
     height: 1px;
-    background-color: var(--light-gray-solid);
+    background-color: var(--dark-gray-solid);
     width: 100%;
     margin-bottom: 1rem;
 }
@@ -715,21 +716,23 @@ font-size: 1.7rem;
     text-align: center;
     color: white;
     font-family: "DM sans", sans-serif;
-    font-weight: 600;
+    font-weight: 400;
     margin-bottom: 1.5rem;
     margin-top: 1.5rem;
 }
-.light-callus-solid {
+.dark-solid {
     height: 1px;
-    background-color: var(--light-gray-solid);
+    background-color: var(--dark-gray-solid);
     width: 100%;
     margin-bottom: 1rem;
 }
 .membership-callus-text {
     text-align: center;
-    color: var(--light-gray-color);
+    color: white;
+    font-weight: 800;
+    font-size: 1.2rem;
     padding: 0.5rem;
-    font-family: "DM sans", sans-serif;
+    font-family: "Poppins", sans-serif;
     padding-bottom: 2rem;
 }
 
@@ -738,6 +741,7 @@ font-size: 1.7rem;
     justify-content: center;
 }
 .gym-woman-img {
-    display: flex;
-    align-items: start;
+    position: relative; 
+    bottom: -19px;
+    right: -130px;
 }
