@@ -82,6 +82,8 @@
         --lightgreen-color: #D6EB31;
         --navbar-border: #3A3C24;
         --gray-background-color: #f7f7f7;
+        --light-gray-color: #6F6F6F;
+        --light-gray-solid: #E6E6E6;
 
         /*HOVER COLORS, DARK*/
         --hovergreen-color:  #aec11e;
@@ -595,12 +597,16 @@ font-size: 1.7rem;
 }
 /*FOOTER END*/
 
-
-
-
 /*MEMBERSHIP*/
 .membership-bg {
     background-color: var(--gray-background-color);
+}
+.memberships-main-title {
+    font-family: "Poppins", sans-serif;
+    font-size: 48px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
 }
 
 /*MEMBERSHIPSTANDARD*/
@@ -609,27 +615,74 @@ font-size: 1.7rem;
     border-radius: 20px;
     background-color: white;
     display: inline-block;
-    padding: 1rem;
-}
-
-.membership-text {
-    padding: 0.5rem;
+    width: 404px;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    padding: 2rem 1rem 0.9rem 1rem;
 }
 .membership-title {
     padding: 0.5rem;
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
 }
-
-.membership-icon {
+.light-solid {
+    height: 1px;
+    background-color: var(--light-gray-solid);
+    width: 100%;
+    margin-bottom: 1rem;
+}
+.membership-text, .membership-icon {
+    color: var(--light-gray-color);
+}
+.membership-text, .membership-icon, .membership-darkbox-text {
     padding: 0.5rem;
+    font-family: "DM sans", sans-serif;
 }
-
+.membership-text {
+    padding-bottom: 2rem;
+}
 .membership-darkbox {
     background-color: #080517;
     border-radius: 20px;
     padding: 1rem;
+    margin-top: 1.5rem;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    flex-wrap: wrap;
 }
-
-.membership-darkbox-text {
+.left-text {
+    display: flex;
+    align-items: baseline;
+}
+.membership-darkbox-text-bold {
+    font-family: "DM sans", sans-serif;
+    font-weight: 800;
     color: white;
-     padding: 0.5rem;
+    font-size: 1.5rem;
+}
+.Membership-btn {
+    display: inline-block;
+}
+.membership-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding: 0.5rem;
+}
+.membership-right {
+    display: flex;
+    justify-content: end;
+}
+.darkbox-bottom {
+    width: 100%;
+    padding-top: 1rem;
+}
+.membership-darkbox-text {
+    padding-top: 1rem;
+    color: white;
+    padding: 0.5rem;
 }

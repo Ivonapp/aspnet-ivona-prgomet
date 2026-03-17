@@ -5,7 +5,8 @@
     <img src="~/images/hantlar-img.svg" alt="barbell icon" class="hantlar-img">
     <div class="membership-title">Standard Membership</div>
 
-    <hr>
+
+    <hr class="light-solid"></hr>
 
     <div class="membership-text">With the Standard Membership, get access to our full range of gym facilities.</div>
 
@@ -28,11 +29,28 @@
 
 
         <div class="membership-darkbox"> 
-            <div class="membership-darkbox-text">495.00/monthly</div>
-            <div class="membership-darkbox-text">green btn</div>
+            <div class="membership-left"> 
+                <div class="left-text">
+            <div class="membership-darkbox-text-bold">495.00</div>
+             <div class="membership-darkbox-text">/monthly</div>
+        </div>
             <div class="membership-darkbox-text">* Monthly 20 classes</div>
-            <hr>
+            </div>
+
+<div class="membership-right"> 
+            <div class="Membership-btn">
+                <a asp-controller="Auth" asp-action="Register" class="green-btn">
+                   Join Now
+                    <img src="~/images/navbarknapp.svg" class="btn-icon" alt="">
+                    </a>
+                </div>
+</div>
+
+<div class="darkbox-bottom">
+            <hr class="light-solid"></hr>
+
+
            <div class="membership-darkbox-text">Try Any Membership Free for 1 Week</div>
         </div>
-
-    </div>
+</div>
+    
