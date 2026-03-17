@@ -603,20 +603,33 @@ font-size: 1.7rem;
     background-color: var(--gray-background-color);
 }
 
-
-
 /*MEMBERSHIPSTANDARD*/
+
 .membership-container {
-    border-radius: 10px;
+    border-radius: 20px;
     background-color: white;
     display: inline-block;
+    padding: 1rem;
+}
+
+.membership-text {
+    padding: 0.5rem;
+}
+.membership-title {
+    padding: 0.5rem;
+}
+
+.membership-icon {
+    padding: 0.5rem;
 }
 
 .membership-darkbox {
     background-color: #080517;
-    border-radius: 10px;
+    border-radius: 20px;
+    padding: 1rem;
 }
 
 .membership-darkbox-text {
     color: white;
+     padding: 0.5rem;
 }
