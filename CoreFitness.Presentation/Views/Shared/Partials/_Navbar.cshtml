@@ -2,30 +2,40 @@
 <div class="navbar">
 
 <div class="nav-logo">
-        <img src="~/images/logotype.svg" alt="CoreFitness Logo" class="logo-img">
+        <a asp-controller="Home" asp-action="Index" class="nav-logo">
+            <img src="~/images/logotype.svg" alt="CoreFitness Logo" class="logo-img">
+            </a>
     </div>
 
+
+
+
 <div class="nav-links desktop-only">
-<a class="navbar-text-s" asp-controller="Home" asp-action="FitnessCenters">Fitness Centers</a>
-<a class="navbar-text-s" asp-controller="Home" asp-action="Memberships">Memberships</a>
-<a class="navbar-text-s" asp-controller="Home" asp-action="Training">Training</a>
-<a class="navbar-text-s" asp-controller="Home" asp-action="CustomerService">Customer Service</a>
-<a class="navbar-text-s" asp-controller="Home" asp-action="Store">Store</a>
+    <a class="navbar-text-s" asp-controller="Home" asp-action="FitnessCenters">Fitness Centers</a>
+    <a class="navbar-text-s" asp-controller="Home" asp-action="Memberships">Memberships</a>
+    <a class="navbar-text-s" asp-controller="Home" asp-action="Training">Training</a>
+    <a class="navbar-text-s" asp-controller="Home" asp-action="CustomerService">Customer Service</a>
+    <a class="navbar-text-s" asp-controller="Home" asp-action="Store">Store</a>
 </div>
 
 <div class="nav-actions">
-<div class="navbar-text-s">Become Member</div>
+  <a class="navbar-text-s" asp-controller="Auth" asp-action="Register">Become member</a>
 
-<div class="dropdown-container"> 
-<button class="green-btn">
-    Sign In
-    <img src="~/images/navbarknapp.svg" class="btn-icon" alt="">
-</button>
 
+            <div class="dropdown-container">
+                <a asp-controller="Auth" asp-action="SignIn" class="green-btn">
+                    Sign In
+                    <img src="~/images/navbarknapp.svg" class="btn-icon" alt="">
+                    </a>
+                
 
 <div class="dropdown"> <!-- MOBILE FIRST -->
-            <img src="~/images/dropdown.svg" alt="dropdown Logo" class="logo-img">
+    
+           <img src="~/images/dropdown.svg" alt="dropdown Logo" class="logo-img">
             </div>
+
         </div>
     </div>
 </div>
+
+

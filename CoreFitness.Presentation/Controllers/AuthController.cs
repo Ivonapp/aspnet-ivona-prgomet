@@ -26,4 +26,11 @@ public class AuthController : Controller
         return RedirectToAction("Index", "Home");
     }
 
+
+        [Route("setpassword")]
+    public IActionResult SetPassword()
+    {
+        return View();
+    }
+
 }

@@ -1,6 +1,6 @@
-<!-- Error sidans design-->
-
-
+@{
+    ViewData["Title"] = "404 Not Found";
+}
 
 
 <div class="error-wrapper">
@@ -11,10 +11,12 @@
 <div class="error-text">The page you are looking for does not exists.</div>
 
 <div class="button">
-<button class="green-btn-hero">
-    Back to Homepage
-    <img src="~/images/navbarknapp.svg" class="btn-icon" alt="">
-</button>
+    <a asp-controller="Home" asp-action="Index">
+        <button class="green-btn-hero">
+            Back to Homepage
+            <img src="~/images/navbarknapp.svg" class="btn-icon" alt="">
+        </button>
+    </a>
 </div>
 
 

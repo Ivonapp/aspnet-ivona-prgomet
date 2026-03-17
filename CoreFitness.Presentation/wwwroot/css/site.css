@@ -116,18 +116,19 @@
     .navbar-text-s {
     display: none;
     }
-    .green-btn {
+.green-btn {
     display: flex;
     border-radius: 50px;
     background-color: var(--lightgreen-color);
-    color:black;
+    color: black;
     padding: 1rem 1.5rem 0.5rem 1.5rem;
     font-family: "DM sans", sans-serif;
     font-weight: 800;
     cursor: pointer;
     border: none;
     outline: none;
-    }
+    text-decoration: none;
+}
     .green-btn:hover {
     background-color: var(--hovergreen-color);
     }
@@ -147,7 +148,11 @@
     .desktop-only { 
     display: none; 
     }
-git a
+
+
+
+
+
     /* NAVBAR - DESKTOP */
     @media (min-width: 769px) {
     .navbar-text-s {
@@ -589,3 +594,29 @@ font-size: 1.7rem;
     }
 }
 /*FOOTER END*/
+
+
+
+
+/*MEMBERSHIP*/
+.membership-bg {
+    background-color: var(--gray-background-color);
+}
+
+
+
+/*MEMBERSHIPSTANDARD*/
+.membership-container {
+    border-radius: 10px;
+    background-color: white;
+    display: inline-block;
+}
+
+.membership-darkbox {
+    background-color: #080517;
+    border-radius: 10px;
+}
+
+.membership-darkbox-text {
+    color: white;
+}

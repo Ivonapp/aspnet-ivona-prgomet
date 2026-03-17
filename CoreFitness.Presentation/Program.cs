@@ -8,6 +8,7 @@ var app = builder.Build();
 
 app.UseHsts();
 
+app.UseStatusCodePagesWithReExecute("/Error/{0}");
 
 app.UseHttpsRedirection(); //denna delen redirectar om man råkar skriva http, så kommer den automatiskt redirecta till https, vilket är mer säkert
 app.UseRouting(); // Denna delen är för att vi ska kunna hantera routing funktionaliteten 
