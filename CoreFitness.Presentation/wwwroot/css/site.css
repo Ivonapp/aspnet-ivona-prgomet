@@ -598,30 +598,42 @@ font-size: 1.7rem;
 }
 /*FOOTER END*/
 
+
+
+
+
 /*MEMBERSHIP*/
 .membership-bg {
     background-color: var(--gray-background-color);
+    width: 100%;
 }
 .memberships-main-title {
+    color: var(--dark-gray-solid);
     font-family: "Poppins", sans-serif;
     font-size: 48px;
     font-weight: 600;
     display: flex;
     justify-content: center;
-}
-.membership-list {
-    display: flex;
+    padding: 2rem;
 }
 /*MEMBERSHIPSTANDARD*/
-
 .membership-container {
-    border-radius: 20px;
+    gap: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+@media (min-width: 1300px) {
+    .membership-container {
+    flex-direction: row;
+    }
+}
+.membership-light-bg {
     background-color: white;
-    display: inline-block;
+    border-radius: 20px;
     width: 404px;
-    margin-top: 1rem;
-    margin-left: 1rem;
-    padding: 2rem 1rem 0.9rem 1rem;
+    padding: 1rem;
 }
 .membership-title {
     padding: 0.5rem;
@@ -689,20 +701,13 @@ font-size: 1.7rem;
     color: white;
     padding: 0.5rem;
 }
-
-
-
-/*MEMBERSHIP CALL US*/
-
-.membership-callus-container {
+.membership-dark-bg {
     border-radius: 20px;
     background-color: #080517;
-    display: inline-block;
+    position: relative; /*Gym-kvinna ikonen hamnar inte utanför boxen*/
+    overflow: hidden;
     width: 404px;
-    margin-top: 1rem;
-    margin-left: 1rem;
-    padding: 2rem 1rem 0.9rem 1rem;
-    margin-bottom: 1rem;
+    padding: 1.5rem;
 }
 .Membership-callus-main-title {
     color: white;
@@ -735,13 +740,12 @@ font-size: 1.7rem;
     font-family: "Poppins", sans-serif;
     padding-bottom: 2rem;
 }
-
 .Membership-callus-btn {
     display: flex;
     justify-content: center;
 }
 .gym-woman-img {
     position: relative; 
-    bottom: -19px;
+    bottom: -20px;
     right: -130px;
 }
