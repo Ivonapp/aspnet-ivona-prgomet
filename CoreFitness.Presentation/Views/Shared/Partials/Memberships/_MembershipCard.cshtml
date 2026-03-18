@@ -5,19 +5,23 @@
     <div class="membership-light-bg">
 
     <img src="~/images/hantlar-img.svg" alt="barbell icon" class="hantlar-img">
-    <div class="membership-title">Standard Membership</div>
+    <div class="membership-title">@Model.Title</div>
 
 
     <hr class="light-solid"></hr>
 
-    <div class="membership-text">With the Standard Membership, get access to our full range of gym facilities.</div>
+    <div class="membership-description">With the Standard Membership, get access to our full range of gym facilities.</div>
 
+
+@foreach (var feature in Model.Features)
+    {
     <div class="membership-icon">
         <img src="~/images/checkbox-fill.svg" alt="checkbox icon" class="checkbox-fill-img">
-        <span>Standard Locker</span>
+        <span>@feature</span>
     </div>
+    }
 
-        <div class="membership-icon">
+       <!-- <div class="membership-icon">
         <img src="~/images/checkbox-fill.svg" alt="checkbox icon" class="checkbox-fill-img">
         <span>High-energy group fitness classes</span>
     </div>
@@ -25,18 +29,15 @@
         <div class="membership-icon">
         <img src="~/images/checkbox-fill.svg" alt="checkbox icon" class="checkbox-fill-img">
         <span>Motivating & supportive environment</span>
-    </div>
-  
-
-
+    </div>-->
 
         <div class="membership-darkbox"> 
             <div class="membership-left"> 
                 <div class="left-text">
-            <div class="membership-darkbox-text-bold">495.00</div>
-             <div class="membership-darkbox-text">/monthly</div>
+            <div class="membership-price">495.00</div>
+             <div class="membership-monthly">/monthly</div>
         </div>
-            <div class="membership-darkbox-text">* Monthly 20 classes</div>
+            <div class="membership-monthly-classes">* Monthly 20 classes</div>
             </div>
 
 <div class="membership-right"> 
@@ -52,7 +53,7 @@
             <hr class="light-solid"></hr>
 
 
-           <div class="membership-darkbox-text">Try Any Membership Free for 1 Week</div>
+           <div class="membership-free-trial">Try Any Membership Free for 1 Week</div>
         </div>
     </div>
 </div>

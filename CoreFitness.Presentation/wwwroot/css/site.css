@@ -649,14 +649,14 @@ font-size: 1.7rem;
     width: 100%;
     margin-bottom: 1rem;
 }
-.membership-text, .membership-icon {
+.membership-description, .membership-icon {
     color: var(--light-gray-color);
 }
-.membership-text, .membership-icon, .membership-darkbox-text {
+.membership-description, .membership-icon, .membership-monthly, .membership-monthly-classes, .membership-free-trial {
     padding: 0.5rem;
     font-family: "DM sans", sans-serif;
 }
-.membership-text {
+.membership-description {
     padding-bottom: 2rem;
 }
 .membership-darkbox {
@@ -673,7 +673,7 @@ font-size: 1.7rem;
     display: flex;
     align-items: baseline;
 }
-.membership-darkbox-text-bold {
+.membership-price {
     font-family: "DM sans", sans-serif;
     font-weight: 800;
     color: white;
@@ -696,7 +696,7 @@ font-size: 1.7rem;
     width: 100%;
     padding-top: 1rem;
 }
-.membership-darkbox-text {
+.membership-monthly, .membership-monthly-classes, .membership-free-trial {
     padding-top: 1rem;
     color: white;
     padding: 0.5rem;
