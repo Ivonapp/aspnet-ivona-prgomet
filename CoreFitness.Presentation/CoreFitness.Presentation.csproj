@@ -11,4 +11,9 @@
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CoreFitness.Domain\CoreFitness.Domain.csproj" />
+    <ProjectReference Include="..\CoreFitness.Application\CoreFitness.Application.csproj" />
+  </ItemGroup>
+
 </Project>

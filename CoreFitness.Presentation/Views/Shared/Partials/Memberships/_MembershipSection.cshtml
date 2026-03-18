@@ -1,11 +1,29 @@
+@model IReadOnlyCollection<MembershipPlanDto>
+
 
  <div class="membership-container">
 <div class="membership-bg">
     <div class="memberships-main-title">Our Membership Offers</div>
 
 
-        <partial name="Partials/Memberships/_MembershipCard" />
-        <partial name="Partials/Memberships/_MembershipCard" />
+
+
+
+    @if (Model.Count > 0)
+        {
+            foreach (var plan in Model)
+            {
+                <partial name="Partials/Memberships/_MembershipCard" model="plan" />
+            }
+        }
+        else
+        {
+                <p>No available plans.</p>
+        }
+
+
+
+
         <partial name="Partials/Memberships/_MembershipCallUs" />
     </div>
 </div>

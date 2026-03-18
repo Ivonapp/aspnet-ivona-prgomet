@@ -13,8 +13,7 @@ public class MembershipPlanEntity
             public int MonthlyClasses { get; set; }
             public int FreeTrial { get; set; }
 
-
             //Nedan ser jag på senare
             public int SortOrder { get; set; }
-
 }
+
