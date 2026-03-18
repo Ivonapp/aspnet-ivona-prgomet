@@ -9,7 +9,7 @@ public class MembershipPlanEntity
             public string Description { get; set; } = null!;
             public ICollection<MembershipPlanFeatureEntity> Features { get; set; } = [];
             public decimal Price { get; set; }
-            public int Monthly { get; set; }
+            public string Monthly { get; set; }
             public int MonthlyClasses { get; set; }
             public int FreeTrial { get; set; }
 

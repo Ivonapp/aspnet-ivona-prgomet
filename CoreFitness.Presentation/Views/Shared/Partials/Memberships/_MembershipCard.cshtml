@@ -1,25 +1,24 @@
+@model CoreFitness.Domain.MembershipPlans.MembershipPlanEntity
 
-    
-    <div class="membership-container">
-    
+<div class="membership-container">
     <div class="membership-light-bg">
+        <img src="~/images/hantlar-img.svg" alt="barbell icon" class="hantlar-img">
+        
+        <div class="membership-title">@Model.Title</div>
 
-    <img src="~/images/hantlar-img.svg" alt="barbell icon" class="hantlar-img">
-    <div class="membership-title">@Model.Title</div>
+        <hr class="light-solid"></hr>
 
+        <div class="membership-description">
+            @Model.Description
+        </div>
 
-    <hr class="light-solid"></hr>
-
-    <div class="membership-description">With the Standard Membership, get access to our full range of gym facilities.</div>
-
-
-@foreach (var feature in Model.Features)
-    {
-    <div class="membership-icon">
-        <img src="~/images/checkbox-fill.svg" alt="checkbox icon" class="checkbox-fill-img">
-        <span>@feature</span>
-    </div>
-    }
+        @foreach (var feature in Model.Features)
+        {
+            <div class="membership-icon">
+                <img src="~/images/checkbox-fill.svg" alt="checkbox icon" class="checkbox-fill-img">
+                <span>@feature</span>
+            </div>
+        }
 
        <!-- <div class="membership-icon">
         <img src="~/images/checkbox-fill.svg" alt="checkbox icon" class="checkbox-fill-img">
@@ -31,29 +30,28 @@
         <span>Motivating & supportive environment</span>
     </div>-->
 
-        <div class="membership-darkbox"> 
+       <div class="membership-darkbox"> 
             <div class="membership-left"> 
                 <div class="left-text">
-            <div class="membership-price">495.00</div>
-             <div class="membership-monthly">/monthly</div>
-        </div>
-            <div class="membership-monthly-classes">* Monthly 20 classes</div>
+                    <div class="membership-price">@Model.Price</div>
+                    <div class="membership-monthly">@Model.Monthly</div>
+                </div>
+                <div class="membership-monthly-classes">* Monthly @Model.MonthlyClasses classes</div>
             </div>
 
-<div class="membership-right"> 
-            <div class="Membership-btn">
-                <a asp-controller="Auth" asp-action="Register" class="green-btn">
-                   Join Now
-                    <img src="~/images/navbarknapp.svg" class="btn-icon" alt="">
+            <div class="membership-right"> 
+                <div class="Membership-btn">
+                    <a asp-controller="Auth" asp-action="Register" class="green-btn">
+                        Join Now
+                        <img src="~/images/navbarknapp.svg" class="btn-icon" alt="">
                     </a>
                 </div>
-</div>
+            </div>
 
-<div class="darkbox-bottom">
-            <hr class="light-solid"></hr>
-
-
-           <div class="membership-free-trial">Try Any Membership Free for 1 Week</div>
+            <div class="darkbox-bottom">
+                <hr class="light-solid"></hr>
+                <div class="membership-free-trial">Try Any Membership Free for @Model.FreeTrial Week</div>
+            </div>
         </div>
     </div>
 </div>
