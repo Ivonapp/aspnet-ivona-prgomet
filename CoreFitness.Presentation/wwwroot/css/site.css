@@ -749,3 +749,19 @@ font-size: 1.7rem;
     bottom: -20px;
     right: -130px;
 }
+
+
+/*MEMBERSHIPBENEFITS*/
+.membership-benefits {
+    display: flex;
+    justify-content: center;
+}
+.benefits-text {
+    display: flex;
+    flex-direction: row;
+    white-space: nowrap;
+    padding: 1rem;
+    
+}
+
+
