@@ -2,14 +2,13 @@
 @model IReadOnlyCollection<MembershipPlanDto>
 
 
- <div class="membership-container">
-<div class="membership-bg">
+
     <div class="memberships-main-title">Our Membership Offers</div>
 
 
 
 
-
+<div class="membership-container">
     @if (Model.Count > 0)
         {
             foreach (var plan in Model)
@@ -24,7 +23,6 @@
 
 
 
-
+ 
         <partial name="Partials/Memberships/_MembershipCallUs" />
     </div>
-</div>

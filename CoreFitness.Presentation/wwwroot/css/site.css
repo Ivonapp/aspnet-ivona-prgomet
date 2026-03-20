@@ -599,13 +599,25 @@ font-size: 1.7rem;
 /*FOOTER END*/
 
 
+/*MEMBERSHIPBENEFITS*/
+.membership-benefits {
+    display: flex;
+    justify-content: center;
+}
+.benefits-text {
+    display: flex;
+    flex-direction: row;
+    white-space: nowrap;
+    padding: 1rem;
+    font-family: "DM sans", sans-serif;
+}
+
 
 
 
 /*MEMBERSHIP*/
 .membership-bg {
     background-color: var(--gray-background-color);
-    width: 100%;
 }
 .memberships-main-title {
     color: var(--dark-gray-solid);
@@ -617,14 +629,15 @@ font-size: 1.7rem;
     padding: 2rem;
 }
 /*MEMBERSHIPSTANDARD*/
+
 .membership-container {
-    gap: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin: 1rem;
 }
-@media (min-width: 1300px) {
+@media (min-width: 798px) {
     .membership-container {
     flex-direction: row;
     }
@@ -668,6 +681,7 @@ font-size: 1.7rem;
     justify-content: space-between; 
     align-items: center;
     flex-wrap: wrap;
+
 }
 .left-text {
     display: flex;
@@ -751,17 +765,8 @@ font-size: 1.7rem;
 }
 
 
-/*MEMBERSHIPBENEFITS*/
-.membership-benefits {
-    display: flex;
-    justify-content: center;
-}
-.benefits-text {
-    display: flex;
-    flex-direction: row;
-    white-space: nowrap;
-    padding: 1rem;
-    
-}
+
+
+
 
 
