@@ -1,5 +1,8 @@
 using CoreFitness.Application;
 using CoreFitness.Infrastructure;
+using Microsoft.Extensions.DependencyInjection;
+using CoreFitness.Infrastructure.Persistence;
+using CoreFitness.Infrastructure.Persistence.Seeds;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +15,21 @@ builder.Services.AddInfrastructure(builder.Configuration);
 
 
 var app = builder.Build();
+using var scope = app.Services.CreateScope();
+var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+await MembershipPlanSeeder.SeedAsync(context);
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.UseHsts();
 

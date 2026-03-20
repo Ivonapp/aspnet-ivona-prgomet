@@ -1,11 +1,13 @@
-﻿<!-- Kopplad till Controllers/HomeController.cs -->
+﻿@model CoreFitness.Presentation.ViewModels.MembershipViewModel
+
+<!-- Kopplad till Controllers/HomeController.cs -->
 <!--För att det ska stå "Memberships" i webbläsarens flik-->
 @{
     ViewData["Title"] = "Memberships";
 }
 
 
-        <partial name="Partials/Memberships/_MembershipSection" />
+        <partial name="/Views/Shared/Partials/Memberships/_MembershipSection.cshtml" model="Model.MembershipPlans" />
         <partial name="Partials/_Questions" />
 
         <partial name="Partials/Memberships/_MembershipBenefits" />

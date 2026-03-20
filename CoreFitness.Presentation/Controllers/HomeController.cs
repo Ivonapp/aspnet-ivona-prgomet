@@ -1,24 +1,35 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using CoreFitness.Application.MembershipPlans;
+using CoreFitness.Presentation.ViewModels;
 
 namespace CoreFitness.Controllers;
 
-public class HomeController : Controller
+public class HomeController(IMembershipPlanService membershipPlanService) : Controller
 {
 
 
 
-    public IActionResult Index()
+public async Task<IActionResult> Index()
+{
+    var vm = new MembershipViewModel
     {
-        return View();
-    }
+        MembershipPlans = await membershipPlanService.GetMembershipsPlansAsync()
+    };
+    return View(vm);
+}
 
 
 
-    [Route("memberships")]
-    public IActionResult Memberships()
+
+[Route("memberships")]
+public async Task<IActionResult> Memberships()
+{
+    var vm = new MembershipViewModel
     {
-        return View();
-    }
+        MembershipPlans = await membershipPlanService.GetMembershipsPlansAsync()
+    };
+    return View(vm);
+}
 
 
 

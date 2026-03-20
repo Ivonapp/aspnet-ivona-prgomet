@@ -1,4 +1,7 @@
-﻿<!-- Kopplad till Controllers/HomeController.cs -->
+﻿@model CoreFitness.Presentation.ViewModels.MembershipViewModel
+
+
+<!-- Kopplad till Controllers/HomeController.cs -->
 
 <!--För att det ska stå "Home" i webbläsarens flik-->
 @{
@@ -149,3 +152,11 @@
 <div class="products-text">Let's make something great work together. Get Free Quote</div>
 </div>
 <!-- PRODUCTS END -->
+
+
+
+
+
+
+
+<partial name="/Views/Shared/Partials/Memberships/_MembershipSection.cshtml" model="Model.MembershipPlans" />
