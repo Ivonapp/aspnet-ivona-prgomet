@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CoreFitness.Domain\CoreFitness.Domain.csproj" />
     <ProjectReference Include="..\CoreFitness.Application\CoreFitness.Application.csproj" />
+    <ProjectReference Include="..\CoreFitness.Infrastructure\CoreFitness.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

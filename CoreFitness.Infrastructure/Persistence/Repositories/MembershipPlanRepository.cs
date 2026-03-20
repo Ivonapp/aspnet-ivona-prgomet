@@ -1,4 +1,4 @@
-using CoreFitness.Demo.Application.MembershipPlans;
+using CoreFitness.Application.MembershipPlans;
 using Microsoft.EntityFrameworkCore;
 
 namespace CoreFitness.Infrastructure.Persistence.Repositories;
