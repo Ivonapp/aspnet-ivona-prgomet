@@ -760,10 +760,16 @@ font-size: 1.7rem;
 }
 .gym-woman-img {
     position: relative; 
-    bottom: -20px;
+    bottom: -30px;
     right: -130px;
 }
-
+@media (min-width: 768px) {
+    .gym-woman-img {
+    position: relative; 
+    bottom: -30px;
+    right: -80px;
+    }
+}
 
 
 
