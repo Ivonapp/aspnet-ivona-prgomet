@@ -14,7 +14,7 @@ namespace CoreFitness.Infrastructure
 
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("LocalDb")));
 
-            services.AddScoped<IMembershipPlanQueries, MembershipPlanRepository>();
+            services.AddScoped<IMembershipPlanRepository, MembershipPlanRepository>();
 
             return services;
         }

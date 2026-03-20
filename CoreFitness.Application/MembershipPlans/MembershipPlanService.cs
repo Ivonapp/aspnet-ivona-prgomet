@@ -1,9 +1,9 @@
 namespace CoreFitness.Application.MembershipPlans;
 
-public class MembershipPlanService(IMembershipPlanQueries queries) : IMembershipPlanService
+public class MembershipPlanService(IMembershipPlanRepository repository) : IMembershipPlanService
 {
     public async Task<IReadOnlyCollection<MembershipPlanDto>> GetMembershipsPlansAsync(CancellationToken ct = default)
     {
-        return await queries.GetAllWithFeaturesAsync(ct);
+        return await repository.GetAllWithFeaturesAsync(ct);
     }
 }

@@ -1,3 +1,6 @@
+using CoreFitness.Application;
+using CoreFitness.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
 
 
