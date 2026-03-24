@@ -297,13 +297,22 @@ color: var(--hovergreen-color);
     border-radius: 50px;
     background-color: var(--lightgreen-color);
     color:black;
-    padding: 1rem 1.5rem 0.5rem 1.5rem;
+    padding: 1rem 1.5rem 1rem 1.5rem;
     font-family: "DM sans", sans-serif;
     font-weight: 800;
     cursor: pointer;
     border: none;
     outline: none;
+    display: inline-block;
     }
+    .green-btn-getstarted {
+        text-decoration: none;
+        color: black;
+    }
+    .get-started {
+        padding-left: 0.5rem;
+    }
+ 
     .green-btn-hero:hover {
     background-color: var(--hovergreen-color);
     }
