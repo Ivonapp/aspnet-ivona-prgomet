@@ -480,16 +480,56 @@ color: var(--hovergreen-color);
         align-items: center;
         gap: 2rem;
     }
-    .programs-title1, .programs-title2 {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .index-titles {
         font-family: "Poppins", sans-serif;
+        font-size: 1.5rem;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        padding: 1.5rem;
+        font-weight: 700;
+    }
+    @media (min-width: 769px) {
+    .index-titles {
+        font-weight: 500;
         font-size: 3rem;
+        padding: 2rem;
+        width: 70%;
     }
-    .programs-title1 {
-    padding-top: 2rem;
-    }
-    .programs-title2 {
-    padding-bottom: 2rem;
-    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     .program-text {
         font-family: "DM sans", sans-serif;
         font-size: 0.9rem;
@@ -517,16 +557,7 @@ color: var(--hovergreen-color);
         align-items: center;
         gap: 2rem;
     }
-    .products-title1, .products-title2 {
-        font-family: "Poppins", sans-serif;
-        font-size: 3rem;
-    }
-    .products-title1 {
-    padding-top: 2rem;
-    }
-    .products-title2 {
-    padding-bottom: 2rem;
-    }
+
     .products-text {
         font-family: "DM sans", sans-serif;
         font-size: 0.9rem;
