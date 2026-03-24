@@ -165,6 +165,48 @@
 
 
 
+/*JAVASCRIPT*/
+
+.hamburger-links {
+    border: 2px solid red;
+    display: flex;
+    position: fixed;
+    left: -100%;
+    top: 70px;
+    gap: 0;
+    text-align: center;
+    flex-direction: column;
+    background-color: red;
+    width: 100%;
+    transition: 0.4s;
+}
+
+.hamburger-in-links {
+    margin: 16px;
+}
+
+.hamburger-links.active {
+    left: 0;
+}
+/*JAVASCRIPT END*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     /* NAVBAR - DESKTOP */
