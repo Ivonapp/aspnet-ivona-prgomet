@@ -4,7 +4,7 @@ darkmode, lightmode, on toggle, */
 
 
 const hamburger = document.querySelector(".dropdown")
-const navMenu = document.querySelector(".hamburger-links")
+const navMenu = document.querySelector(".hamburger-menu")
 
 hamburger.addEventListener("click", () => {
     hamburger.classList.toggle("active");

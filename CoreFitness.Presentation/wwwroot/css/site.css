@@ -167,31 +167,59 @@
 
 /*JAVASCRIPT*/
 
-.hamburger-links {
-    border: 2px solid red;
+.hamburger-menu {
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    
+    padding-left: 0; 
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+
     position: fixed;
-    left: -100%;
-    top: 70px;
-    gap: 0;
-    text-align: center;
-    flex-direction: column;
-    background-color: red;
-    width: 100%;
+    top: -100%;
+    left: 0;
+    right: 0;
+    width: 90%;
+    margin-top: 80px;
+    
+    background-color: rgb(209, 204, 204);
+    border: 2px solid white;
+    border-radius: 10px;
+    list-style: none;
     transition: 0.4s;
 }
-
-.hamburger-in-links {
-    margin: 16px;
+.hamburger-text {
+    text-decoration: none;
+    color: black;
+    font-family: "poppins", sans-serif;
+    font-size: 10px;
+    font-weight: 600;
 }
 
-.hamburger-links.active {
-    left: 0;
+.hamburger-menu.active {
+    top: 0;
+}
+.hamburger-in-links {
+    padding: 2rem;
 }
 /*JAVASCRIPT END*/
 
 
 
+    @media (min-width: 768px) {
+        .hamburger-menu {
+    display: none;
+        }
+        .hamburger-menu.active {
+    display: none;
+        }
+        .hamburger-in-links {
+    display: none;
+        }
+    }
 
 
 
