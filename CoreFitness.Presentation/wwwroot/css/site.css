@@ -215,22 +215,7 @@ color: var(--hovergreen-color);
 }
 /*JAVASCRIPT END*/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /* NAVBAR - DESKTOP */
+/* NAVBAR - DESKTOP */
     @media (min-width: 769px) {
     .navbar-text-s {
     display: block;
@@ -259,7 +244,6 @@ color: var(--hovergreen-color);
         gap: 1rem;
     }
 }
-
     /*HERO - MOBILE FIRST*/
     .bulletin-label {
     border-radius: 50px;
@@ -391,18 +375,37 @@ color: var(--hovergreen-color);
     .about-label {
     padding-right: 0.5rem;
     }
-    .brands-title {
+.brands-title {
+    display: flex;
+    text-align: center;
+    justify-content: center;
     font-family: "Poppins", sans-serif;
+    padding: 1rem;
     font-weight: 500;
     font-size: 2.9rem;
+}
+ @media (min-width: 769px) {
+    .brands-title {
+    text-align: start;
     padding-bottom: 2rem;
     padding-top: 0.5rem;
     }
+ }
+.brands-text {
+    font-family: "DM sans", sans-serif;
+    font-weight: 400;
+    padding-bottom: 2.5rem;
+    display: flex;
+    text-align: center;
+    }
+  @media (min-width: 769px) {
     .brands-text {
+        text-align: start;
     font-family: "DM sans", sans-serif;
     font-weight: 400;
     padding-bottom: 2.5rem;
     }
+}
     .quote-wrapper {
     background-color: white;
     border-radius: 20px;
@@ -426,11 +429,21 @@ color: var(--hovergreen-color);
     flex-direction: row;
     align-items: flex-start;
     }
+.about-us-label {
+    display: flex;
+    justify-content: center;
+    }
+     @media (min-width: 769px) {
+    .about-us-label {
+    display: flex;
+    justify-content: start;
+    }
     /* HÖGER SIDA */
     .brands-text-wrapper {
     flex: 1;
     display: inline-block;
     padding: 1rem;
+    }
     }
     .brands-wrapper,
     .training1-img,
@@ -480,56 +493,22 @@ color: var(--hovergreen-color);
         align-items: center;
         gap: 2rem;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     .index-titles {
         font-family: "Poppins", sans-serif;
-        font-size: 1.5rem;
+        font-size: 2.9rem;
         display: flex;
         text-align: center;
         justify-content: center;
         padding: 1.5rem;
-        font-weight: 700;
+        font-weight: 500;
     }
     @media (min-width: 769px) {
     .index-titles {
-        font-weight: 500;
         font-size: 3rem;
         padding: 2rem;
         width: 70%;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
     .program-text {
         font-family: "DM sans", sans-serif;
         font-size: 0.9rem;
