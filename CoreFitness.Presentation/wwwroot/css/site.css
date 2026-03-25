@@ -920,6 +920,7 @@ font-size: 1.7rem;
 .accordion-section1 {
     margin-top: 3rem;
     margin-bottom: 3rem;
+    padding-left: 1rem;
 }
 .accordion-section2 {
     margin-top: 3rem;
@@ -977,7 +978,7 @@ cursor: pointer;
 /*vänster*/
 .cs-bg {
     background-color: var(--gray-background-color);
-    padding-bottom: 1rem;
+    padding-bottom: 2rem;
 }
 .cs-title {
     color: black;
@@ -997,7 +998,7 @@ cursor: pointer;
     position: absolute;
 }
 .icon-2 {
-    bottom: -30px;
+    bottom: -65px;
     left: 40px;
 }
 .icon-3, .icon-4 {
@@ -1042,5 +1043,63 @@ font-weight: 600;
     display: flex;
     flex-direction: column;
 }
+
+
+
+
+
+
+
+
+
+
 /*höger*/
+.cs-left-right-container {
+    display: flex;
+    margin: 1rem 1rem 0 0; 
+}
+.cs-left {
+    padding-left: 1rem;
+}
+.cs-right {
+    border-radius: 0px 20px 20px 0px ;
+    background-color: white;
+    padding-left: 3rem;
+    padding-top: 3rem;
+}
+.cs-right-title {
+    font-family: "Poppins", sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    padding-bottom: 1.5rem;
+}
+.cs-right-text {
+    font-family: "DM sans", sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    padding-bottom: 2rem;
+}
+
+
+
+    .forum-1 {
+    display: flex;
+     flex-direction: column;
+}
+    .forum-2 {
+    display: flex;
+     flex-direction: column;
+}
+
+.forum-container {
+        display: flex;
+     flex-direction: row;
+}
+
+.forum-3 {
+    display: flex;
+     flex-direction: column;
+}
+
+
 
