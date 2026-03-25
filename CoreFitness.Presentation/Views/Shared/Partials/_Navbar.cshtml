@@ -13,7 +13,31 @@
 <div class="nav-links desktop-only">
     <a class="navbar-text-s" asp-controller="Home" asp-action="FitnessCenters">Fitness Centers</a>
     <a class="navbar-text-s" asp-controller="Home" asp-action="Memberships">Memberships</a>
-    <a class="navbar-text-s" asp-controller="Home" asp-action="Training">Training</a>
+
+<div class="dropdown-training-container">
+    <a class="navbar-text-s" asp-controller="Home" asp-action="Training">
+        Training <i class="fa-solid fa-chevron-down"></i>
+        </a>
+            <ul class="training-menu">
+
+            <li class="training-in-links">
+                <a class="training-menu-text"
+                asp-controller="Error"
+                asp-route-statusCode="404">Personal Training</a>
+                </li>
+
+            <li class="training-in-links">
+                <a class="training-menu-text"
+                asp-controller="Error"
+                asp-route-statusCode="404">Group Training</a>
+                </li>
+
+            <li class="training-in-links">
+                <a class="training-menu-text"
+                asp-controller="Error"
+                asp-route-statusCode="404">Padel</a>
+                </li></div>
+
     <a class="navbar-text-s" asp-controller="Home" asp-action="CustomerService">Customer Service</a>
     <a class="navbar-text-s" asp-controller="Home" asp-action="Store">Store</a>
 </div>
@@ -69,3 +93,34 @@
 
 
 
+<!-- <ul class="training-menu">
+
+<li class="training-in-links">
+    <a class="training-menu-text"
+    asp-controller="Error"
+    asp-route-statusCode="404">Personal Training</a>
+    </li>
+
+<li class="training-in-links">
+    <a class="training-menu-text"
+    asp-controller="Error"
+    asp-route-statusCode="404">Group Training</a>
+    </li>
+
+<li class="training-in-links">
+    <a class="training-menu-text"
+    asp-controller="Error"
+    asp-route-statusCode="404">Padel</a>
+    </li>
+
+
+
+
+
+
+
+<li class="training-in-links">
+    <a class="training-menu-text" asp-controller="Error" asp-action="FitnessCenters">Padel</a>
+    </li>
+
+</ul></div> -->
