@@ -14,40 +14,38 @@
     <a class="navbar-text-s" asp-controller="Home" asp-action="FitnessCenters">Fitness Centers</a>
     <a class="navbar-text-s" asp-controller="Home" asp-action="Memberships">Memberships</a>
 
-<div class="dropdown-training-container">
-    <a class="navbar-text-s" asp-controller="Home" asp-action="Training">
+<!-- DESKTOP TRAINING MENU -->   
+    <div class="dropdown-training-container">  
+        <a class="navbar-text-s">
         Training <i class="fa-solid fa-chevron-down"></i>
         </a>
             <ul class="training-menu">
-
             <li class="training-in-links">
                 <a class="training-menu-text"
                 asp-controller="Error"
                 asp-action="ErrorHandler"
                 asp-route-statusCode="404">Personal Training</a>
                 </li>
-
             <li class="training-in-links">
                 <a class="training-menu-text"
                 asp-controller="Error"
                 asp-action="ErrorHandler"
                 asp-route-statusCode="404">Group Training</a>
                 </li>
-
             <li class="training-in-links">
                 <a class="training-menu-text"
                 asp-controller="Error"
                 asp-action="ErrorHandler"
                 asp-route-statusCode="404">Padel</a>
-                </li></div>
+                </li>
+        </div>
 
     <a class="navbar-text-s" asp-controller="Home" asp-action="CustomerService">Customer Service</a>
     <a class="navbar-text-s" asp-controller="Home" asp-action="Store">Store</a>
 </div>
 
 <div class="nav-actions">
-  <a class="navbar-text-s" asp-controller="Auth" asp-action="Register">Become member</a>
-
+    <a class="navbar-text-s" asp-controller="Auth" asp-action="Register">Become member</a>
 
             <div class="dropdown-container">
                 <a asp-controller="Auth" asp-action="SignIn" class="green-btn">
@@ -56,11 +54,7 @@
                     </a>
                 
 
-
-
-
-
-<!-- MOBILE FIRST -->   
+<!-- MOBILE FIRST HAMBURGER MENU -->   
 <button data-target="#menu" class="dropdown">  
     <i class="fa-solid fa-bars"></i>
 </button>

@@ -20,6 +20,18 @@ hamburger.addEventListener("click", () => {
 })
 
 
+//MENY FÖR TRAINING
+const training = document.querySelector(".dropdown-training-container")
+const trainingMenu = document.querySelector(".training-menu")
+
+training.addEventListener("click", () => {
+    training.classList.toggle("active");
+    trainingMenu.classList.toggle("active");
+})
+
+
+
+
 
 
 

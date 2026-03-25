@@ -120,7 +120,7 @@
     .navbar-text-s {
     display: none;
     }
-.green-btn {
+    .green-btn {
     align-items: center;
     display: flex;
     border-radius: 50px;
@@ -146,7 +146,7 @@
         display: flex;
         gap: 1rem;
     }
-.dropdown {
+    .dropdown {
     display: flex;
     align-items: center;
     color: black;
@@ -157,7 +157,7 @@
     border: none;
     outline: none;
 }
-  .dropdown:hover {
+    .dropdown:hover {
     background-color: var(--hovergreen-color);
 }
     .desktop-only { 
@@ -166,26 +166,22 @@
 
 
 
-/*JAVASCRIPT HAMBURGERMENYN*/
+/*HAMBURHER NAVBAR JAVASCRIPT*/
 .hamburger-menu {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    padding-left: 0; 
-    padding-right: 0;
+    padding: 0.5rem;
     margin-left: auto;
     margin-right: auto;
     position: fixed;
     top: -100%;
-    left: 0;
     right: 0;
-    width: 90%;
+    width: 40%;
     margin-top: 80px;
     background-color: var(--lightgreen-color);
-    border-radius: 10px;
+    border-radius: 20px;
     transition: 0.6s;
-
     list-style: disc;
     list-style-position: inside;
 }
@@ -202,10 +198,9 @@ color: var(--hovergreen-color);
     top: 0;
 }
 .hamburger-in-links {
-    padding: 1rem;
-    width: 250px;
+    padding: 0.5rem;
+   width: 190px;
 }
-
 @media (min-width: 768px) {
 .hamburger-menu {
     display: none;
@@ -217,7 +212,7 @@ color: var(--hovergreen-color);
     display: none;
     }
 }
-/*JAVASCRIPT END*/
+/*HAMBURGER NAVBAR JAVASCRIPT END*/
 
 /* NAVBAR - DESKTOP */
     @media (min-width: 769px) {
@@ -248,6 +243,46 @@ color: var(--hovergreen-color);
         gap: 1rem;
     }
 }
+
+/*TRAINING NAVBAR JAVASCRIPT*/
+.training-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style-position: inside;
+    position: fixed;
+    padding: 0.5rem;
+    padding-left: 0; 
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    top: -30%;
+    left: 0;
+    right: 0;
+    width: 20%;
+    margin-top: 70px;
+    background-color: var(--lightgreen-color);
+    border-radius: 20px;
+    transition: 0.6s;
+}
+.training-menu.active {
+    top: 0;
+}
+.training-menu-text{ 
+    text-decoration: none;
+    color: black;
+    font-family: "poppins", sans-serif;
+    font-weight: 600;
+}
+.training-menu-text:hover {
+color: var(--hovergreen-color);
+}
+.training-in-links {
+    padding: 0.5rem;
+    width: 210px;
+}
+/*TRAINING NAVBAR JAVASCRIPT END*/
+
     /*HERO - MOBILE FIRST*/
     .bulletin-label {
     border-radius: 50px;
@@ -869,16 +904,7 @@ font-size: 1.7rem;
     }
 }
 
-
-
-
-
-
-
-
-
 /*ACCORDION*/
-
 .accordion-container {
     display:flex;
     flex-direction: column;
@@ -886,7 +912,6 @@ font-size: 1.7rem;
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
-
 @media (min-width: 768px) {
 .accordion-container {
     flex-direction: row;
@@ -906,14 +931,6 @@ font-size: 1.7rem;
     font-size: 2.5rem;
     font-weight: 500;
 }
-
-
-
-
-
-
-
-
 .accordion-question {
  font-family: "Poppins", sans-serif;
  text-decoration: none;
@@ -933,22 +950,7 @@ padding-bottom: 1rem;
 .accordion-hr {
     background-color: var(--light-gray-solid);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*ICON*/
+/* ACCORDION ICON*/
 .fa-angle-down {
     border: 1px solid var(--lightgreen-color);
     border-radius: 50px;
@@ -970,3 +972,75 @@ cursor: pointer;
 .accordion-item.active .arrow-icon {
     transform: rotate(180deg); /* Pilen pekar upp */
 }
+
+/*CONTACT US*/
+/*vänster*/
+.cs-bg {
+    background-color: var(--gray-background-color);
+    padding-bottom: 1rem;
+}
+.cs-title {
+    color: black;
+    font-family: "poppins", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    font-size: 3rem;
+    padding: 3rem;
+}
+.icon-container {
+    position: relative;
+    display: inline-block;
+}
+.icon-2, .icon-3, .icon-4 {
+    position: absolute;
+}
+.icon-2 {
+    bottom: -30px;
+    left: 40px;
+}
+.icon-3, .icon-4 {
+    background-color: var(--lightgreen-color);
+    border-radius: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.icon-4 {
+    top: 35px;
+    right: 190px;
+    background-image: url('/images/contact-us-img4.svg');
+    padding: 1.55rem;
+}
+.icon4text, .icon4textbold {
+    position: relative; 
+    bottom: 136px;
+    left: 350px;
+    display: flex;
+    flex-direction: column;
+}
+.icon3text, .icon4text {
+color: white;
+font-family: "poppins", sans-serif;
+}
+.icon3textbold, .icon4textbold {
+color: white;
+font-family: "poppins", sans-serif;
+font-size: 1.2rem;
+font-weight: 600;
+}
+.icon-3 {    
+    top: 35px;
+    left: 30px;
+    background-image: url('/images/contact-us-img3.svg');
+    padding: 0.7rem;
+}
+.icon3text, .icon3textbold {
+    position: relative; 
+    bottom: 80px;
+    left: 90px;
+    display: flex;
+    flex-direction: column;
+}
+/*höger*/
+
