@@ -1081,25 +1081,41 @@ font-weight: 600;
 }
 
 
-
-    .forum-1 {
+/*PLACEHOLDER*/
+.forum-1, .forum-2, .forum-3 {
     display: flex;
-     flex-direction: column;
+    flex-direction: column;
+    width: 100%; 
+    padding-right: 1rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    font-family: "Poppins", sans-serif;
 }
-    .forum-2 {
-    display: flex;
-     flex-direction: column;
-}
-
 .forum-container {
-        display: flex;
-     flex-direction: row;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+input, textarea {
+    border: none;
+    border-radius: 10px;
+    padding: 1rem;
+    color: #A7A7A7;
+    background-color: #F7F7F7;
+    font-family: "DM sans", sans-serif;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+textarea {
+    height: 200px;
+    resize: none;  
+}
+.forms-btn {
+    padding-top: 2rem;
 }
 
-.forum-3 {
-    display: flex;
-     flex-direction: column;
-}
+
+
 
 
 
