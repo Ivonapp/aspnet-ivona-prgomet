@@ -1082,7 +1082,7 @@ font-weight: 600;
 
 
 /*PLACEHOLDER*/
-.forum-1, .forum-2, .forum-3 {
+.forum-1, .forum-2, .forum-3, .forum-4 {
     display: flex;
     flex-direction: column;
     width: 100%; 
@@ -1118,4 +1118,60 @@ textarea {
 
 
 
+
+
+
+
+/*REGISTER*/
+
+.register-bg {
+    background-color: var(--gray-background-color);
+     padding: 3rem 3rem 3rem 3rem;
+}
+.register-flexbox {
+     justify-content: center;
+     display: flex;
+}
+
+.register-white-form {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 3rem 3rem 3rem 3rem;
+    border-radius: 20px;
+    width: 800px;
+    height: 760px;
+}
+.register-endnote,
+.register-text,
+.register-hr-text {
+    font-family: "DM sans", sans-serif;
+}
+
+
+
+.register-middle {
+    display: flex;
+     gap: 1rem;
+}
+.register-hr-text {
+    display: flex;
+    width: 70%;
+    align-items: center;
+    justify-content: center;
+    color: #6F6F6F;
+}
+.register-hr {
+    background-color: #E6E6E6;
+    border: none;
+    height: 1px;
+    margin: 20px 0;
+    width: 100%;
+}
+
+
+.register-title {
+    font-family: "Poppins", sans-serif;
+    font-size: 3rem;
+}
 
