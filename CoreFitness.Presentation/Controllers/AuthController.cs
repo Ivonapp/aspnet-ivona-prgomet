@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CoreFitness.Presentation.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CoreFitness.Controllers;
 
@@ -11,6 +12,20 @@ public class AuthController : Controller
     {
         return View();
     }
+
+    [HttpPost]
+    public IActionResult Register(RegisterFormModel formData)
+    {
+
+        if (!ModelState.IsValid)
+            return View(formData);
+
+        return View();
+    }
+
+
+
+
 
 
     [Route("signin")]

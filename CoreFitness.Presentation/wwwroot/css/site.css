@@ -1085,7 +1085,7 @@ font-weight: 600;
 .forum-1, .forum-2, .forum-3, .forum-4 {
     display: flex;
     flex-direction: column;
-    width: 100%; 
+    width: 100%;
     padding-right: 1rem;
     font-weight: 700;
     font-size: 0.9rem;
@@ -1104,7 +1104,6 @@ input, textarea {
     background-color: #F7F7F7;
     font-family: "DM sans", sans-serif;
     margin-top: 0.5rem;
-    margin-bottom: 1.5rem;
 }
 textarea {
     height: 200px;
@@ -1113,12 +1112,6 @@ textarea {
 .forms-btn {
     padding-top: 2rem;
 }
-
-
-
-
-
-
 
 
 
@@ -1142,12 +1135,15 @@ textarea {
     width: 800px;
     height: 760px;
 }
+
+.register-text {
+    color: #6F6F6F;
+}
 .register-endnote,
 .register-text,
 .register-hr-text {
     font-family: "DM sans", sans-serif;
 }
-
 
 
 .register-middle {
@@ -1169,9 +1165,63 @@ textarea {
     width: 100%;
 }
 
-
 .register-title {
     font-family: "Poppins", sans-serif;
     font-size: 3rem;
 }
 
+.register-green {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.register-btn {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+}
+.register-endnote {
+    display: flex;
+    justify-content: center;
+    color: #6F6F6F;
+    padding-top: 2rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*FELMEDDELANDE*/
+.field-validation-error {
+    color: #d9534f;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+/* Gör en röd ram runt själva textrutan så man ser var felet är */
+.input-validation-error {
+    border: 1.5px solid #d9534f;
+    background-color: #fff4f4;
+}
