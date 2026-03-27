@@ -21,7 +21,7 @@ public class AuthController : Controller
         if (ModelState.IsValid)
         //return View(formData);
         {
-            return RedirectToAction("SetPassword", "Auth");
+            return RedirectToAction("SetPassword", "Auth", new { email = formData.Email }); //skickar iväg emailen som ska synas i SetPassword sidan
         }
             
             return View(formData);
@@ -31,8 +31,9 @@ public class AuthController : Controller
 
 
         [Route("setpassword")]
-            public IActionResult SetPassword()
+            public IActionResult SetPassword(string email) //tar emot email
             {
+                ViewBag.UserEmail = email; //tar emot email till setpasswrod sidan
                 return View();
             }
 

@@ -974,7 +974,7 @@ cursor: pointer;
     transform: rotate(180deg); /* Pilen pekar upp */
 }
 
-/*CONTACT US*/
+/*CUSTOMER SERVICE CONTACT US*/
 /*vänster*/
 .cs-bg {
     background-color: var(--gray-background-color);
@@ -1044,15 +1044,6 @@ font-weight: 600;
     flex-direction: column;
 }
 
-
-
-
-
-
-
-
-
-
 /*höger*/
 .cs-left-right-container {
     display: flex;
@@ -1081,8 +1072,8 @@ font-weight: 600;
 }
 
 
-/*PLACEHOLDER*/
-.forum-1, .forum-2, .forum-3, .forum-4 {
+/*CUSTOMER SERVICE PLACEHOLDER*/
+/*.forum-1, .forum-2, .forum-3, .forum-4 {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -1090,11 +1081,44 @@ font-weight: 600;
     font-weight: 700;
     font-size: 0.9rem;
     font-family: "Poppins", sans-serif;
+    border: 2px solid red;
 }
+
 .forum-container {
     display: flex;
     flex-direction: row;
     gap: 1rem;
+}*/
+
+
+.forum-grid, .writebox-label {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 1.5rem;
+    font-family: "Poppins", sans-serif;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-right: 1rem;
+}
+.writebox-label {
+    margin-top: 1.5rem;
+}
+
+
+
+
+
+
+.field input {
+    padding: 0.8rem;
+    margin-top: 0.3rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
 }
 input, textarea {
     border: none;
@@ -1153,6 +1177,7 @@ textarea {
 .register-hr-text {
     display: flex;
     width: 70%;
+    margin-top: 2rem;
     align-items: center;
     justify-content: center;
     color: #6F6F6F;
@@ -1163,6 +1188,7 @@ textarea {
     height: 1px;
     margin: 20px 0;
     width: 100%;
+    margin-top: 3rem;
 }
 
 .register-title {
@@ -1194,6 +1220,32 @@ textarea {
 
 
 
+/*SETPASSWORD*/
+.placeholder-padding-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-weight: 700;
+    font-size: 0.9rem;
+    font-family: "Poppins", sans-serif;
+    gap: 0.5rem;
+    padding-top: 1rem;
+    margin-top: 1rem;
+}
+.green-email {
+    background-color: rgb(231, 252, 231);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    font-weight: 600;
+}
+
+
+/*Ger mellanrum ovanför titlarna Email, password, confirmpassword*/
+.password-label, .email-label {
+    margin-top: 1rem;
+}
 
 
 
@@ -1204,23 +1256,12 @@ textarea {
 
 
 
-
-
-
-
-
-
-
-
-
-/*FELMEDDELANDE*/
+/*FELMEDDELANDE i formulär*/
 .field-validation-error {
     color: #d9534f;
     font-size: 0.7rem;
     font-weight: 500;
 }
-
-/* Gör en röd ram runt själva textrutan så man ser var felet är */
 .input-validation-error {
     border: 1.5px solid #d9534f;
     background-color: #fff4f4;

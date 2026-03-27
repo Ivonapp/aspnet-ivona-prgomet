@@ -32,21 +32,19 @@
 </div>
 
 
-
                 <!-- LÄGGER TILL MODELLEN FRÅN RegisterFormModel -->
-<div class="forum-4">
-            <label asp-for="Email" class="email-label"> Email Address * </label>
-            <input asp-for="Email" class="email-form-design">                  <!-- design-->
-            <span asp-validation-for="Email"></span>                                <!-- skriver ut felmeddelande -->
-
+<div class="placeholder-padding-wrapper">
+    <label asp-for="Email" class="email-label">Email Address *</label>
+    <input asp-for="Email" class="email-form-design">                       <!-- design-->
+    <span asp-validation-for="Email"></span>                                <!-- skriver ut felmeddelande -->
 </div>
 
 
-                        <div class="register-green">
-                        <button type="submit" class="green-btn register-btn"> Continue
-                             <i class="fa-solid fa-angle-right"></i>
-                        </button>
-                        </div>
+        <div class="register-green">
+            <button type="submit" class="green-btn register-btn"> Continue
+            <i class="fa-solid fa-angle-right"></i>
+            </button>
+        </div>
 
 
 <div class="register-endnote">We will send a verification code to your email address.</div>
