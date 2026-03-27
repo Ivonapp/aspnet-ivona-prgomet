@@ -36,14 +36,14 @@
                 <!-- LÄGGER TILL MODELLEN FRÅN RegisterFormModel -->
 <div class="forum-4">
             <label asp-for="Email" class="email-label"> Email Address * </label>
-            <input asp-for="Email" class="email-form-design" placeholder="Enter Email Address">                  <!-- design-->
+            <input asp-for="Email" class="email-form-design">                  <!-- design-->
             <span asp-validation-for="Email"></span>                                <!-- skriver ut felmeddelande -->
 
 </div>
 
 
                         <div class="register-green">
-                        <button class="green-btn register-btn"> Continue
+                        <button type="submit" class="green-btn register-btn"> Continue
                              <i class="fa-solid fa-angle-right"></i>
                         </button>
                         </div>

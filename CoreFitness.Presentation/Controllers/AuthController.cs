@@ -14,14 +14,36 @@ public class AuthController : Controller
     }
 
     [HttpPost]
+    [Route("register")]
     public IActionResult Register(RegisterFormModel formData)
     {
 
-        if (!ModelState.IsValid)
+        if (ModelState.IsValid)
+        //return View(formData);
+        {
+            return RedirectToAction("SetPassword", "Auth");
+        }
+            
             return View(formData);
-
-        return View();
     }
+
+
+
+
+        [Route("setpassword")]
+            public IActionResult SetPassword()
+            {
+                return View();
+            }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -42,10 +64,5 @@ public class AuthController : Controller
     }
 
 
-        [Route("setpassword")]
-    public IActionResult SetPassword()
-    {
-        return View();
-    }
-
+  
 }
