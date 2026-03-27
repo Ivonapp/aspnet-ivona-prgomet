@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using CoreFitness.Application.MembershipPlans;
 using CoreFitness.Presentation.ViewModels;
-
+using CoreFitness.Presentation.Models;
 namespace CoreFitness.Controllers;
 
 public class HomeController(IMembershipPlanService membershipPlanService) : Controller
@@ -48,11 +48,29 @@ public async Task<IActionResult> Memberships()
     }
 
 
+
+    [HttpGet]
     [Route("customerservice")]
-    public IActionResult CustomerService()
+  public IActionResult CustomerService(CustomerServiceFormModel formData)
+{
+    if (ModelState.IsValid)
     {
-        return View();
+        return RedirectToAction("CustomerService");
     }
+
+    return View(formData);
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

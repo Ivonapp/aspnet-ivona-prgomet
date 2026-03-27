@@ -1072,24 +1072,6 @@ font-weight: 600;
 }
 
 
-/*CUSTOMER SERVICE PLACEHOLDER*/
-/*.forum-1, .forum-2, .forum-3, .forum-4 {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding-right: 1rem;
-    font-weight: 700;
-    font-size: 0.9rem;
-    font-family: "Poppins", sans-serif;
-    border: 2px solid red;
-}
-
-.forum-container {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-}*/
-
 
 .forum-grid, .writebox-label {
     display: grid;
@@ -1097,28 +1079,24 @@ font-weight: 600;
     gap: 1.5rem;
     font-family: "Poppins", sans-serif;
 }
-
 .field {
+    gap: 0.5rem;
     display: flex;
     flex-direction: column;
-    font-weight: 700;
+    font-weight: 600;
     font-size: 0.9rem;
-    margin-right: 1rem;
+    margin-right: 2rem;
 }
 .writebox-label {
     margin-top: 1.5rem;
 }
-
-
-
-
-
-
 .field input {
     padding: 0.8rem;
     margin-top: 0.3rem;
     border: 1px solid #ccc;
     border-radius: 10px;
+    border: none;
+    padding: 1.3rem;
 }
 input, textarea {
     border: none;
@@ -1134,13 +1112,11 @@ textarea {
     resize: none;  
 }
 .forms-btn {
-    padding-top: 2rem;
+margin-top: 2.5rem;
 }
 
 
-
 /*REGISTER*/
-
 .register-bg {
     background-color: var(--gray-background-color);
      padding: 3rem 3rem 3rem 3rem;

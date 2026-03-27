@@ -1,10 +1,19 @@
-﻿<!-- Kopplad till Controllers/HomeController.cs -->
+﻿
+@using CoreFitness.Presentation.Models
+@model CustomerServiceFormModel
+
+
+<!-- Kopplad till Controllers/HomeController.cs -->
 <!--För att det ska stå "CustomerService" i webbläsarens flik-->
 @{
     ViewData["Title"] = "Customer Service";
 }
 
-<partial name="Partials/_CustomerService" />
-<partial name="Partials/_Questions" />
+@section Scripts {
+    <partial name="~/Views/Shared/Partials/_ValidationScripts.cshtml" />      <!-- skriver ut felmeddelande -->
+}
+
+<!-- <partial name="Partials/_CustomerService" /> Radera denna sen, behåll den undertill -->
+<partial name="Partials/_CustomerService" model="Model" />
 <partial name="Partials/_Accordion" />
 

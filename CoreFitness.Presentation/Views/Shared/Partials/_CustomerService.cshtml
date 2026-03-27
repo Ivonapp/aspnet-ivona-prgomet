@@ -1,7 +1,15 @@
+
+@using CoreFitness.Presentation.Models
+@model CustomerServiceFormModel
+
+
+
 <div class="cs-bg">
 <div class="cs-title">Customer Service</div>
 
 
+<!-- Denna styr så den går till HandleRegister i AuthController -->
+<form method="post" asp-controller="Home" asp-action="CustomerService" novalidate>
 
 <div class="cs-left-right-container">
 
@@ -37,41 +45,93 @@
     <div class="cs-right-text">Ready to begin your fitness journey? Contact GymPro today and let our 
         expert trainers guide you with the right program and support.</div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="forum-grid">
 <div class="field">
     <label for="firstName" class="firstname-label">First Name *</label>
-    <input type="text" placeholder="Enter First Name">
+    <input asp-for="FirstName" placeholder="Enter First Name">
+    <span asp-validation-for="FirstName"></span>
 </div>   
 
 <div class="field">
-    <label for="lastName" class="lastname-label">Last Name *</label>
-    <input type="text" placeholder="Enter Last Name">
+    <label for="LastName" class="lastname-label">Last Name *</label>
+    <input asp-for="LastName" placeholder="Enter Last Name">
+    <span asp-validation-for="LastName"></span>
 </div>    
 
 <div class="field">
-    <label for="email" class="emailAddress-label">Email Address *</label>
-    <input type="email" placeholder="Enter Email Address">
+    <label for="Email" class="emailAddress-label">Email Address *</label>
+    <input asp-for="Email" placeholder="Enter Email Address">
+    <span asp-validation-for="Email"></span> 
 </div>
 
 <div class="field">
-    <label for="phoneNumber" class="phone-label">Phone Number</label>
-    <input type="tel" placeholder="Enter Phone Number">
+        <label for="phoneNumber" class="phone-label">Phone Number</label>
+        <input asp-for="PhoneNumber" placeholder="Enter Phone Number">
+        <span asp-validation-for="PhoneNumber"></span>
     </div>
  </div>
 
 
 <div class="field">
     <label for="namn" class="writebox-label">Message *</label>
-    <textarea placeholder="Message..."></textarea>
+    <textarea asp-for="Message" placeholder="Message..."></textarea>
+    <span asp-validation-for="Message"></span>
 </div>
 
 
 
-                <div class="forms-btn">
-                    <button class="green-btn">Submit Message
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                    <button type="submit" class="green-btn forms-btn">Submit Message
                         <i class="fa-solid fa-angle-right get-started"></i>
                     </button>
-                    </div>
+       
 
                 <!-- FÖR ROUTING SENARE
                 <div class="green-btn-hero">
@@ -81,6 +141,8 @@
                     </a>
                 </div>
                 -->
+
+                </form>
 
             </div>
     </div>
