@@ -69,6 +69,8 @@ public async Task<IActionResult> Memberships()
     {
         if (ModelState.IsValid)
         {
+            TempData["AlertSuccessTitle"] = "Thank you!";
+            TempData["AlertSuccessMessage"] = "We will get back to you within 72 hours.";
             return RedirectToAction("CustomerService");
         }
 

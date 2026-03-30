@@ -8,10 +8,6 @@
 <div class="cs-bg">
 <div class="cs-title">Customer Service</div>
 
-
-<!-- Denna styr så den går till HandleRegister i AuthController -->
-<form method="post" asp-controller="Home" asp-action="CustomerService" novalidate>
-
 <div class="cs-left-right-container">
 
 <div class="cs-left">
@@ -42,24 +38,33 @@
 
 <!-- HÖGER DEL -->
 <div class="cs-right">
+
+
+@* DETTA VISAS NÄR POPUP-RUTAN SYNS *@
+           @if (TempData["AlertSuccessMessage"] != null)
+        {
+         <div class="popup-overlay">
+        <div class="popup-content">
+            <div class="popup-title"> @TempData["AlertSuccessTitle"] </div>
+            <div class="popup-message"> @TempData["AlertSuccessMessage"] </div>
+
+
+@* KNAPPEN LADDAR OM CUSTOMERSERVICE SIDAN NÄR MAN TRYCKER PÅ "OK" SÅ ATT FORMULÄRET VISAS IGEN *@
+           <button type="button" class="message-btn" onclick="window.location.href='/customerservice'">OK</button>
+            </div>
+                </div>
+        }
+
+
+        
+
+
+    @* Denna styr så den går till HandleRegister i AuthController *@
+<form method="post" asp-controller="Home" asp-action="CustomerService" novalidate>
+
     <div class="cs-right-title">Contact Us Today</div>
     <div class="cs-right-text">Ready to begin your fitness journey? Contact GymPro today and let our 
         expert trainers guide you with the right program and support.</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -102,48 +107,19 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                
                     <button type="submit" class="green-btn forms-btn">Submit Message
                         <i class="fa-solid fa-angle-right get-started"></i>
                     </button>
        
 
-                <!-- FÖR ROUTING SENARE
+               @* FÖR ROUTING SENARE
                 <div class="green-btn-hero">
                 <a asp-controller="Home" asp-action="Memberships" class="green-btn-getstarted">
                     Get Started
                     <i class="fa-solid fa-angle-right get-started"></i>
                     </a>
-                </div>
-                -->
-
-                </form>
-
-            </div>
+                </div>*@
+                    
+            </form>
+        </div>
     </div>
