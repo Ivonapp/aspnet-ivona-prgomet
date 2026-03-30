@@ -2,6 +2,7 @@
 @using CoreFitness.Presentation.Models
 @model CustomerServiceFormModel
 
+<!-- _ValidationScripts.cshtml har istället lagts i CustomerService.cshtml -->
 
 
 <div class="cs-bg">
@@ -68,25 +69,25 @@
 <div class="forum-grid">
 <div class="field">
     <label for="firstName" class="firstname-label">First Name *</label>
-    <input asp-for="FirstName" placeholder="Enter First Name">
+    <input asp-for="FirstName" class="name-design"> 
     <span asp-validation-for="FirstName"></span>
 </div>   
 
 <div class="field">
     <label for="LastName" class="lastname-label">Last Name *</label>
-    <input asp-for="LastName" placeholder="Enter Last Name">
+    <input asp-for="LastName" class="name-design">  
     <span asp-validation-for="LastName"></span>
 </div>    
 
 <div class="field">
     <label for="Email" class="emailAddress-label">Email Address *</label>
-    <input asp-for="Email" placeholder="Enter Email Address">
+    <input asp-for="Email" class="email-design">   
     <span asp-validation-for="Email"></span> 
 </div>
 
 <div class="field">
         <label for="phoneNumber" class="phone-label">Phone Number</label>
-        <input asp-for="PhoneNumber" placeholder="Enter Phone Number">
+        <input asp-for="PhoneNumber" class="phone-design"> 
         <span asp-validation-for="PhoneNumber"></span>
     </div>
  </div>
@@ -94,7 +95,7 @@
 
 <div class="field">
     <label for="namn" class="writebox-label">Message *</label>
-    <textarea asp-for="Message" placeholder="Message..."></textarea>
+    <textarea asp-for="Message" class="message-design"> </textarea>
     <span asp-validation-for="Message"></span>
 </div>
 

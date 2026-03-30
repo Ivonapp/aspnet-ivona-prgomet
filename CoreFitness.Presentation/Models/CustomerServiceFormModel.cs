@@ -3,9 +3,14 @@ namespace CoreFitness.Presentation.Models;
 
 public class CustomerServiceFormModel
 {
+
+    [Display(Name ="FirstName", Prompt = "Enter First Name")]      //Det som står i Placeholdern 
     [Required(ErrorMessage = "First name is required.")]
     public string FirstName {get; set;} = null!;
 
+
+
+    [Display(Name ="LastName", Prompt = "Enter Last Name")]      //Det som står i Placeholdern
     [Required(ErrorMessage = "Last name is required.")]
     public string LastName {get; set;} = null!;
 
@@ -17,10 +22,13 @@ public class CustomerServiceFormModel
     public string Email {get; set;} = null!;
 
 
+
+    [Display(Name ="Phone", Prompt = "Enter Phone Number")]             //Det som står i Placeholdern  
     [DataType(DataType.PhoneNumber)] 
     public string? PhoneNumber {get; set;}
 
 
+    [Display(Name ="Text", Prompt = "Message...")]              //Det som står i Placeholdern  
     [Required(ErrorMessage = "Message is required.")]
     [MinLength(5, ErrorMessage = "Message must be at least 5 characters.")]
     public string Message { get; set; } = null!;

@@ -49,17 +49,31 @@ public async Task<IActionResult> Memberships()
 
 
 
-    [HttpGet]
+
+
+
+
+                            //CUSTOMER SERVICE
+    [HttpGet]                        // GET laddar fram den vanliga sidan bara
     [Route("customerservice")]
-  public IActionResult CustomerService(CustomerServiceFormModel formData)
-{
-    if (ModelState.IsValid)
+    public IActionResult CustomerService()          // Denna behövs för att regex inte ska lysa rött
     {
-        return RedirectToAction("CustomerService");
+        var model = new CustomerServiceFormModel();
+        return View(model);
     }
 
-    return View(formData);
-}
+
+    [HttpPost]                       // POST används när vi ska skicka iväg något och använda tex en submit knapp som i detta fallet med formulär
+    [Route("customerservice")]
+    public IActionResult CustomerService(CustomerServiceFormModel formData)
+    {
+        if (ModelState.IsValid)
+        {
+            return RedirectToAction("CustomerService");
+        }
+
+        return View(formData);
+    }
 
 
 
