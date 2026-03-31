@@ -30,21 +30,49 @@ public class AuthController : Controller
 
 
 
+
+        [HttpGet]
         [Route("setpassword")]
-            public IActionResult SetPassword(string email) //tar emot email
+        public IActionResult SetPassword(string email)
+        {
+            // Vi sparar emailen i ViewBag så den syns på sidan direkt
+            ViewBag.UserEmail = email;
+            
+            // Vi skickar med en tom modell till vyn
+            return View(new SetPasswordFormModel());
+        }
+
+
+        [HttpPost]
+        [Route("setpassword")]
+            public IActionResult SetPassword(SetPasswordFormModel formData, string email) //tar emot email
             {
-                ViewBag.UserEmail = email; //tar emot email till setpasswrod sidan
-                return View();
+                // Vi måste skicka tillbaka emailen till ViewBag varje gång sidan laddas om (vid fel)
+                ViewBag.UserEmail = email;
+
+
+            if (!formData.TermsAccepted) 
+            {
+                ModelState.AddModelError("TermsAccepted", "Please confirm that you have read the terms and conditions.");
+                return View(formData);
+            }
+
+                if (ModelState.IsValid)
+                {
+                // Om allt är OK > Gå vidare till MyAccountController
+                return RedirectToAction("MyAccount", "MyAccount"); //skickas till MyAccountController
+                }
+
+                // OM DET FINNS FEL: 
+                // Vi skickar tillbaka formData. Nu kommer asp-validation-for att skriva ut felmeddelnande
+                return View(formData);
             }
 
 
 
-
-
-
-
-
-
+/* return RedirectToAction = när vi vill skickas till NY sida*/
+/* return View = samma sida */
+/**/
 
 
 

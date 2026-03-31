@@ -6,6 +6,6 @@ public class MyAccountController : Controller
 {
     public IActionResult MyAccount()
     {
-        return View();
+        return View("~/Views/Account/MyAccount.cshtml");
     }
 }

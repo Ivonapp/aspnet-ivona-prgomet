@@ -1217,6 +1217,11 @@ margin-top: 1.5rem;
 
 /*BECOME MEMBER*/
 /*REGISTER*/
+.social-media-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
 .register-bg {
     background-color: var(--gray-background-color);
      padding: 3rem 3rem 3rem 3rem;
@@ -1232,7 +1237,7 @@ margin-top: 1.5rem;
     padding: 3rem 3rem 3rem 3rem;
     border-radius: 20px;
     width: 800px;
-    height: 760px;
+    height: 830px;
 }
 .register-text {
     color: #6F6F6F;
@@ -1279,9 +1284,21 @@ margin-top: 1.5rem;
 .register-endnote {
     display: flex;
     justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
     color: #6F6F6F;
     padding-top: 2rem;
+   
 }
+input[type="checkbox"] {
+   width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+
 /*BECOME MEMBER*/
 /*SETPASSWORD*/
 .placeholder-padding-wrapper {
@@ -1307,11 +1324,5 @@ margin-top: 1.5rem;
 .password-label, .email-label {
     margin-top: 1rem;
 }
-
-
-
-
-
-
 
 

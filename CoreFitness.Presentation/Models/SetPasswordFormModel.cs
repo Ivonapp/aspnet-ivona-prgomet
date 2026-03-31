@@ -4,9 +4,19 @@ namespace CoreFitness.Presentation.Models;
 
 public class SetPasswordFormModel
 {
+
+    [Required(ErrorMessage = "Please enter a password.")] 
     [DataType(DataType.Password)]
     public string Password { get; set; } = null!;
 
+
+    [Required(ErrorMessage = "Please confirm your password.")] 
+    [Compare("Password", ErrorMessage = "The passwords do not match.")]
     [DataType(DataType.Password)]
     public string ConfirmPassword { get; set; } = null!;
+
+
+    //Error message skrivet i AuthController istället 
+    public bool TermsAccepted { get; set; }
+
 }
