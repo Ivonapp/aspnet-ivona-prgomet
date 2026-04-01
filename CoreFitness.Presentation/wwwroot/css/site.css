@@ -645,7 +645,7 @@ padding-top: 1rem;
     border-radius: 20px;
     background-color: var(--navbar-background);
     margin: 0 auto;
-    width: 75%;
+    max-width: 75%;
     padding: 2rem;
 }
 .footer-title {
@@ -1337,14 +1337,44 @@ input[type="checkbox"] {
 
 
 
-/*MYACCOUNT START*/
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*MYACCOUNT START*/
 .account-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
     gap: 2rem;
-    width: 100%;
 }
+@media (min-width: 768px) {
+.account-container {
+    flex-direction: row;
+    align-items: stretch;
+}
+}
+
 .account-title {
     display: flex;
     justify-content: center;
@@ -1405,14 +1435,18 @@ input[type="checkbox"] {
 }
 
 
-
-
-
 /*MYACCOUNT - höger*/
 .account-myaccount-column-title {
+    display: flex;
+    justify-content: center;
     font-family: "Poppis", sans-serif;   
     font-size: 56px;
     padding-bottom: 2rem;
+}
+@media (min-width: 768px) {
+    .account-myaccount-column-title {
+        justify-content: start;
+    }
 }
 .accountform-hr {
       background-color: #e6e6e6;
@@ -1425,7 +1459,6 @@ input[type="checkbox"] {
     padding: 3rem 3rem 3rem 3rem;
     border: 2px solid white;
     border-radius: 20px;
-    margin-right: 2rem;
 }
 .account-field {
     display: flex;
@@ -1451,14 +1484,23 @@ input[type="checkbox"] {
 
 
 
-
 /*MYSTATISTIC*/
 .statistic-title {
+    display: flex;
+    justify-content: center;
     font-family: "Poppis", sans-serif;
     font-size: 3rem;
     font-weight: 500;
     padding-bottom: 1rem;
 }
+@media (min-width: 768px) {
+    .statistic-title {
+        justify-content: start;
+    }
+}
+
+
+
 .statistic-container {
     padding-top: 5rem;
     padding-bottom: 5rem;
