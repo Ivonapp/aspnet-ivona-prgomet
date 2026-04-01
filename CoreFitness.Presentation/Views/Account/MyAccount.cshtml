@@ -1,11 +1,27 @@
-﻿<!-- Kopplad till Controllers/AuthController.cs -->
+﻿
+@using CoreFitness.Presentation.Models
+@model MyAccountFormModel
+
+
+
+<!-- Kopplad till Controllers/AuthController.cs -->
 <!--För att det ska stå "Register" i webbläsarens flik-->
 @{
     ViewData["Title"] = "My Account - About Me";
 }
-<div class="account-bg"> 
 
-<h1>My Account</h1>
+
+@section Scripts {
+    <partial name="~/Views/Shared/Partials/_ValidationScripts.cshtml" />      <!-- skriver ut felmeddelande -->
+}
+
+
+
+
+<form method="post" asp-controller="MyAccount" asp-action="MyAccount" novalidate>
+
+
+<div class="register-title account-title">My Account</div>
 
 <div class="account-container"> 
 
@@ -13,16 +29,43 @@
 <img src="~/images/profilepic.svg" alt="Profile picture" class="profilepic-img">
 
 <div class="mini-column">
-    <div class="">Menu Options</div>
-    <div class="">About Me</div>
-    <div class="">My Membership</div>
-    <div class="">My Bookings</div>
-    <div class="">Sign Out</div>
+    <div class="account-menu">Menu Options</div>
+    <div class="account-mini-column-text">About Me
+        <i class="fa-solid fa-angle-right"></i>
+    </div>
+    <hr class="mini-column-hr">
+    <div class="account-mini-column-text">My Membership
+        <i class="fa-solid fa-angle-right"></i>
+    </div>
+    <hr class="mini-column-hr">
+    <div class="account-mini-column-text">My Bookings
+        <i class="fa-solid fa-angle-right"></i>
+    </div>
+    <hr class="mini-column-hr">
+    <div class="account-mini-column-text">Sign Out
+        <i class="fa-solid fa-angle-right"></i>
+    </div>
 </div>
-<div>If you like to cancel your account click below</div>
-<div>Remove Account</div>
 
+<div class="account-column-deleteaccount">
+<div class="deleteaccount">If you like to cancel your account click below</div>
+<div class="deleteaccount-red">Remove Account</div>
 </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -31,37 +74,80 @@
 
 
 <div class="account-right"> 
-<div>About me</div>
-<hr>
+    <div class="account-myaccount-column">
+
+
+ <div class="account-form">       
+<div class="account-myaccount-column-title">About me</div>
+<hr class="accountform-hr">
+
+<div class="account-field">
+    <label for="FirstName" class="myaccount-label">First Name</label>
+    <input asp-for="FirstName" class="myaccount-design">  <!--  LastName här kopplas till LastName i MyAccountFormModel.cs -->
+    <span asp-validation-for="FirstName"></span>     <!-- skriver ut felmeddelande -->
+</div>   
+
+<div class="account-field">
+    <label for="LastName" class="myaccount-label">Last Name</label>
+    <input asp-for="LastName" class="myaccount-design">  <!--  LastName här kopplas till LastName i MyAccountFormModel.cs -->
+    <span asp-validation-for="LastName"></span>     <!-- skriver ut felmeddelande -->
+</div>   
+
+<div class="account-field">
+    <label for="Email" class="myaccount-label">Email Adress *</label>
+    <input asp-for="Email" class="myaccount-design">  <!--  LastName här kopplas till LastName i MyAccountFormModel.cs -->
+    <span asp-validation-for="Email"></span>     <!-- skriver ut felmeddelande -->
+</div>   
+
+<div class="account-field">
+    <label for="PhoneNumber" class="myaccount-label">Phone Number</label>
+    <input asp-for="PhoneNumber" class="myaccount-design">  <!--  LastName här kopplas till LastName i MyAccountFormModel.cs -->
+    <span asp-validation-for="PhoneNumber"></span>     <!-- skriver ut felmeddelande -->
+</div>   
+
+
+                <!-- LÄGG IN KODEN HÄR
+                FÖR ATT BIFOGA BILDER-->
 
 
 
+                <button type="submit" class="green-btn account-btn">Save
+                <i class="fa-solid fa-angle-right get-started"></i>
+                </button>
 
-<div>My Statistics</div>
-<div class="statistic-bg"
-<div class="statistic-spacebetween">
-<div>Check-In (last 30 days)</div>
-<div>25</div>
 </div>
 
-<div class="statistic-spacebetween">
-<div>Weight Goal</div>
-<div>50%</div>
-</div>
-
-<div class="statistic-spacebetween">
-<div>Current BMI</div>
-<div>27</div>
-</div>
-
-</div>
 </div>
 
 
+                <div class="statistic-container"> 
+                <div class="statistic-title">My Statistics</div>
+                <div class="statistic-form">
+                <div class="statistic-spacebetween">
+                <div>Check-In (last 30 days)</div>
+                <div>25</div>
+                    </div>
+<img src="~/images/statistic1-img.svg" alt="statistics" class="statistics-img">
+
+                <div class="statistic-spacebetween">
+                <div>Weight Goal</div>
+                <div>50%</div>
+                    </div>
+<img src="~/images/statistic2-img.svg" alt="statistics" class="statistics-img">
+
+                <div class="statistic-spacebetween">
+                <div>Current BMI</div>
+                <div>27</div>
+                </div>
+<img src="~/images/statistic3-img.svg" alt="statistics" class="statistics-img">
 
 
+            </div>
+        </div>
+    </div>
+</div>
 
 
-
-</div> <!-- bg end -->
 </div> <!-- container end -->
+
+ </form>

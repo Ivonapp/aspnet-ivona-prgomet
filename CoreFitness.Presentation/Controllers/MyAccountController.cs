@@ -8,4 +8,5 @@ public class MyAccountController : Controller
     {
         return View("~/Views/Account/MyAccount.cshtml");
     }
+
 }
