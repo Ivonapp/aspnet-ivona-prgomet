@@ -1326,3 +1326,24 @@ input[type="checkbox"] {
 }
 
 
+
+
+/*MYACCOUNT START*/
+
+.account-bg {
+    background-color: #f7f7f7;
+}
+.account-container {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.mini-column {
+    border: 2px solid red;
+    border-radius: 20px;
+}
+
+
+
+/*MYACCOUNT END*/
