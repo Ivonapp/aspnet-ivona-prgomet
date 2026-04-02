@@ -1441,7 +1441,6 @@ input[type="checkbox"] {
     justify-content: center;
     font-family: "Poppis", sans-serif;   
     font-size: 56px;
-    padding-bottom: 2rem;
 }
 @media (min-width: 768px) {
     .account-myaccount-column-title {
@@ -1450,6 +1449,9 @@ input[type="checkbox"] {
 }
 .accountform-hr {
       background-color: #e6e6e6;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+
 }
 .account-form, .statistic-form {
     display: flex;
@@ -1521,4 +1523,80 @@ input[type="checkbox"] {
     width: 100%;
 }
 
-   
+
+
+
+
+
+
+
+
+/* FILUPPLADDNING 1 (RADERA DEN ENA AV DESSA) */
+.custom-upload-wrapper {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    border: 2px solid red;
+}
+
+.my-styled-input {
+    border-radius: 10px;
+    padding: 0.5rem;
+    width: 100%;
+    font-family: "DM-sans", sans-serif;
+    color: #a7a7a7;
+    border: 2px solid blue;
+}
+
+
+.my-styled-input::file-selector-button {
+    background-color: #d9d9d9;
+    border: none;
+    padding: 0.7rem;
+    border-radius: 10px;
+    cursor: pointer;
+    float: right;
+    border: 2px solid red;
+
+}
+.my-styled-input::file-selector-button:hover {
+    background-color: #c9c9c9;
+}
+
+
+
+
+
+
+
+/* FILUPPLADDNING 2 (RADERA DEN ENA AV DESSA) */
+/*.file-title {
+    font-family: "Poppins", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding-bottom: 0.8rem;
+}
+.custom-upload-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    padding: 0.5rem;
+    border-radius: 10px;
+    background-color: #f7f7f7;
+}
+.file-name-text {
+    color: #A7A7A7;
+    font-family: "DM-sans", sans-serif;
+    margin-left: 10px;
+}
+.upload-btn {
+    background-color: #d9d9d9;
+    font-family: "DM-sans", sans-serif;
+    font-weight: 600;
+    padding: 0.7rem 1.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.upload-btn:hover {
+    background-color: #bdbdbd;
+}*/

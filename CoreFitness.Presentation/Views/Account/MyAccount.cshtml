@@ -16,8 +16,7 @@
 }
 
 
-
-<form method="post" asp-controller="MyAccount" asp-action="MyAccount" enctype="multipart/form-data" novalidate>
+<form method="post" asp-controller="MyAccount" asp-action="Upload" enctype="multipart/form-data" novalidate>
 
 <div class="register-title account-title">My Account</div>
 
@@ -54,23 +53,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="account-right"> 
     <div class="account-myaccount-column">
 
@@ -81,7 +63,7 @@
 
 <div class="account-field">
     <label for="FirstName" class="myaccount-label">First Name</label>
-    <input asp-for="FirstName" class="myaccount-design">  <!--  LastName här kopplas till LastName i MyAccountFormModel.cs -->
+    <input asp-for="FirstName" class="myaccount-design">  <!--  FirstName här kopplas till LastName i MyAccountFormModel.cs -->
     <span asp-validation-for="FirstName"></span>     <!-- skriver ut felmeddelande -->
 </div>   
 
@@ -93,19 +75,32 @@
 
 <div class="account-field">
     <label for="Email" class="myaccount-label">Email Adress *</label>
-    <input asp-for="Email" class="myaccount-design">  <!--  LastName här kopplas till LastName i MyAccountFormModel.cs -->
+    <input asp-for="Email" class="myaccount-design">  <!--  Email här kopplas till LastName i MyAccountFormModel.cs -->
     <span asp-validation-for="Email"></span>     <!-- skriver ut felmeddelande -->
 </div>   
 
 <div class="account-field">
     <label for="PhoneNumber" class="myaccount-label">Phone Number</label>
-    <input asp-for="PhoneNumber" class="myaccount-design">  <!--  LastName här kopplas till LastName i MyAccountFormModel.cs -->
+    <input asp-for="PhoneNumber" class="myaccount-design">  <!--  PhoneNumber här kopplas till LastName i MyAccountFormModel.cs -->
     <span asp-validation-for="PhoneNumber"></span>     <!-- skriver ut felmeddelande -->
 </div>   
 
 
+
+
                 <!-- LÄGG IN KODEN HÄR
                 FÖR ATT BIFOGA BILDER-->
+
+<div class="file-title">Profile Image</div>
+<div class="file-container">
+    <div class="custom-upload-wrapper">
+        <input asp-for="File" type="file" accept="image/*" class="my-styled-input" />
+    </div>
+    <span asp-validation-for="File" class="error-message"></span>
+</div> 
+
+                <!-- BIFOGA BILDER END -->
+                
 
 
 

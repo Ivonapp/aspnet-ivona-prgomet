@@ -1,25 +1,82 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.ComponentModel.Design;
+using Microsoft.AspNetCore.Mvc;
+using CoreFitness.Presentation.Models;
+using System.Reflection.PortableExecutable;
 
 namespace CoreFitness.Presentation.Controllers;
 
-public class MyAccountController : Controller
+public class MyAccountController(IWebHostEnvironment env) : Controller
 {
 
-//MYACCOUNT SIDAN
-    public IActionResult MyAccount()
+private readonly IWebHostEnvironment _env = env;
+
+//FILUPPLADDNING
+    public IActionResult Upload()
     {
-        return View("~/Views/Account/MyAccount.cshtml");
+        
+        return View();
     }
+
 
 
 
 //FILUPPLADDNING
     [HttpPost]
-    public IActionResult Upload()
+    public async Task<IActionResult> Upload(MyAccountFormModel model)
     {
-        // Logik för uppladdning kommer här sen
+        if (!ModelState.IsValid || model.File == null || model.File.Length == 0)
+            return View("~/Views/Account/MyAccount.cshtml", model);
+
+        var uploadFolder = Path.Combine(_env.WebRootPath, "Uploads");               //folder för bild
+        Directory.CreateDirectory(uploadFolder);                                    //Om foldern inte finns så skapas en
+
+        var filePath = Path.Combine(uploadFolder, Path.GetFileName(model.File.FileName)); // bILDen kunden laddar upp sparas här
+
+        using (var stream = new FileStream(filePath, FileMode.Create))
+        {
+            await model.File.CopyToAsync(stream);   
+        }
+
+         ViewBag.Message = "File was uploaded successfully.";
+
+
+
+
         return RedirectToAction("MyAccount");
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //MYACCOUNT SIDAN
+    public IActionResult MyAccount()
+    {
+        return View("~/Views/Account/MyAccount.cshtml");
+    }
+
 }
 
 
