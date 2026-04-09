@@ -86,6 +86,10 @@
         --light-gray-solid: #E6E6E6;
         --dark-gray-solid: #27252F;
         --bulletin-background: #27252F;
+        --gray-placeholder-text-color: #A7A7A7;
+        --gray-browse-btn: #D9D9D9;
+        --gray-error-font: #575757;
+        --remove-account-red: #E50004;    
 
         /*HOVER COLORS, DARK*/
         --hovergreen-color:  #aec11e;
@@ -95,10 +99,9 @@
         color: #d9534f;
         font-size: 0.7rem;
         font-weight: 500;
+        font-family: "Poppins", sans-serif;
     }
-    .input-validation-error {
-        border: 1.5px solid #d9534f;
-        background-color: #fff4f4;
+    .input-validation-error {        background-color: #fff4f4;
     }
     /*FELMEDDELANDE i formulär SLUT*/
     h1,h2,h3,h4,h5,h6 {
@@ -316,6 +319,10 @@ color: var(--hovergreen-color);
     font-size: 0.9rem;
     font-weight: 700;
     }
+
+    .hero-background {
+        background: var(--navbar-background);
+    }
     .hero-wrapper {
     background: var(--navbar-background);
     padding-left: 3rem;
@@ -495,7 +502,7 @@ color: var(--hovergreen-color);
     flex-direction: row;
     align-items: flex-start;
     }
-.about-us-label {
+    .about-us-label {
     display: flex;
     justify-content: center;
     }
@@ -615,13 +622,17 @@ color: var(--hovergreen-color);
         
     }
 }
-/*ERROR START*/
+/*ERROR 404 SIDA START*/
 .error-wrapper {
-    display: flex;
+ display: flex;
     flex-direction: column;
+    align-items: center;
     text-align: center;
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+    padding: 3.5rem;
+}
+.error-404-img {
+    width: 100%;
+    max-width: 60%;
 }
 .button {
     display: flex;
@@ -635,10 +646,10 @@ font-weight: 700;
 .error-text {
 font-family: "DM sans", sans-serif;
 font-weight: 700;
-color: #575757;
+color: var(--gray-error-font);
 padding-top: 1rem;
 }
-/*ERROR END*/
+/*ERROR 404 SIDA END*/
 
 /*FOOTER START*/
 .footer-box {
@@ -1095,7 +1106,7 @@ font-weight: 600;
     padding-bottom: 2rem;
     margin-top: 2rem;
 }
-    @media (min-width: 768px) {
+@media (min-width: 768px) {
     .cs-right {
     border-radius: 0px 20px 20px 0px ;
     margin-top: 0rem;
@@ -1115,12 +1126,44 @@ font-weight: 600;
     padding-bottom: 2rem;
 }
 
-/*CUSTOMER SERVICE - vänster sida (formulär)*/
-.forum-grid, .writebox-label {
+/*FORMULÄR*/
+.forum-grid {
     display: grid;
     grid-template-columns: 1fr 1fr; 
-    gap: 1.5rem;
-    font-family: "Poppins", sans-serif;
+}
+.form-label {
+    font-family: "Poppis", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+.form-design::placeholder {
+    font-size: 1rem;
+    font-family: "DM-sans", sans-serif;
+    font-weight: 400;
+    color: var(--gray-placeholder-text-color);
+}
+.file-placeholder {
+    padding-left: 0.5rem;
+    font-size: 1rem;
+    font-family: "DM-sans", sans-serif;
+    font-weight: 400;
+    color: var(--gray-placeholder-text-color);
+    pointer-events: none; /* Gör att klicket går igenom texten */
+}
+.form-design, .custom-upload-wrapper {
+        padding: 1.2rem;
+}
+.custom-upload-wrapper {
+    margin-top: 0.5rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--gray-background-color);
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 0.5rem;
 }
 .field {
     gap: 0.5rem;
@@ -1129,9 +1172,6 @@ font-weight: 600;
     font-weight: 600;
     font-size: 0.9rem;
     margin-right: 2rem;
-}
-.writebox-label {
-    margin-top: 1.5rem;
 }
 .field input {
     padding: 0.8rem;
@@ -1145,7 +1185,7 @@ input, textarea {
     border: none;
     border-radius: 10px;
     padding: 1rem;
-    color: #A7A7A7;
+    color: var(--gray-placeholder-text-color);
     background-color: #F7F7F7;
     font-family: "DM sans", sans-serif;
     margin-top: 0.5rem;
@@ -1157,7 +1197,9 @@ textarea {
 .forms-btn {
 margin-top: 1.5rem;
 }
-/*POPUP-MESSAGE I CUSTOMER SERVICE*/
+/*FORMULÄR END*/
+
+/*POPUP-RUTAN I CUSTOMER SERVICE*/
 .popup-container {
     background-color: var(--gray-background-color);
     border: 2px solid black;
@@ -1218,8 +1260,7 @@ margin-top: 1.5rem;
     background: var(--hovergreen-color);
 }
 
-/*BECOME MEMBER*/
-/*REGISTER*/
+/*BECOME MEMBER - REGISTER*/
 .social-media-container {
     display: flex;
     justify-content: center;
@@ -1284,26 +1325,64 @@ margin-top: 1.5rem;
     display: flex;
     justify-content: center;
 }
+/*BECOME MEMBER - REGISTER - END */
+
+/*CHECKBOX*/
 .register-endnote {
     display: flex;
-    justify-content: center;
-    text-align: center;
     flex-direction: column;
-    gap: 0.5rem;
     align-items: center;
-    color: #6F6F6F;
-    padding-top: 2rem;
-   
+    justify-content: center;
+    gap: 0.5rem;
+    padding-top: 1.5rem;
+    color: var(--light-gray-color);
 }
-input[type="checkbox"] {
-   width: 20px;
-    height: 20px;
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.7rem;
+    font-family: "Poppins", sans-serif;
     cursor: pointer;
+    position: relative;
 }
+/* Döljer den riktiga rutan men gör klickbar ovanpå */
+.checkbox-wrapper input {
+    position: absolute;
+    opacity: 0;
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    z-index: 2;
+}
+/* Den snygga rutan som är ovanpå */
+.checkmark {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: var(--gray-background-color);
+    border-radius: 10px;
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+}
+/* Självaste checkmarken */
+.checkmark::after {
+    content: '\2713';
+    position: absolute;
+    display: none;
+    color: black;
+    font-size: 25px;
+    left: 6px;
+    top: -2px;
+}
+.checkbox-wrapper input:checked ~ .checkmark::after {
+    display: block;
+}
+/*CHECKBOX END*/
 
 
-/*BECOME MEMBER*/
-/*SETPASSWORD*/
+/*BECOME MEMBER - SETPASSWORD*/
 .placeholder-padding-wrapper {
     display: flex;
     flex-direction: column;
@@ -1323,43 +1402,6 @@ input[type="checkbox"] {
     margin-top: 0.5rem;
     font-weight: 600;
 }
-/*Ger mellanrum ovanför titlarna Email, password, confirmpassword*/
-.password-label, .email-label {
-    margin-top: 1rem;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*MYACCOUNT START*/
 .account-container {
@@ -1401,7 +1443,7 @@ input[type="checkbox"] {
     cursor: pointer;
 }
 .mini-column-hr {
-    background-color: #e6e6e6;
+    background-color: var(--light-gray-solid);
     width: 90%;
     margin-left: auto;
     margin-right: auto;
@@ -1431,18 +1473,16 @@ input[type="checkbox"] {
 }
 .deleteaccount-red {
     font-family: "Poppins", sans-serif;
-    color: #E50004;
+    color: var(--remove-account-red);
     font-weight: 600;
     font-size: 0.9rem;
 }
-
-
 /*MYACCOUNT - höger*/
 .account-myaccount-column-title {
     display: flex;
     justify-content: center;
     font-family: "Poppis", sans-serif;   
-    font-size: 56px;
+    font-size: 3.2rem;
 }
 @media (min-width: 768px) {
     .account-myaccount-column-title {
@@ -1450,11 +1490,10 @@ input[type="checkbox"] {
     }
 }
 .accountform-hr {
-      background-color: #e6e6e6;
-      margin-top: 2rem;
-      margin-bottom: 2rem;
-
-}
+      background-color: var(--light-gray-solid);
+      margin-top: 3rem;
+      margin-bottom: 1.3rem;
+    }
 .account-form, .statistic-form {
     display: flex;
     flex-direction: column;
@@ -1466,7 +1505,7 @@ input[type="checkbox"] {
 }
 .account-field {
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;   
 }
 .account-right {
     flex-grow: 1;
@@ -1476,19 +1515,34 @@ input[type="checkbox"] {
     margin-top: 2rem;
     padding-left: 2rem;
 }
-.myaccount-label {
-    padding-top: 1rem;
-    font-family: "Poppis", sans-serif;
-    font-size: 0.7rem;
-    font-weight: 600;
-}
 /*MYACCOUNT END*/
 
 
+/*FILUPPLADDNING*/
+.browse-btn {
+    background-color: var(--gray-browse-btn);
+    color: #333;
+    padding: 10px 25px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    pointer-events: none; /* Gör att klicket går igenom knappen */
+}
+/* Denna delen döljer den riktiga knappen browse, så att jag istället kan designa den som jag vill ha den */
+#real-file-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 10;
+}
+/*FILUPPLADDNING END*/
 
 
-
-/*MYSTATISTIC*/
+/*MY STATISTIC*/
 .statistic-title {
     display: flex;
     justify-content: center;
@@ -1502,9 +1556,6 @@ input[type="checkbox"] {
         justify-content: start;
     }
 }
-
-
-
 .statistic-container {
     padding-top: 5rem;
     padding-bottom: 5rem;
@@ -1520,18 +1571,6 @@ input[type="checkbox"] {
     font-weight: 500;
     padding-top: 1rem;
 }
-
 .statistics-img {
     width: 100%;
 }
-
-
-
-
-
-
-
-
-
-
-

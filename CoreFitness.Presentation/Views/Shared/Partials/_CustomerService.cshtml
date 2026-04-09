@@ -4,7 +4,7 @@
 
 <!-- _ValidationScripts.cshtml har istället lagts i CustomerService.cshtml -->
 
-
+<div class="container"> 
 <div class="cs-bg">
 <div class="cs-title">Customer Service</div>
 
@@ -66,38 +66,36 @@
 
 
 
-
-
 <div class="forum-grid">
 <div class="field">
-    <label for="firstName" class="firstname-label">First Name *</label>
-    <input asp-for="FirstName" class="name-design"> 
+    <label for="firstName" class="form-label">First Name *</label>
+    <input asp-for="FirstName" class="form-design"> 
     <span asp-validation-for="FirstName"></span>
 </div>   
 
 <div class="field">
-    <label for="LastName" class="lastname-label">Last Name *</label>
-    <input asp-for="LastName" class="name-design">  
+    <label for="LastName" class="form-label">Last Name *</label>
+    <input asp-for="LastName" class="form-design">  
     <span asp-validation-for="LastName"></span>
 </div>    
 
 <div class="field">
-    <label for="Email" class="emailAddress-label">Email Address *</label>
-    <input asp-for="Email" class="email-design">   
+    <label for="Email" class="form-label">Email Address *</label>
+    <input asp-for="Email" class="form-design">   
     <span asp-validation-for="Email"></span> 
 </div>
 
 <div class="field">
-        <label for="phoneNumber" class="phone-label">Phone Number</label>
-        <input asp-for="PhoneNumber" class="phone-design"> 
+        <label for="phoneNumber" class="form-label">Phone Number</label>
+        <input asp-for="PhoneNumber" class="form-design"> 
         <span asp-validation-for="PhoneNumber"></span>
     </div>
  </div>
 
 
 <div class="field">
-    <label for="namn" class="writebox-label">Message *</label>
-    <textarea asp-for="Message" class="message-design"> </textarea>
+    <label for="namn" class="form-label">Message *</label>
+    <textarea asp-for="Message" class="form-design"> </textarea>
     <span asp-validation-for="Message"></span>
 </div>
 
@@ -120,3 +118,4 @@
             </form>
         </div>
     </div>
+</div>

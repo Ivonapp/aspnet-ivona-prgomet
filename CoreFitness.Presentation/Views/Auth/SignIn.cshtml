@@ -1,11 +1,23 @@
-﻿<!-- Kopplad till Controllers/AuthController.cs -->
-<!--För att det ska stå "SignIn" OVANFÖR webbläsaren-->
+﻿@using CoreFitness.Presentation.Models
+@model SignInFormModel
+
+
 @{
     ViewData["Title"] = "Sign in";
 }
 
+@section Scripts {
+    <partial name="~/Views/Shared/Partials/_ValidationScripts.cshtml" />      <!-- skriver ut felmeddelande -->
+}
 
-
+<div class="container"> 
 <div class="register-title">Sign In Sida</div>
 
 
+
+
+
+
+
+
+</div>

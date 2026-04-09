@@ -43,6 +43,16 @@ public class AuthController : Controller
         }
 
 
+
+
+
+
+
+
+
+
+
+
         [HttpPost]
         [Route("setpassword")]
             public IActionResult SetPassword(SetPasswordFormModel formData, string email) //tar emot email
@@ -73,6 +83,17 @@ public class AuthController : Controller
 /* return RedirectToAction = när vi vill skickas till NY sida*/
 /* return View = samma sida */
 /**/
+
+
+
+
+
+
+
+
+
+
+
 
 
 

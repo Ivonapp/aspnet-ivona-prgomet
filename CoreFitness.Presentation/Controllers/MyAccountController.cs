@@ -10,7 +10,7 @@ public class MyAccountController(IWebHostEnvironment env) : Controller
 
 private readonly IWebHostEnvironment _env = env;
 
-//FILUPPLADDNING
+                //FILUPPLADDNING
     public IActionResult Upload()
     {
         
@@ -20,7 +20,7 @@ private readonly IWebHostEnvironment _env = env;
 
 
 
-//FILUPPLADDNING
+                //FILUPPLADDNING
     [HttpPost]
     public async Task<IActionResult> Upload(MyAccountFormModel model)
     {

@@ -69,37 +69,53 @@
 <div class="account-myaccount-column-title">About me</div>
 <hr class="accountform-hr">
 
+
+
 <div class="account-field">
-    <label for="FirstName" class="myaccount-label">First Name</label>
-    <input asp-for="FirstName" class="myaccount-design">  <!--  FirstName här kopplas till LastName i MyAccountFormModel.cs -->
+    <label for="FirstName" class="form-label">First Name</label>
+    <input asp-for="FirstName" class="form-design">  <!--  FirstName här kopplas till LastName i MyAccountFormModel.cs -->
     <span asp-validation-for="FirstName"></span>     <!-- skriver ut felmeddelande -->
 </div>   
 
 <div class="account-field">
-    <label for="LastName" class="myaccount-label">Last Name</label>
-    <input asp-for="LastName" class="myaccount-design">  <!--  LastName här kopplas till LastName i MyAccountFormModel.cs -->
+    <label for="LastName" class="form-label">Last Name</label>
+    <input asp-for="LastName" class="form-design">  <!--  LastName här kopplas till LastName i MyAccountFormModel.cs -->
     <span asp-validation-for="LastName"></span>     <!-- skriver ut felmeddelande -->
 </div>   
 
 <div class="account-field">
-    <label for="Email" class="myaccount-label">Email Adress *</label>
-    <input asp-for="Email" class="myaccount-design">  <!--  Email här kopplas till LastName i MyAccountFormModel.cs -->
+    <label for="Email" class="form-label">Email Adress *</label>
+    <input asp-for="Email" class="form-design">  <!--  Email här kopplas till LastName i MyAccountFormModel.cs -->
     <span asp-validation-for="Email"></span>     <!-- skriver ut felmeddelande -->
 </div>   
 
 <div class="account-field">
-    <label for="PhoneNumber" class="myaccount-label">Phone Number</label>
-    <input asp-for="PhoneNumber" class="myaccount-design">  <!--  PhoneNumber här kopplas till LastName i MyAccountFormModel.cs -->
+    <label for="PhoneNumber" class="form-label">Phone Number</label>
+    <input asp-for="PhoneNumber" class="form-design">  <!--  PhoneNumber här kopplas till LastName i MyAccountFormModel.cs -->
     <span asp-validation-for="PhoneNumber"></span>     <!-- skriver ut felmeddelande -->
 </div>   
 
 
 
-
-                <!-- LÄGG IN KODEN HÄR
-                FÖR ATT BIFOGA BILDER-->
+<hr class="accountform-hr">
 
 
+
+
+
+
+                <!-- BIFOGA BILDER-->
+                <div class="account-field">
+                <div class="form-label">Profile Image</div>
+
+                <div class="custom-upload-wrapper">
+                    <span id="img-name-display" class="file-placeholder">Upload Profile Image</span>
+                    
+                    <div class="browse-btn">Browse</div>
+
+                    <input asp-for="File" type="file" id="real-file-input" accept="image/*" />
+                </div>
+                </div>
                 <!-- BIFOGA BILDER END -->
                 
 
@@ -140,8 +156,5 @@
         </div>
     </div>
 </div>
-
-
-</div> <!-- container end -->
 
  </form>
