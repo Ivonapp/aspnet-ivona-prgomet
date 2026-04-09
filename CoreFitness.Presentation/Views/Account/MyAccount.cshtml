@@ -27,31 +27,39 @@
 
 <div class="mini-column">
     <div class="account-menu">Menu Options</div>
-    <div class="account-mini-column-text">About Me
+
+    <a class="account-mini-column-text"
+    asp-controller="Error" asp-action="ErrorHandler" asp-route-statusCode="404">About Me
         <i class="fa-solid fa-angle-right"></i>
-    </div>
+    </a>
+
     <hr class="mini-column-hr">
-    <div class="account-mini-column-text">My Membership
+
+        <a class="account-mini-column-text"
+    asp-controller="Error" asp-action="ErrorHandler" asp-route-statusCode="404">My Membership
         <i class="fa-solid fa-angle-right"></i>
-    </div>
-    <hr class="mini-column-hr">
-    <div class="account-mini-column-text">My Bookings
+    </a>
+
+<hr class="mini-column-hr">
+
+    <a class="account-mini-column-text"
+        asp-controller="Error" asp-action="ErrorHandler" asp-route-statusCode="404">My Bookings
         <i class="fa-solid fa-angle-right"></i>
-    </div>
+    </a>
+    
     <hr class="mini-column-hr">
+
     <div class="account-mini-column-text">Sign Out
         <i class="fa-solid fa-angle-right"></i>
     </div>
 </div>
+
 
 <div class="account-column-deleteaccount">
 <div class="deleteaccount">If you like to cancel your account click below</div>
 <div class="deleteaccount-red">Remove Account</div>
 </div>
 </div>
-
-
-
 
 <div class="account-right"> 
     <div class="account-myaccount-column">
@@ -91,13 +99,6 @@
                 <!-- LÄGG IN KODEN HÄR
                 FÖR ATT BIFOGA BILDER-->
 
-<div class="file-title">Profile Image</div>
-<div class="file-container">
-    <div class="custom-upload-wrapper">
-        <input asp-for="File" type="file" accept="image/*" class="my-styled-input" />
-    </div>
-    <span asp-validation-for="File" class="error-message"></span>
-</div> 
 
                 <!-- BIFOGA BILDER END -->
                 
