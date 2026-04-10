@@ -3,7 +3,7 @@
 
 
 @{
-    ViewData["Title"] = "Sign in";
+    ViewData["Title"] = "Sign in";  <!-- sätter titeln som visas i webbläsarens flik (längst upp i fönstret/ i taben) -->
 }
 
 @section Scripts {
@@ -11,13 +11,71 @@
 }
 
 <div class="container"> 
-<div class="register-title">Sign In Sida</div>
 
 
 
 
 
+<div class="register-bg">
+    <div class="register-flexbox">
+    <div class="register-white-form">
+
+<!-- Denna styr så den går till HandleRegister i AuthController -->
+<form method="post" asp-controller="Auth" asp-action="Register" novalidate>
+
+<div class="register-title">Welcome Back!</div>
+<div class="register-text">Log in to continue your fitness journey with full access to your customized program, training history, and progress tracking. Stay consistent, monitor your development, and keep moving forward with the structure and support built into your account.</div>
+<hr class="register-hr">
 
 
 
+
+<div class="social-media-container">
+<img src="~/images/google.svg" alt="CoreFitness Logo" class="logo-img">
+<img src="~/images/facebook.svg" alt="CoreFitness Logo" class="logo-img">
+<img src="~/images/github.svg" alt="CoreFitness Logo" class="logo-img">
+</div>
+
+<div class="register-middle">
+<hr class="register-hr"><div class="register-hr-text">OR CONTINUE WITH</div><hr class="register-hr">
+</div>
+
+
+                <!-- LÄGGER TILL MODELLEN (email, password, TermsAccepted) FRÅN SignInFormModel.cs -->
+<div class="placeholder-padding-wrapper">
+    <label asp-for="Email" class="form-label">Email Address *</label>
+    <input asp-for="Email" class="form-design">                       <!-- design-->
+    <span asp-validation-for="Email"></span>                          <!-- skriver ut felmeddelande -->
+
+
+    <label asp-for="Password" class="form-label">Password</label>
+    <input asp-for="Password" class="form-design">                  <!-- design-->
+    <span asp-validation-for="Password"></span>                     <!-- skriver ut felmeddelande -->
+</div>
+
+
+        <div class="register-green">
+            <button type="submit" class="green-btn register-btn"> Continue
+            <i class="fa-solid fa-angle-right"></i>
+            </button>
+        </div>
+
+
+                        <!-- CHECKBOX RUTA -->
+  
+                        <div class="register-endnote">
+                        <label class="checkbox-wrapper">
+                                <input asp-for="TermsAccepted" type="checkbox" />
+                                
+                                <span class="checkmark"></span>
+                                
+                                <span class="label-text">Accept user terms and conditions</span>
+                        </label>
+                        <span asp-validation-for="TermsAccepted" class="text-danger"></span>
+                        </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

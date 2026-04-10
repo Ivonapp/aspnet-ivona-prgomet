@@ -7,12 +7,16 @@ public class AuthController : Controller
 {
 
 
+// REGISTER GET
+    [HttpGet]
     [Route("register")]
     public IActionResult Register()
     {
         return View();
     }
 
+
+// REGISTER POST
     [HttpPost]
     [Route("register")]
     public IActionResult Register(RegisterFormModel formData)
@@ -31,6 +35,11 @@ public class AuthController : Controller
 
 
 
+
+
+
+
+// SET PASSWORD GET
         [HttpGet]
         [Route("setpassword")]
         public IActionResult SetPassword(string email)
@@ -43,24 +52,17 @@ public class AuthController : Controller
         }
 
 
-
-
-
-
-
-
-
-
-
-
+// SET PASSWORD POST
         [HttpPost]
-        [Route("setpassword")]
+        [Route("setpassword")] 
             public IActionResult SetPassword(SetPasswordFormModel formData, string email) //tar emot email
             {
                 // Vi måste skicka tillbaka emailen till ViewBag varje gång sidan laddas om (vid fel)
                 ViewBag.UserEmail = email;
 
 
+            // CHECKBOX
+            // SÄKERSTÄLLER ATT CHECKBOXEN KRYSSAS I, INNAN MAN GÅR VIDARE TILL NÄSTA SIDA
             if (!formData.TermsAccepted) 
             {
                 ModelState.AddModelError("TermsAccepted", "Please confirm that you have read the terms and conditions.");
@@ -69,20 +71,16 @@ public class AuthController : Controller
 
                 if (ModelState.IsValid)
                 {
-                // Om allt är OK > Gå vidare till MyAccountController
+                // 1. Om allt är OK > Gå vidare till MyAccountController
                 return RedirectToAction("MyAccount", "MyAccount"); //skickas till MyAccountController
                 }
 
-                // OM DET FINNS FEL: 
-                // Vi skickar tillbaka formData. Nu kommer asp-validation-for att skriva ut felmeddelnande
+                // 2. Om något blir fel, så skickas istället femleddelande: 
+                // Vi skickar tillbaka formData. Nu kommer asp-validation-for i SetPassword.cshtml att skriva ut felmeddelnande
                 return View(formData);
             }
-
-
-
-/* return RedirectToAction = när vi vill skickas till NY sida*/
-/* return View = samma sida */
-/**/
+                /* return RedirectToAction  = när vi vill skickas till NY sida*/
+                /* return View              = samma sida */
 
 
 
@@ -92,6 +90,11 @@ public class AuthController : Controller
 
 
 
+// SIGN OUT
+    public new IActionResult SignOut()
+    {
+        return RedirectToAction("Index", "Home");
+    }
 
 
 
@@ -100,7 +103,12 @@ public class AuthController : Controller
 
 
 
-    [Route("signin")]
+
+
+// SIGN IN GET
+    [HttpGet]
+    [Route("signin")]   //Det du skriver inuti [Route("...")] är den URL-adress som användaren ser i webbläsarens adressfält.
+                        // (Standard är med små bokstäver, och inga mellanslag i namnet.)
     public IActionResult SignIn()
     {
         return View();
@@ -108,11 +116,31 @@ public class AuthController : Controller
 
 
 
-    public new IActionResult SignOut()
-    {
-        return RedirectToAction("Index", "Home");
-    }
 
+// SIGN IN POST
+   /* [HttpPost]
+    [Route("signin")]
+    public IActionResult SignIn()
+    {
+            // CHECKBOX
+            // SÄKERSTÄLLER ATT CHECKBOXEN KRYSSAS I, INNAN MAN GÅR VIDARE TILL NÄSTA SIDA
+            if (!formData.TermsAccepted) 
+            {
+                ModelState.AddModelError("TermsAccepted", "Please confirm that you have read the terms and conditions.");
+                return View(formData);
+            }
+
+                if (ModelState.IsValid)
+                {
+                // 1. Om allt är OK > Gå vidare till MyAccountController
+                return RedirectToAction("MyAccount", "MyAccount"); //skickas till MyAccountController
+                }
+
+                // 2. Om något blir fel, så skickas istället femleddelande. 
+                // Vi skickar tillbaka formData. Nu kommer asp-validation-for i SignIn.cshtml att skriva ut felmeddelnande
+                return View(formData);
+            }
+    }*/
 
   
 }

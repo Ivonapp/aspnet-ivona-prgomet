@@ -19,4 +19,9 @@ public class SignInFormModel
     [DataType(DataType.Password)]
     public string Password { get; set; } = null!;
 
+
+
+    //Error message skrivet i AuthController istället 
+    public bool TermsAccepted { get; set; }
+
 }
