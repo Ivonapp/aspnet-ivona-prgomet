@@ -118,18 +118,21 @@ public class AuthController : Controller
 
 
 // SIGN IN POST
-   /* [HttpPost]
+    [HttpPost]
     [Route("signin")]
-    public IActionResult SignIn()
+    public IActionResult SignIn(SignInFormModel formData)   //Inuti Paranteserna skriver vi FormModel som styr inloggning.
     {
             // CHECKBOX
             // SÄKERSTÄLLER ATT CHECKBOXEN KRYSSAS I, INNAN MAN GÅR VIDARE TILL NÄSTA SIDA
-            if (!formData.TermsAccepted) 
-            {
-                ModelState.AddModelError("TermsAccepted", "Please confirm that you have read the terms and conditions.");
-                return View(formData);
-            }
 
+            // OM CHECKBOX _INTE_ ÄR IKRYSSAD:
+                if (!formData.TermsAccepted) 
+                {
+                    ModelState.AddModelError("TermsAccepted", "Please confirm that you have read the terms and conditions.");
+                    return View(formData); // Om checkboxen INTE är ikryssad.
+                }
+
+            // OM CHECKBOX _ÄR_ IKRYSSAD:
                 if (ModelState.IsValid)
                 {
                 // 1. Om allt är OK > Gå vidare till MyAccountController
@@ -138,9 +141,8 @@ public class AuthController : Controller
 
                 // 2. Om något blir fel, så skickas istället femleddelande. 
                 // Vi skickar tillbaka formData. Nu kommer asp-validation-for i SignIn.cshtml att skriva ut felmeddelnande
-                return View(formData);
+                return View(formData); //Om checkboxen är ikryssad, men något ANNAT är fel (t.ex. felaktigt e-postformat),
             }
-    }*/
 
   
 }

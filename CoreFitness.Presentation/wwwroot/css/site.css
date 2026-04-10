@@ -101,7 +101,8 @@
         font-weight: 500;
         font-family: "Poppins", sans-serif;
     }
-    .input-validation-error {        background-color: #fff4f4;
+    .input-validation-error {
+        background-color: #fff4f4;
     }
     /*FELMEDDELANDE i formulär SLUT*/
     h1,h2,h3,h4,h5,h6 {

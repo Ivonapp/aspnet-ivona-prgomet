@@ -28,9 +28,16 @@
             @RenderBody()
         </main>
 
-        <footer> 
-            <partial name="Partials/_Footer" />
-         </footer>
+
+
+         @if (ViewData["HideFooter"] == null) //Döljer footern på SetPassword, Register och SignnIn. Detta då jag har lagt in koden: "ViewData["HideFooter"] = true;" på just dessa sidorna.
+        {
+            <footer> 
+                <partial name="Partials/_Footer" />
+            </footer>
+        }
+
+
     </div>
    
     <script src="~/js/site.js" asp-append-version="true"></script>

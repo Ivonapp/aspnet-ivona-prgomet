@@ -22,19 +22,19 @@ private readonly IWebHostEnvironment _env = env;
 
                 //FILUPPLADDNING
     [HttpPost]
-    public async Task<IActionResult> Upload(MyAccountFormModel model)
+    public async Task<IActionResult> Upload(MyAccountFormModel formData) //Inuti Paranteserna skriver vi FormModel som styr filuppladdning. I detta fallet finns den i MyAccountFormModel.
     {
-        if (!ModelState.IsValid || model.File == null || model.File.Length == 0)
-            return View("~/Views/Account/MyAccount.cshtml", model);
+        if (!ModelState.IsValid || formData.File == null || formData.File.Length == 0)
+            return View("~/Views/Account/MyAccount.cshtml", formData);
 
         var uploadFolder = Path.Combine(_env.WebRootPath, "Uploads");               //folder för bild
         Directory.CreateDirectory(uploadFolder);                                    //Om foldern inte finns så skapas en
 
-        var filePath = Path.Combine(uploadFolder, Path.GetFileName(model.File.FileName)); // bILDen kunden laddar upp sparas här
+        var filePath = Path.Combine(uploadFolder, Path.GetFileName(formData.File.FileName)); // bILDen kunden laddar upp sparas här
 
         using (var stream = new FileStream(filePath, FileMode.Create))
         {
-            await model.File.CopyToAsync(stream);   
+            await formData.File.CopyToAsync(stream);   
         }
 
          ViewBag.Message = "File was uploaded successfully.";
