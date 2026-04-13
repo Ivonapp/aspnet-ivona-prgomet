@@ -30,7 +30,7 @@ private readonly IWebHostEnvironment _env = env;
         var uploadFolder = Path.Combine(_env.WebRootPath, "Uploads");               //folder för bild
         Directory.CreateDirectory(uploadFolder);                                    //Om foldern inte finns så skapas en
 
-        var filePath = Path.Combine(uploadFolder, Path.GetFileName(formData.File.FileName)); // bILDen användaren laddar upp sparas här
+        var filePath = Path.Combine(uploadFolder, $"{Guid.NewGuid()}_{Path.GetFileName(formData.File.FileName)}"); // bILDen användaren laddar upp sparas här, samt får den ett unikt GUID så man kan lägga in samma bild fler gånger där den får ett unikt namn
 
         using (var stream = new FileStream(filePath, FileMode.Create))
         {
@@ -38,8 +38,6 @@ private readonly IWebHostEnvironment _env = env;
         }
 
          ViewBag.Message = "File was uploaded successfully.";
-
-
         return View("~/Views/Account/MyAccount.cshtml", formData);
     }
 
