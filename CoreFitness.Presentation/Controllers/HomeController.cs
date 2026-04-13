@@ -63,7 +63,7 @@ public async Task<IActionResult> Memberships()
     }
 
 
-    [HttpPost]                       // POST används när vi ska skicka iväg något och använda tex en submit knapp som i detta fallet med formulär
+    [HttpPost]
     [Route("customerservice")]
     public IActionResult CustomerService(CustomerServiceFormModel formData)
     {

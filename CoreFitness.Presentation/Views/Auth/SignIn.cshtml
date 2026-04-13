@@ -1,5 +1,5 @@
 ﻿@using CoreFitness.Presentation.Models
-@model SignInFormModel
+@model SignInFormModel //Kopplar vår SignIn.cshtml med vår model SignInFormModel.cs
 
 
 @{
@@ -22,7 +22,7 @@
     <div class="register-flexbox">
     <div class="register-white-form">
 
-<!-- Denna styr så den går till SignIn i AuthController -->
+<!-- Kopplar vår SignIn.cshtml med vår Controller AuthController -->
 <!-- Det som ska stå inuti asp-action är namnet på metoden i din AuthController där din metod för Sign in finns.
 I detta fallet "SignIn" eftersom: "public IActionResult SignIn( )" -->
 <form method="post" asp-controller="Auth" asp-action="SignIn" novalidate>

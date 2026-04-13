@@ -15,9 +15,9 @@ public class CustomerServiceFormModel
     public string LastName {get; set;} = null!;
 
 
-    [DataType(DataType.EmailAddress)]
-    [Display(Name ="Email", Prompt = "Enter Email Address")]      //Det som står i Placeholdern                        // DataTypen är email
-    [Required(ErrorMessage = "Email Address is required.")]    //Error meddelande som skrivs ut
+    [DataType(DataType.EmailAddress)]                           // DataTypen är email
+    [Display(Name ="Email", Prompt = "Enter Email Address")]    //Det som står i Placeholdern                        
+    [Required(ErrorMessage = "Email Address is required.")]     //Error meddelande som skrivs ut
     [RegularExpression(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", ErrorMessage = "You must enter a valid email address.")] // REGEX för email
     public string Email {get; set;} = null!;
 

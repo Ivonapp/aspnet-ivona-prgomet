@@ -30,7 +30,7 @@ private readonly IWebHostEnvironment _env = env;
         var uploadFolder = Path.Combine(_env.WebRootPath, "Uploads");               //folder för bild
         Directory.CreateDirectory(uploadFolder);                                    //Om foldern inte finns så skapas en
 
-        var filePath = Path.Combine(uploadFolder, Path.GetFileName(formData.File.FileName)); // bILDen kunden laddar upp sparas här
+        var filePath = Path.Combine(uploadFolder, Path.GetFileName(formData.File.FileName)); // bILDen användaren laddar upp sparas här
 
         using (var stream = new FileStream(filePath, FileMode.Create))
         {
@@ -40,9 +40,7 @@ private readonly IWebHostEnvironment _env = env;
          ViewBag.Message = "File was uploaded successfully.";
 
 
-
-
-        return RedirectToAction("MyAccount");
+        return View("~/Views/Account/MyAccount.cshtml", formData);
     }
 
 

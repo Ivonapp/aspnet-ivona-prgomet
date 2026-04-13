@@ -102,24 +102,35 @@
 
 
 
-
-
-
                 <!-- BIFOGA BILDER-->
-                <div class="account-field">
-                <div class="form-label">Profile Image</div>
-
-                <div class="custom-upload-wrapper">
-                    <span id="img-name-display" class="file-placeholder">Upload Profile Image</span>
-                    
-                    <div class="browse-btn">Browse</div>
-
-                    <input asp-for="File" type="file" id="real-file-input" accept="image/*" />
-                </div>
-                </div>
-                <!-- BIFOGA BILDER END -->
+        <div class="account-field">
                 
+                @if (ViewBag.Message != null)
+                {
+                    
+                    <div class="popup-overlay">                                         <!-- Popup rutan syns mer än bakgrunden -->
+                        <div class="popup-content">
+                                <div class="popup-message">@ViewBag.Message</div>       <!-- MEDDELANDE -->
+                                <div class="forms-btn">                                 <!-- KNAPP -->
+                            <a asp-action="MyAccount" class="message-btn">OK</a>
+                       </div>
+                    </div>
+                </div>
+                }
+                        else 
+                        {
+                                <div class="form-label">Profile Image</div>
 
+                                <div class="custom-upload-wrapper">
+                                    <span id="img-name-display" class="file-placeholder">Upload Profile Image</span>
+                                    
+                                    <div class="browse-btn">Browse</div>
+
+                                    <input asp-for="File" type="file" id="real-file-input" accept="image/*" />
+                                </div>
+                        }   
+                </div>                
+                <!-- BIFOGA BILDER END -->
 
 
                 <button type="submit" class="green-btn account-btn">Save
@@ -153,10 +164,9 @@
 <img src="~/images/statistic3-img.svg" alt="statistics" class="statistics-img">
 
 
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-
-</div>
  </form>
