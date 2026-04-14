@@ -3,6 +3,8 @@ using CoreFitness.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using CoreFitness.Infrastructure.Persistence;
 using CoreFitness.Infrastructure.Persistence.Seeds;
+using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,19 +13,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddApplication();
-builder.Services.AddInfrastructure(builder.Configuration);
+//builder.Services.AddInfrastructure(builder.Configuration); <- Byter ut denna raden, mot nedan rad.
+builder.Services.AddDbContext<ApplicationDbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("LocalDb")));
 
 
 var app = builder.Build();
 using var scope = app.Services.CreateScope();
 var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 await MembershipPlanSeeder.SeedAsync(context);
-
-
-
-
-
-
 
 
 

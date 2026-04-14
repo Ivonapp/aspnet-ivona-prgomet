@@ -1,9 +1,13 @@
 using CoreFitness.Domain.MembershipPlans;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using CoreFitness.Domain.Entities;
 
 namespace CoreFitness.Infrastructure.Persistence;
 
-public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
+// medans DbContext = En tom motor. Du måste bygga allt (tabeller för användare, inloggning, lösenord) helt själv från noll.
+// IdentityDbContext: Samma motor, men den kommer "förtrimmat" med allt som rör säkerhet och användare.
+public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext<AppUser>(options)
 {
     public DbSet<MembershipPlanEntity> MembershipPlans => Set<MembershipPlanEntity>();
     public DbSet<MembershipPlanFeatureEntity> MembershipPlanFeatures => Set<MembershipPlanFeatureEntity>();
