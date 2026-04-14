@@ -13,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddApplication();
-//builder.Services.AddInfrastructure(builder.Configuration); <- Byter ut denna raden, mot nedan rad.
+builder.Services.AddInfrastructure(builder.Configuration); 
 builder.Services.AddDbContext<ApplicationDbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("LocalDb")));
 
 

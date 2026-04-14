@@ -1,6 +1,7 @@
 ﻿using CoreFitness.Presentation.Models;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace CoreFitness.Controllers;
 
 public class AuthController : Controller
