@@ -5,6 +5,8 @@ using CoreFitness.Infrastructure.Persistence;
 using CoreFitness.Infrastructure.Persistence.Seeds;
 using Microsoft.EntityFrameworkCore;
 using CoreFitness.Infrastructure.Services;
+using CoreFitness.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +17,15 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration); 
 builder.Services.AddDbContext<ApplicationDbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("LocalDb")));
+
+builder.Services.AddIdentity<AppUser, IdentityRole>(x => // IdentityRole är en inbyggd klass i ASP.NET Core Identity-biblioteket.
+{
+    x.Password.RequiredLength = 8;
+    x.User.RequireUniqueEmail = true; // Detta är en inbyggd säkerhetsspärr. Det gör det omöjligt för två olika konton att registreras med samma e-postadress.
+    x.SignIn.RequireConfirmedEmail = false; // denna skickar ut ett mail där man bekräftar användaren när den är TRUE
+})
+    .AddEntityFrameworkStores<ApplicationDbContext>(); // Den talar om för Identity att alla användare, lösenordshashar och roller ska sparas i den databas som sköts av ApplicationDbContext
+
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<AccountService>();
 builder.Services.AddScoped<FileService>();
