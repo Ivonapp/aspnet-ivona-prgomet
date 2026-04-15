@@ -7,6 +7,7 @@ public class SetPasswordFormModel
     [Display(Name ="Password", Prompt = "Enter Password")]                //Det som står i Placeholdern
     [Required(ErrorMessage = "Please enter a password.")] 
     [DataType(DataType.Password)]
+    //LÄGG TILL REGEX FÖR LÖSENORD
     public string Password { get; set; } = null!;
 
 
