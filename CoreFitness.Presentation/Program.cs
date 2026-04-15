@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using CoreFitness.Infrastructure.Persistence;
 using CoreFitness.Infrastructure.Persistence.Seeds;
 using Microsoft.EntityFrameworkCore;
-
+using CoreFitness.Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +15,9 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration); 
 builder.Services.AddDbContext<ApplicationDbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("LocalDb")));
-
+builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<AccountService>();
+builder.Services.AddScoped<FileService>();
 
 var app = builder.Build();
 using var scope = app.Services.CreateScope();

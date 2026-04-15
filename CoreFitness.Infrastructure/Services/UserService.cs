@@ -36,6 +36,33 @@ public class UserService(UserManager<AppUser> userManager, SignInManager<AppUser
 }
 
 
+// form =  det som finns i min Model.
+// AppUser = styr hur användaren ser ut i databasen.
 
-    // form =  det som finns i min Model.
-    // AppUser = styr hur användaren ser ut i databasen.
+
+
+
+
+/*
+ 
+STRUKTURERA UPP HUR MPNGA SERVICES JAG SKA HA:
+
+
+
+AccountService
+ANVÄNDARENS PERSONLIGA INFORMATION OCH INSTÄLLNINGAR
+* MyAccountFormModel - (Lägg IFormFile i egen service?)
+
+FileService
+* IFormFile
+
+
+AuthService
+BERÖR SKAPA KONTO/INLOGG
+* RegisterFormModel
+* SetPasswordFormModel
+* SignInFormModel
+
+
+ 
+ */
