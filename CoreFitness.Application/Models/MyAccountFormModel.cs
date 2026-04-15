@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-namespace CoreFitness.Presentation.Models;
+namespace CoreFitness.Application.Models;
+using Microsoft.AspNetCore.Http;
 
-    public class MyAccountFormModel
+public class MyAccountFormModel
 {
     
     [Display(Name ="FirstName", Prompt = "Enter First Name")]                //Det som står i Placeholdern

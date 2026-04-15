@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CoreFitness.Presentation.Models;
+namespace CoreFitness.Application.Models;
 
 public class RegisterFormModel
 {

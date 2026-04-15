@@ -1,4 +1,4 @@
-﻿using CoreFitness.Presentation.Models;
+﻿using CoreFitness.Application.Models;
 using Microsoft.AspNetCore.Mvc;
 
 

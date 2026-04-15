@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.Design;
 using Microsoft.AspNetCore.Mvc;
-using CoreFitness.Presentation.Models;
+using CoreFitness.Application.Models;
 using System.Reflection.PortableExecutable;
 
 namespace CoreFitness.Presentation.Controllers;

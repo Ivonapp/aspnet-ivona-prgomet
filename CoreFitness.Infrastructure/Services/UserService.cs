@@ -1,7 +1,7 @@
 ﻿using CoreFitness.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using CoreFitness.Presentation.Models;
+using CoreFitness.Application.Models;
 
 namespace CoreFitness.Infrastructure.Services;
 
@@ -27,7 +27,7 @@ public class UserService(UserManager<AppUser> userManager, SignInManager<AppUser
         };
 
         // Slutskedet där användaren tryckt på spara-knappen
-        var result = await _userManager.CreateAsync(appUser, form.Password); //krypterar användarens lösenord
+        var result = await _userManager.CreateAsync(appUser); // , form.Password - krypterar användarens lösenord
         if (result.Succeeded)
             return true;
         else
