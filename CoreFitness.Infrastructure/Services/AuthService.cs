@@ -13,7 +13,8 @@ public class AuthService(UserManager<AppUser> userManager, SignInManager<AppUser
     private readonly SignInManager<AppUser> _signInManager = signInManager; // Denna hanterar Inloggning, autentisering, utlogg osv
 
 
-    //REGISTERFORMMODEL - ***KOLLAR ENDAST SÅ DET INTE FINNS FLER EPOST***
+    //REGISTERFORMMODEL
+    // KOLLAR OM DET REDAN FINNS EN IDENTISK EPOST
     public async Task<bool> CheckEmailExistAsync(RegisterFormModel form) //En metod som asynkront försöker skapa något (CreateAsync) och sedan svarar med sant eller falskt.
     {
         // Denna del frågar databasen asynkront om det överhuvudtaget existerar någon användare som matchar ett visst villkor.
@@ -25,13 +26,16 @@ public class AuthService(UserManager<AppUser> userManager, SignInManager<AppUser
         return true;
     }
 
+
+    // OM DET INTE FINNS IDENTISK EPOST OVAN,
+    // KOMMER DENNA ATT SPARA EMAIL OCH LÖSENORD SOM ANVÄNDAREN SKRIVER IN
     public async Task<bool> CreateAsync(SetPasswordFormModel form, string email)
 
     {
         var appUser = new AppUser // AppUser är objektet som ska sparas i databasen. Den sparar mailen och undertill sparar den lösenordet
         {
             UserName = email,
-            Email = email
+            Email = email,
 
         };
 
@@ -42,6 +46,36 @@ public class AuthService(UserManager<AppUser> userManager, SignInManager<AppUser
         else
             return false;
     }
+
+
+
+
+    // LOGGA IN MED EMAIL OCH LÖSENORD
+    public async Task<bool> SignInAsync(SignInFormModel form)
+    {
+
+
+        // Måste kryssa i terms&conditions
+        if (!form.TermsAccepted)
+        {
+            return false;
+        }
+
+
+        // Loggar in användaren
+        var result = await _signInManager.PasswordSignInAsync( // _signInManager & sen PasswordSignInAsync via intelliSense. PasswordSignInAsync kör det genom en algoritm (Hashing) och kollar om det matchar den krypterade strängen som ligger i databasen.
+            form.Email,
+            form.Password,
+            false,              // Delen för REMEMBERME. Varje gång hemsidan stängs ner, loggas kund ut
+            false               // LockoutOnFailure. False = användaren kan skriva fel hur många gånger som heslt
+
+            );
+
+
+        return result.Succeeded;
+    }
+ 
+
 
 }
 

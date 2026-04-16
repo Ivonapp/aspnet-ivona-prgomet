@@ -18,11 +18,20 @@ builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration); 
 builder.Services.AddDbContext<ApplicationDbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("LocalDb")));
 
+
+
+
+
+
+// DETTA BLOCKET SKÖTER MINA SERVICES, IDENTITY ETC
 builder.Services.AddIdentity<AppUser, IdentityRole>(x => // IdentityRole är en inbyggd klass i ASP.NET Core Identity-biblioteket.
 {
     x.Password.RequiredLength = 8;
     x.User.RequireUniqueEmail = true; // Detta är en inbyggd säkerhetsspärr. Det gör det omöjligt för två olika konton att registreras med samma e-postadress.
     x.SignIn.RequireConfirmedEmail = false; // denna skickar ut ett mail där man bekräftar användaren när den är TRUE
+    //Skriv in alla regler i detta blocket, om du t.ex vill att kund blir locked out of account
+    // efter 5 försök så måste det stå inuti här.
+    // https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.identity.signinmanager-1?view=aspnetcore-10.0
 })
     .AddEntityFrameworkStores<ApplicationDbContext>(); // Den talar om för Identity att alla användare, lösenordshashar och roller ska sparas i den databas som sköts av ApplicationDbContext
 
@@ -30,15 +39,17 @@ builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<AccountService>();
 builder.Services.AddScoped<FileService>();
 
+
+
+
+
+
+
+
 var app = builder.Build();
 using var scope = app.Services.CreateScope();
 var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
 await MembershipPlanSeeder.SeedAsync(context);
-
-
-
-
-
 
 
 app.UseHsts();

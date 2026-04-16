@@ -12,3 +12,10 @@ public class RegisterFormModel
     [RegularExpression(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", ErrorMessage = "You must enter a valid email address.")] // REGEX för email
     public string Email { get; set; } = null!;
 }
+
+
+
+
+
+
+

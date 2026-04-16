@@ -21,6 +21,7 @@ public class SignInFormModel
 
 
 
+
     //Error message skrivet i AuthController istället 
     public bool TermsAccepted { get; set; }
 

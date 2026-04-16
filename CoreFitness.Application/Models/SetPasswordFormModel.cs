@@ -27,3 +27,11 @@ public class SetPasswordFormModel
     public bool TermsAccepted { get; set; }
 
 }
+
+
+
+
+
+
+
+
