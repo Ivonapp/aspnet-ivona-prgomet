@@ -6,12 +6,13 @@ public class AppUser : IdentityUser
 {
         //Email, Telefonnummer och Lösenord behöver jag inte skriva ut då dessa redan finns automatiskt i IdentityUser.
         [ProtectedPersonalData]
-        public string FirstName { get; set; } = null!;
+        public string? FirstName { get; set; }       // Lagt denna som Null. Annars går det inte att skapa ett konto. 
         [ProtectedPersonalData]
-        public string LastName { get; set; } = null!;
+        public string? LastName { get; set; }        // Lagt denna som Null. Annars går det inte att skapa ett konto. 
+
+
 
         // PROFILBILD
-        // Denna gör att vi kan spara "mannen i tröjan" (eller användarens egna profilbild som läggs in på MyAccount)
         public string? ProfileImageUrl { get; set; }
     }
 
