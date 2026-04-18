@@ -13,7 +13,8 @@ public class AuthService(UserManager<AppUser> userManager, SignInManager<AppUser
     private readonly SignInManager<AppUser> _signInManager = signInManager; // Denna hanterar Inloggning, autentisering, utlogg osv
 
 
-    //REGISTERFORMMODEL
+
+    // GUARD CLAUSE
     // KOLLAR OM DET REDAN FINNS EN IDENTISK EPOST
     public async Task<bool> CheckEmailExistAsync(RegisterFormModel form) //En metod som asynkront försöker skapa något (CreateAsync) och sedan svarar med sant eller falskt.
     {
@@ -22,7 +23,7 @@ public class AuthService(UserManager<AppUser> userManager, SignInManager<AppUser
             return false;                                                   // om den hittar samma mail > avbryt med FALSKT.
 
 
-        // Annars returnera True (Mailen är ledig, kör på!)
+        // Annars returnera True (Mailen är ledig)
         return true;
     }
 
@@ -54,11 +55,11 @@ public class AuthService(UserManager<AppUser> userManager, SignInManager<AppUser
     public async Task<bool> SignInAsync(SignInFormModel form)
     {
 
-
+        // GUARD CLAUSE
         // Måste kryssa i terms&conditions
-        if (!form.TermsAccepted)
+        if (!form.TermsAccepted)                                // Om terms INTE kryssas i, 
         {
-            return false;
+            return false;                                       // Gå inte vidare
         }
 
 
@@ -73,11 +74,23 @@ public class AuthService(UserManager<AppUser> userManager, SignInManager<AppUser
 
 
         return result.Succeeded;
+        }
+
     }
- 
 
 
-}
+
+
+
+/* GUARD CLAUSE:
+	1. NEGATOIVT VÄRDE FÖRST: Jag kollar efter ogiltiga tillstånd eller felaktig data direkt i början av metoden.
+ if (!form.TermsAccepted)
+
+	2. TIDIG RETUR: Om villkoret uppfylls använder vi return för att avbryta, och koden undertill körs inte.
+return false; 
+
+    3. INGEN ELSE: slipper nästla in din kod i else-block.
+*/
 
 
 
