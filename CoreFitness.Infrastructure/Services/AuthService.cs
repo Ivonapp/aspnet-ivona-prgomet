@@ -76,10 +76,18 @@ public class AuthService(UserManager<AppUser> userManager, SignInManager<AppUser
         return result.Succeeded;
         }
 
+
+
+    //LOGGA UT ANVÄNDAREN
+    public async Task SignOutAsync() //Ingen FormModel för signout behövs, eftersom vi inte behöver 
+    {
+
+         // Loggar ut användaren
+       await _signInManager.SignOutAsync();
+
+
     }
-
-
-
+}
 
 
 /* GUARD CLAUSE:
