@@ -51,7 +51,7 @@ public class AuthService(UserManager<AppUser> userManager, SignInManager<AppUser
 
 
 
-    // LOGGA IN MED EMAIL OCH LÖSENORD
+    // SIGN IN
     public async Task<bool> SignInAsync(SignInFormModel form)
     {
 
@@ -78,7 +78,7 @@ public class AuthService(UserManager<AppUser> userManager, SignInManager<AppUser
 
 
 
-    //LOGGA UT ANVÄNDAREN
+    //SIGN OUT
     public async Task SignOutAsync()  //Ingen FormModel för signout behövs, eftersom den inte behöver ta emot data eller formulär från användaren. Den ska bara göra en sak: logga ut kund
     {
 

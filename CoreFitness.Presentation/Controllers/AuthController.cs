@@ -22,16 +22,6 @@ public class AuthController(AuthService authService) : Controller
 
 
 
-    // SIGN OUT
-    [HttpPost]
-    public async Task<IActionResult> SignOff()
-    {
-
-        await _authService.SignOutAsync();
-
-        return RedirectToAction("Index", "Home");
-
-    }
 
 
 
@@ -64,29 +54,7 @@ public class AuthController(AuthService authService) : Controller
 
 
 
-    // REGISTER GET
-    [HttpGet]
-    [Route("register")]
-    public IActionResult Register()
-    {
-        return View();
-    }
 
-
-// REGISTER POST
-    [HttpPost]
-    [Route("register")]
-    public IActionResult Register(RegisterFormModel formData)
-    {
-
-        if (ModelState.IsValid)
-        //return View(formData);
-        {
-            return RedirectToAction("SetPassword", "Auth", new { email = formData.Email }); //skickar iväg emailen som ska synas i SetPassword sidan
-        }
-            
-            return View(formData);
-    }
 
 
 
@@ -187,5 +155,156 @@ public class AuthController(AuthService authService) : Controller
                 return View(formData); //Om checkboxen är ikryssad, men något ANNAT är fel (t.ex. felaktigt e-postformat),
             }
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //////////////////////////      FÄRDIGT     ///////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+    // REGISTER GET
+    [HttpGet]
+    [Route("register")]
+    public IActionResult Register()
+    {
+        return View();
+    }
+
+
+    // CheckEmailExistAsync + RegisterFormModel regex
+    [HttpPost]
+    [Route("register")]
+    public async Task<IActionResult> Register(RegisterFormModel formData) //Om servicen han async, så måste Controllern ha det med!
+    {
+
+        if (ModelState.IsValid)     //Kollar vilkoren för FormModel. När (ModelState.IsValid) anropas så har C# redan kört igenom hela min RegisterFormModel och kollat alla mina [EmailAddress], [RegularExpression] och [Required].
+        {
+            var result = await _authService.CheckEmailExistAsync(formData); // Kollar i AuthService om det finns identisk mail
+
+
+
+            // > OM DET FUNKAR 
+            if (result)
+            {
+                //OM REGEX OCH SERVICE STÄMMER, SKICKAS ANVÄNDAREN TILL SETPASSWORD SIDAN
+                return RedirectToAction("SetPassword", "Auth", new { email = formData.Email });
+            }
+
+
+
+            // > OM DET INTE FUNKAR
+            // Felmeddelande skrivs ut om det redan existerar en identisk email. 
+            {
+                ModelState.AddModelError("Email", "Identical Email already exist.");
+            }
+        }
+
+
+
+
+        // REGEX ELLER EMAILEXISTASYNC BLIR FEL:
+        return View(formData);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // SIGN OUT
+    [HttpPost]
+    public async Task<IActionResult> SignOff()
+    {
+
+        await _authService.SignOutAsync();
+
+        return RedirectToAction("Index", "Home");
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
