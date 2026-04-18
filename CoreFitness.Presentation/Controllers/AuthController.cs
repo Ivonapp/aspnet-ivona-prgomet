@@ -19,103 +19,6 @@ public class AuthController(AuthService authService) : Controller
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// SET PASSWORD GET
-        [HttpGet]
-        [Route("setpassword")]
-        public IActionResult SetPassword(string email)
-        {
-            // Vi sparar emailen i ViewBag så den syns på sidan direkt
-            ViewBag.UserEmail = email;
-            
-            // Vi skickar med en tom modell till vyn
-            return View(new SetPasswordFormModel());
-        }
-
-
-// SET PASSWORD POST
-        [HttpPost]
-        [Route("setpassword")] 
-            public IActionResult SetPassword(SetPasswordFormModel formData, string email) //tar emot email
-            {
-                // Vi måste skicka tillbaka emailen till ViewBag varje gång sidan laddas om (vid fel)
-                ViewBag.UserEmail = email;
-
-
-            // CHECKBOX
-            // SÄKERSTÄLLER ATT CHECKBOXEN KRYSSAS I, INNAN MAN GÅR VIDARE TILL NÄSTA SIDA
-            if (!formData.TermsAccepted) 
-            {
-                ModelState.AddModelError("TermsAccepted", "Please confirm that you have read the terms and conditions.");
-                return View(formData);
-            }
-
-                if (ModelState.IsValid)
-                {
-                // 1. Om allt är OK > Gå vidare till MyAccountController
-                return RedirectToAction("MyAccount", "MyAccount"); //skickas till MyAccountController
-                }
-
-                // 2. Om något blir fel, så skickas istället femleddelande: 
-                // Vi skickar tillbaka formData. Nu kommer asp-validation-for i SetPassword.cshtml att skriva ut felmeddelnande
-                return View(formData);
-            }
-    /* return RedirectToAction  = när vi vill skickas till NY sida*/
-    /* return View              = samma sida */
-
-
-
-
-
-
-
-
-
-
 // SIGN IN GET
     [HttpGet]
     [Route("signin")]   //Det du skriver inuti [Route("...")] är den URL-adress som användaren ser i webbläsarens adressfält.
@@ -131,38 +34,34 @@ public class AuthController(AuthService authService) : Controller
 // SIGN IN POST
     [HttpPost]
     [Route("signin")]
-    public IActionResult SignIn(SignInFormModel formData)   //Inuti Paranteserna skriver vi FormModel som styr inloggning.
+    public async Task<IActionResult> SignIn(SignInFormModel formData)   //Inuti Paranteserna skriver vi FormModel som styr inloggning.
     {
-            // CHECKBOX
-            // SÄKERSTÄLLER ATT CHECKBOXEN KRYSSAS I, INNAN MAN GÅR VIDARE TILL NÄSTA SIDA
 
-            // OM CHECKBOX _INTE_ ÄR IKRYSSAD:
-                if (!formData.TermsAccepted) 
-                {
-                    ModelState.AddModelError("TermsAccepted", "Please confirm that you have read the terms and conditions.");
-                    return View(formData); // Om checkboxen INTE är ikryssad.
-                }
+                        // 1A CHECK - Regex och allt som står i FormModels (förutom TermsAccepter som måste kollas manuellt nedan.)
+                        if (!ModelState.IsValid)
+                        {
+                        return View(formData);
+                        }
 
-            // OM CHECKBOX _ÄR_ IKRYSSAD:
-                if (ModelState.IsValid)
-                {
-                // 1. Om allt är OK > Gå vidare till MyAccountController
-                return RedirectToAction("MyAccount", "MyAccount"); //skickas till MyAccountController
-                }
+                        // 2A CHECK - Kryssa i terms
+                        if (!formData.TermsAccepted)  // Om checkboxen inte kryssas i
+                        {
+                            ModelState.AddModelError("TermsAccepted", "Please confirm that you have read the terms and conditions.");
+                            return View(formData); 
+                        }
 
-                // 2. Om något blir fel, så skickas istället femleddelande. 
-                // Vi skickar tillbaka formData. Nu kommer asp-validation-for i SignIn.cshtml att skriva ut felmeddelnande
-                return View(formData); //Om checkboxen är ikryssad, men något ANNAT är fel (t.ex. felaktigt e-postformat),
-            }
+                        // 3A CHECK - 
+                        var LogInSuccessfull = await _authService.SignInAsync(formData);
+                        
+                        if (!LogInSuccessfull)
+                        {
+                            ModelState.AddModelError("Email", "Log in unsuccessfull. Please try again.");
+                            return View(formData); // Går tillbaka men behåller allt som användaren skrivit (formdata)
+                        }
 
-
-
-
-
-
-
-
-
+        // 1. Om allt är OK > Gå vidare till MyAccountController
+        return RedirectToAction("MyAccount", "MyAccount"); //skickas till MyAccountController
+    }
 
 
 
@@ -192,6 +91,7 @@ public class AuthController(AuthService authService) : Controller
 
 
 
+
     // REGISTER GET
     [HttpGet]
     [Route("register")]
@@ -204,37 +104,95 @@ public class AuthController(AuthService authService) : Controller
     // CheckEmailExistAsync + RegisterFormModel regex
     [HttpPost]
     [Route("register")]
-    public async Task<IActionResult> Register(RegisterFormModel formData) //Om servicen han async, så måste Controllern ha det med!
+    public async Task<IActionResult> Register(RegisterFormModel formData) //Om servicen har async, så måste Controllern ha det med!
     {
+             
+                // 1A CHECK - regex, reguired etc
+                if (!ModelState.IsValid)    //Kollar vilkoren för FormModel. När ModelState anropas så har C# redan kört igenom hela min RegisterFormModel och kollat alla mina [EmailAddress], [RegularExpression] och [Required].
+                {
+                    return View(formData); // Går tillbaka men behåller allt som användaren skrivit (formdata)
+                }
 
-        if (ModelState.IsValid)     //Kollar vilkoren för FormModel. När (ModelState.IsValid) anropas så har C# redan kört igenom hela min RegisterFormModel och kollat alla mina [EmailAddress], [RegularExpression] och [Required].
+                // 2A CHECK - finns en identisk mail?
+                var emailAlreadyExists = await _authService.DoesEmailAlreadyExist(formData);
+
+                if (emailAlreadyExists)
+                {
+                    ModelState.AddModelError("Email", "Identical Email already exist.");
+                    return View(formData); // Går tillbaka men behåller allt som användaren skrivit (formdata)
+                }
+
+
+       // Om både Regex och EmailAlreadyExist funkar, går den vidare till SetPassword sidan
+        return RedirectToAction("SetPassword", "Auth", new { email = formData.Email });
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // SET PASSWORD GET
+    [HttpGet]
+    [Route("setpassword")]
+    public IActionResult SetPassword(string email)
+    {
+        ViewBag.UserEmail = email;  // Denna delen, gör så emailen användaren skrev in på sidan innan, syns direkt från start på denna sidan
+
+        return View(new SetPasswordFormModel()); // Vi skickar med en tom modell till vyn
+    }
+
+
+
+    // SET PASSWORD POST
+    [HttpPost]
+    [Route("setpassword")]
+    public async Task<IActionResult> SetPassword(SetPasswordFormModel formData, string email) //tar emot email
+    {
+        ViewBag.UserEmail = email; // Skickar tillbaka emailen till ViewBag varje gång sidan laddas om (vid fel)
+
+
+        // 1A CHECKEN - SÄKERSTÄLLER att lösenorden stämmer
+        if (!ModelState.IsValid)
+
         {
-            var result = await _authService.CheckEmailExistAsync(formData); // Kollar i AuthService om det finns identisk mail
-
-
-
-            // > OM DET FUNKAR 
-            if (result)
-            {
-                //OM REGEX OCH SERVICE STÄMMER, SKICKAS ANVÄNDAREN TILL SETPASSWORD SIDAN
-                return RedirectToAction("SetPassword", "Auth", new { email = formData.Email });
-            }
-
-
-
-            // > OM DET INTE FUNKAR
-            // Felmeddelande skrivs ut om det redan existerar en identisk email. 
-            {
-                ModelState.AddModelError("Email", "Identical Email already exist.");
-            }
+            return View(formData);
         }
 
 
+        // 2A CHECKEN - SÄKERSTÄLLER ATT CHECKBOXEN KRYSSAS I, INNAN MAN GÅR VIDARE TILL NÄSTA SIDA
+        if (!formData.TermsAccepted)
+        {
+            ModelState.AddModelError("TermsAccepted", "Please confirm that you have read the terms and conditions.");
+            return View(formData);
+        }
 
 
-        // REGEX ELLER EMAILEXISTASYNC BLIR FEL:
+        // 3A CHECKEN - 
+        var CreateAccount = await _authService.CreateAsync(formData, email);
+
+        if (CreateAccount)
+        {
+            // 1. Om allt är OK > Gå vidare till MyAccountController
+            return RedirectToAction("MyAccount", "MyAccount"); //skickas till MyAccountController
+        }
+
+
+        // 2. Om något blir fel, så skickas istället femleddelande: 
+        // Vi skickar tillbaka formData. Nu kommer asp-validation-for i SetPassword.cshtml att skriva ut felmeddelnande
+        ModelState.AddModelError("", "Account creation failed. Please try again or contact support.");
         return View(formData);
     }
+    /* return RedirectToAction  = när vi vill skickas till NY sida*/
+    /* return View              = samma sida */
+
 
 
 
@@ -280,31 +238,5 @@ public class AuthController(AuthService authService) : Controller
         return RedirectToAction("Index", "Home");
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
