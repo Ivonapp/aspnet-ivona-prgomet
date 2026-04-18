@@ -79,11 +79,11 @@ public class AuthService(UserManager<AppUser> userManager, SignInManager<AppUser
 
 
     //LOGGA UT ANVÄNDAREN
-    public async Task SignOutAsync() //Ingen FormModel för signout behövs, eftersom vi inte behöver 
+    public async Task SignOutAsync()  //Ingen FormModel för signout behövs, eftersom den inte behöver ta emot data eller formulär från användaren. Den ska bara göra en sak: logga ut kund
     {
 
-         // Loggar ut användaren
-       await _signInManager.SignOutAsync();
+        // Loggar ut användaren
+        await _signInManager.SignOutAsync();             
 
 
     }

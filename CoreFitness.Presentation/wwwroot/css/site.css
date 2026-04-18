@@ -1441,10 +1441,17 @@ margin-top: 1.5rem;
     font-family: "Poppins", sans-serif;
     font-weight: 600;
     padding: 1rem;
+    font-size: 1rem;
 }
 .account-mini-column-text:hover {
     color: var(--hovergreen-color);
     cursor: pointer;
+}
+.sign-out-btn {
+    border: none;
+    background: none;
+    display: block;
+    width: 100%;
 }
 .mini-column-hr {
     background-color: var(--light-gray-solid);

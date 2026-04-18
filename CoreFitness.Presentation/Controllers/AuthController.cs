@@ -1,14 +1,70 @@
 ﻿using CoreFitness.Application.Models;
+using CoreFitness.Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 
 
 namespace CoreFitness.Controllers;
 
-public class AuthController : Controller
+public class AuthController(AuthService authService) : Controller
 {
 
+    //KONSTRUKTORN FÖR AUTHSERVICE
+    private readonly AuthService _authService = authService;
 
-// REGISTER GET
+
+
+
+
+
+
+
+
+
+
+
+    // SIGN OUT
+    [HttpPost]
+    public async Task<IActionResult> SignOff()
+    {
+
+        await _authService.SignOutAsync();
+
+        return RedirectToAction("Index", "Home");
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // REGISTER GET
     [HttpGet]
     [Route("register")]
     public IActionResult Register()
@@ -80,22 +136,8 @@ public class AuthController : Controller
                 // Vi skickar tillbaka formData. Nu kommer asp-validation-for i SetPassword.cshtml att skriva ut felmeddelnande
                 return View(formData);
             }
-                /* return RedirectToAction  = när vi vill skickas till NY sida*/
-                /* return View              = samma sida */
-
-
-
-
-
-
-
-
-
-// SIGN OUT
-    public new IActionResult SignOut()
-    {
-        return RedirectToAction("Index", "Home");
-    }
+    /* return RedirectToAction  = när vi vill skickas till NY sida*/
+    /* return View              = samma sida */
 
 
 

@@ -16,7 +16,7 @@
 }
 
 
-<form method="post" asp-controller="MyAccount" asp-action="Upload" enctype="multipart/form-data" novalidate>
+
 
 <div class="register-title account-title">My Account</div>
 
@@ -35,25 +35,25 @@
     </a>
 
     <hr class="mini-column-hr">
-
         <a class="account-mini-column-text"
     asp-controller="Error" asp-action="ErrorHandler" asp-route-statusCode="404">My Membership
         <i class="fa-solid fa-angle-right"></i>
     </a>
 
 <hr class="mini-column-hr">
-
     <a class="account-mini-column-text"
         asp-controller="Error" asp-action="ErrorHandler" asp-route-statusCode="404">My Bookings
         <i class="fa-solid fa-angle-right"></i>
     </a>
     
     <hr class="mini-column-hr">
-
-    <div class="account-mini-column-text">Sign Out
-        <i class="fa-solid fa-angle-right"></i>
+        <form method="post" asp-controller="Auth" asp-action="SignOff">
+                    <button type="submit" class="account-mini-column-text sign-out-btn">
+                       Sign Out
+                <i class="fa-solid fa-angle-right"></i>
+            </button>
+        </form>
     </div>
-</div>
 
 
 <div class="account-column-deleteaccount">
@@ -62,6 +62,20 @@
 </div>
 </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+<form method="post" asp-controller="MyAccount" asp-action="Upload" enctype="multipart/form-data" novalidate>
 <div class="account-right"> 
     <div class="account-myaccount-column">
 
@@ -171,6 +185,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
- </form>
+    </div>
