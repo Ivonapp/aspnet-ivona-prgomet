@@ -1,3 +1,6 @@
+@using CoreFitness.Domain.Entities
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
 
 <div class="navbar">
 
@@ -17,7 +20,9 @@
     <a class="navbar-text-s" asp-controller="Home" asp-action="Memberships">Memberships</a>
 
 <!-- DESKTOP TRAINING MENU -->   
-    <div class="dropdown-training-container">  
+
+
+    <div class="dropdown-training-container">             
         <a class="navbar-text-s">
         Training <i class="fa-solid fa-chevron-down"></i>
         </a>
@@ -40,6 +45,7 @@
                 asp-action="ErrorHandler"
                 asp-route-statusCode="404">Padel</a>
                 </li>
+            </ul>
         </div>
 
     <a class="navbar-text-s" asp-controller="Home" asp-action="CustomerService">Customer Service</a>
@@ -47,13 +53,45 @@
 </div>
 
 <div class="nav-actions">
-    <a class="navbar-text-s" asp-controller="Auth" asp-action="Register">Become member</a>
+
+
+
+    <!-- IF/ELSE SOM PENDLAR MELLAN BECOME A MEMBER OCH OUR CLASSES -->
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <a class="navbar-text-s" asp-controller="Error" asp-action="ErrorHandler" asp-route-statusCode="404">Our Classes</a>
+        }
+        else
+        {
+            <a class="navbar-text-s" asp-controller="Auth" asp-action="Register">Become member</a>
+        }
+
+
+
+
+
+
+        <!-- IF/ELSE SOM PENDLAR MELLAN MY ACCOUNT OCH SIGN IN -->
 
             <div class="dropdown-container">
+
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <a asp-controller="MyAccount" asp-action="MyAccount" class="green-btn">
+                    My Account
+                    <i class="fa-solid fa-angle-right"></i>
+                </a>
+            }
+            else
+            {
                 <a asp-controller="Auth" asp-action="SignIn" class="green-btn">
                     Sign In
                     <i class="fa-solid fa-angle-right"></i>
-                    </a>
+                </a>
+            }
+
+
+
                 
 
 <!-- MOBILE FIRST HAMBURGER MENU -->   
@@ -62,7 +100,7 @@
 </button>
  
 
-<ul class="hamburger-menu">
+            <ul id="menu" class="hamburger-menu">
 <li class="hamburger-in-links">
         <a class="hamburger-text" asp-controller="Error" asp-action="ErrorHandler"asp-route-statusCode="404">Fitness Centers</a>
     </li>

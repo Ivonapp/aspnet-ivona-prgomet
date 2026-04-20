@@ -6,26 +6,28 @@ namespace CoreFitness.Infrastructure.Services;
 
 public class AccountService
 {
-}
-
 
 
 
 
 /*
 
-AccountService
-ANVÄNDARENS PERSONLIGA INFORMATION OCH INSTÄLLNINGAR
-
-*SPARA ANVÄNDARENS UPPGIFTER*
+1. *SPARA ANVÄNDARENS UPPGIFTER*
  Model: MyAccountFormModel
-- spara användarens namn, telefon, 
 
 
 
-RADERA KONTO (userManager - DeleteAsync(TUser)
-Model: ingen behövs för radering. (antar jag.)
-- Radera fulla kontot. Fixa routingen i cshtml.
+
+2. RADERA KONTO (userManager - DeleteAsync(TUser)
+Model: DeleteAccountFormModel
 
 
  */
+
+
+
+}
+
+
+
+

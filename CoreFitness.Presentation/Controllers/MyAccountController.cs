@@ -10,7 +10,21 @@ public class MyAccountController(IWebHostEnvironment env) : Controller
 
 private readonly IWebHostEnvironment _env = env;
 
-                //FILUPPLADDNING
+
+
+
+
+    //MYACCOUNT SIDAN
+    [HttpGet]
+    public IActionResult MyAccount()
+    {
+        return View("~/Views/Account/MyAccount.cshtml");
+    }
+
+
+
+    //FILUPPLADDNING
+    [HttpGet]
     public IActionResult Upload()
     {
         
@@ -49,29 +63,27 @@ private readonly IWebHostEnvironment _env = env;
 
 
 
+   
+    [HttpGet]
+    [Route("removeaccount")]
+    public async Task<IActionResult> DeleteAccount()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //MYACCOUNT SIDAN
-    public IActionResult MyAccount()
     {
-        return View("~/Views/Account/MyAccount.cshtml");
+        return View("~/Views/Account/DeleteAccount.cshtml");
     }
+        
+
+   
+  /* SJÄLVASTE RADERINGEN AV KONTOT */
+    [HttpPost]
+    [Route("removeaccount")]
+    public async Task<IActionResult> DeleteAccount(DeleteAccountFormModel formData)
+    {
+        return View("~/Views/Account/DeleteAccount.cshtml");
+    }
+  
+
+
 
 }
 

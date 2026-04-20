@@ -1,0 +1,87 @@
+﻿@using CoreFitness.Application.Models
+@model DeleteAccountFormModel
+
+@{
+    ViewData["Title"] = "Delete Account";
+    ViewData["HideFooter"] = true;  //döljer footern
+}
+
+
+@section Scripts {
+    <partial name="~/Views/Shared/Partials/_ValidationScripts.cshtml" />      <!-- skriver ut felmeddelande -->
+}
+
+<form method="post" asp-controller="MyAccount" asp-action="DeleteAccount">
+<div class="register-bg">
+    <div class="register-flexbox">
+        <div class="register-white-form">
+
+
+                <div class="register-title">Delete Account</div>
+                <div class="register-text">For security reasons, we need you to enter your password in order to delete your account.</div>
+                <hr class="register-hr">
+
+
+
+
+                <!-- LÄGGER TILL MODELLEN FRÅN RegisterFormModel -->
+                <div class="placeholder-padding-wrapper">
+           
+
+ 
+
+                    <label asp-for="Password" class="form-label">Password</label>
+                    <input asp-for="Password" class="form-design">                  <!-- design-->
+                    <span asp-validation-for="Password"></span>                     <!-- skriver ut felmeddelande -->
+
+
+                    <label asp-for="ConfirmPassword" class="form-label">Confirm Password</label>
+                    <input asp-for="ConfirmPassword" class="form-design" type="password">
+                    <span asp-validation-for="ConfirmPassword"></span>
+                </div>
+
+
+
+
+
+
+                    <div class="delete-container">
+                
+                <div class="delete-btn-container">
+                    <button type="submit" class="delete-btn">
+                        Delete This Account
+                        <i class="fa-solid fa-angle-right"></i>
+                    </button>
+                </div>
+
+
+
+                    <div class="delete-btn-container">
+                    <a asp-controller="MyAccount" asp-action="MyAccount" class="go-back-btn">
+                        Go back
+                        <i class="fa-solid fa-angle-right"></i>
+                    </a>
+                </div>
+           </div>
+
+                
+                
+
+
+                <!-- CHECKBOX RUTA -->
+  
+                <div class="register-endnote">
+                    <label class="checkbox-wrapper">
+                        <input asp-for="ConfirmDelete" type="checkbox" />
+                                
+                        <span class="checkmark"></span>
+                                
+                        <span class="label-text">I confirm that I wish to delete my account.</span>
+                    </label>
+                    <span asp-validation-for="ConfirmDelete" class="text-danger"></span>
+
+            </div>
+        </div>
+    </div>
+</div>
+</form>

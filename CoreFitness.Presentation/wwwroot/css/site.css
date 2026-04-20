@@ -126,7 +126,7 @@
 }
   
     /* NAVBAR - MOBILE FIRST */
-    .navbar {
+.navbar {
     border: 2px solid var(--navbar-border);
     padding: 1rem;
     background-color: var(--navbar-background);
@@ -134,7 +134,7 @@
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    }
+}
     .navbar-text-s {
     display: none;
     }
@@ -160,12 +160,11 @@
     padding-left: 0.5rem;
     padding-top: 0.1rem;
     }
-    .dropdown-container {
-        display: flex;
-        gap: 1rem;
-        
-    }
-    .dropdown {
+.dropdown-container {
+    display: flex;
+    gap: 1rem;
+}
+.dropdown {
     display: flex;
     align-items: center;
     color: black;
@@ -175,16 +174,16 @@
     cursor: pointer;
     border: none;
     outline: none;
-    
 }
     .dropdown:hover {
-    background-color: var(--hovergreen-color);
-}
+        background-color: var(--hovergreen-color);
+    }
     .desktop-only { 
     display: none; 
     }
 
 /*HAMBURHER NAVBAR JAVASCRIPT*/
+
 .hamburger-menu {
     display: flex;
     flex-direction: column;
@@ -196,13 +195,12 @@
     top: -100%;
     right: 0;
     width: 40%;
-    margin-top: 80px;
+    margin-top: 90px;
     background-color: var(--lightgreen-color);
     border-radius: 20px;
     transition: 0.6s;
     list-style: disc;
     list-style-position: inside;
-    position: fixed;
     z-index: 9999;
 }
 .hamburger-text { 
@@ -225,6 +223,8 @@ color: var(--hovergreen-color);
 .hamburger-menu {
     display: none;
     }
+    
+
 .hamburger-menu.active {
     display: none;
     }
@@ -303,6 +303,10 @@ color: var(--hovergreen-color);
     padding: 0.5rem;
     width: 210px;
 }
+
+
+
+
 /*TRAINING NAVBAR JAVASCRIPT END*/
 
     /*HERO - MOBILE FIRST*/
@@ -1487,14 +1491,23 @@ margin-top: 1.5rem;
     color: var(--remove-account-red);
     font-weight: 600;
     font-size: 0.9rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-decoration: none;
 }
-/*MYACCOUNT - höger*/
-.account-myaccount-column-title {
-    display: flex;
-    justify-content: center;
-    font-family: "Poppis", sans-serif;   
-    font-size: 3.2rem;
-}
+    .deleteaccount-red:hover {
+        color: var(--hovergreen-color);
+    }
+    
+    
+    /*MYACCOUNT - höger*/
+    .account-myaccount-column-title {
+        display: flex;
+        justify-content: center;
+        font-family: "Poppis", sans-serif;
+        font-size: 3.2rem;
+    }
 @media (min-width: 768px) {
     .account-myaccount-column-title {
         justify-content: start;
@@ -1585,3 +1598,59 @@ margin-top: 1.5rem;
 .statistics-img {
     width: 100%;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/*DELETE ACCOUNT*/
+.delete-btn, .go-back-btn {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 50px;
+    color: black;
+    padding: 1rem 1rem 1rem 1rem;
+    font-family: "DM sans", sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+    gap: 0.5rem;
+    width: 300px;
+}
+
+.delete-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.go-back-btn:hover {
+    background-color: var(--hovergreen-color);
+    border: 2px solid var(--hovergreen-color);
+}
+.delete-btn:hover {
+    background-color: red;
+    border: 2px solid red;
+}
+
+.go-back-btn, .delete-btn {
+    background-color: var(--lightgreen-color);
+    border: 2px solid var(--lightgreen-color);
+}
+
+.go-back-btn {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+/*DELETE ACCOUNT END*/
