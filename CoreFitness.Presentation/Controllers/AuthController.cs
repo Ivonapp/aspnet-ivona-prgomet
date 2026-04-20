@@ -5,6 +5,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CoreFitness.Controllers;
 
+
+
+/* I DENNA CONTROLLER HAR JAG 
+    REGISTRERING AV KONTO,
+    INLOGGNING
+    UTLOGGNING
+*/
+
+
 public class AuthController(AuthService authService) : Controller
 {
 
@@ -13,92 +22,15 @@ public class AuthController(AuthService authService) : Controller
 
 
 
-
-
-
-
-
-
-// SIGN IN GET
-    [HttpGet]
-    [Route("signin")]   //Det du skriver inuti [Route("...")] är den URL-adress som användaren ser i webbläsarens adressfält.
-                        // (Standard är med små bokstäver, och inga mellanslag i namnet.)
-    public IActionResult SignIn()
-    {
-        return View();
-    }
-
-
-
-
-// SIGN IN POST
-    [HttpPost]
-    [Route("signin")]
-    public async Task<IActionResult> SignIn(SignInFormModel formData)   //Inuti Paranteserna skriver vi FormModel som styr inloggning.
-    {
-
-                        // 1A CHECK - Regex och allt som står i FormModels (förutom TermsAccepter som måste kollas manuellt nedan.)
-                        if (!ModelState.IsValid)
-                        {
-                        return View(formData);
-                        }
-
-                        // 2A CHECK - Kryssa i terms
-                        if (!formData.TermsAccepted)  // Om checkboxen inte kryssas i
-                        {
-                            ModelState.AddModelError("TermsAccepted", "Please confirm that you have read the terms and conditions.");
-                            return View(formData); 
-                        }
-
-                        // 3A CHECK - 
-                        var LogInSuccessfull = await _authService.SignInAsync(formData);
-                        
-                        if (!LogInSuccessfull)
-                        {
-                            ModelState.AddModelError("Email", "Log in unsuccessfull. Please try again.");
-                            return View(formData); // Går tillbaka men behåller allt som användaren skrivit (formdata)
-                        }
-
-        // 1. Om allt är OK > Gå vidare till MyAccountController
-        return RedirectToAction("MyAccount", "MyAccount"); //skickas till MyAccountController
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    ///////////////////////////////////////////////////////////////////////////////
-    //////////////////////////      FÄRDIGT     ///////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
     // REGISTER GET
     [HttpGet]
-    [Route("register")]
+    [Route("register")] //Det du skriver inuti [Route("...")] är den URL-adress som användaren ser i webbläsarens adressfält.
+                        // (Standard är med små bokstäver, och inga mellanslag i namnet.)
     public IActionResult Register()
     {
         return View();
     }
+
 
 
     // CheckEmailExistAsync + RegisterFormModel regex
@@ -126,15 +58,6 @@ public class AuthController(AuthService authService) : Controller
        // Om både Regex och EmailAlreadyExist funkar, går den vidare till SetPassword sidan
         return RedirectToAction("SetPassword", "Auth", new { email = formData.Email });
     }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -196,33 +119,48 @@ public class AuthController(AuthService authService) : Controller
 
 
 
+    // SIGN IN GET
+    [HttpGet]
+    [Route("signin")]
+    public IActionResult SignIn()
+    {
+        return View();
+    }
 
 
 
 
+    // SIGN IN POST
+    [HttpPost]
+    [Route("signin")]
+    public async Task<IActionResult> SignIn(SignInFormModel formData)   //Inuti Paranteserna skriver vi FormModel som styr inloggning.
+    {
 
+        // 1A CHECK - Regex och allt som står i FormModels (förutom TermsAccepter som måste kollas manuellt nedan.)
+        if (!ModelState.IsValid)
+        {
+            return View(formData);
+        }
 
+        // 2A CHECK - Kryssa i terms
+        if (!formData.TermsAccepted)  // Om checkboxen inte kryssas i
+        {
+            ModelState.AddModelError("TermsAccepted", "Please confirm that you have read the terms and conditions.");
+            return View(formData);
+        }
 
+        // 3A CHECK - 
+        var LogInSuccessfull = await _authService.SignInAsync(formData);
 
+        if (!LogInSuccessfull)
+        {
+            ModelState.AddModelError("Email", "Log in unsuccessfull. Please try again.");
+            return View(formData); // Går tillbaka men behåller allt som användaren skrivit (formdata)
+        }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        // 1. Om allt är OK > Gå vidare till MyAccountController
+        return RedirectToAction("MyAccount", "MyAccount"); //skickas till MyAccountController
+    }
 
 
 
