@@ -18,11 +18,64 @@ public class AccountService(UserManager<AppUser> userManager, SignInManager<AppU
     /*
 
     1. *SPARA ANVÄNDARENS UPPGIFTER*
-     Model: MyAccountFormModel
+     Model: MyAccountFormModel*/
+
+    public async Task<bool> UpdateProfileAsync(Guid userId, MyAccountFormModel model)
+    {
+        // 1. Hitta användaren: Använd userId för att hämta användaren från databasen.
+        var findUser = await _userManager.FindByIdAsync(userId.ToString());
+
+        if (findUser == null)
+        {
+            return false;
+        }
+
+
+        // 2. Skriv över fälten (firstname, lastname, email, phone etc) i användarobjektet med den NYA infon från form.
+        // UpdateNormalizedUserNameAndEmailAsync = en metod i identity
+
+        findUser.UserName = model.Email; //denna gör så kunden kan logga in med sin NYA email, för email är ju tekniskt sät usernamet vi skriver in 
+        findUser.FirstName = model.FirstName;
+        findUser.LastName = model.LastName;
+        findUser.Email = model.Email;
+        findUser.PhoneNumber = model.PhoneNumber;
+
+        var UpdatedProfileFields = await _userManager.UpdateAsync(findUser); //Kör UpdateAsync för att skicka ändringarna till databasen med _userManager.
+
+        // 4. Kontrollera om uppdateringen lyckades via Succeeded.
+
+        if(UpdatedProfileFields.Succeeded)
+        {
+            return true;
+        }
+
+        return false;
+
+        // 5. Returnera: Skicka tillbaka true eller false på om det sparades eller inte.
+    }
 
 
 
-    2. RADERA KONTO (userManager - DeleteAsync(TUser)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*2. RADERA KONTO (userManager - DeleteAsync(TUser)
     Model: DeleteAccountFormModel */
 
     public async Task<bool> DeleteAccountAsync(Guid userId, DeleteAccountFormModel form)
@@ -63,17 +116,14 @@ public class AccountService(UserManager<AppUser> userManager, SignInManager<AppU
 
         var deleteUser = await _userManager.DeleteAsync(findUser); // vi skickar nu in hela användaren (findUser) i raderings-maskinen
 
-        if()
+        if(deleteUser.Succeeded) //Om deleteUser succeeded >
+        {
+            return true;        // returnera true
+        }
 
-            // Returnera true om raderingen lyckades, annars false
+        return false;           // om den INTE succeeded > returnera false
 
-            }
-
-
-
-
-
-
+    }
 }
 
 

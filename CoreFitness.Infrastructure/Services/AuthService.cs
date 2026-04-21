@@ -63,6 +63,7 @@ public class AuthService(UserManager<AppUser> userManager, SignInManager<AppUser
 
         // Loggar in användaren
         var result = await _signInManager.PasswordSignInAsync( // _signInManager & sen PasswordSignInAsync via intelliSense. PasswordSignInAsync kör det genom en algoritm (Hashing) och kollar om det matchar den krypterade strängen som ligger i databasen.
+            
             form.Email,
             form.Password,
             false,              // Delen för REMEMBERME. Varje gång hemsidan stängs ner, loggas kund ut
