@@ -16,7 +16,7 @@ public class AuthService(UserManager<AppUser> userManager, SignInManager<AppUser
 
     // GUARD CLAUSE
     // KOLLAR OM DET REDAN FINNS EN IDENTISK EPOST
-    public async Task<bool> DoesEmailAlreadyExist(RegisterFormModel form) //En metod som asynkront försöker skapa något (CreateAsync) och sedan svarar med sant eller falskt.
+    public async Task<bool> DoesEmailAlreadyExistAsync(RegisterFormModel form) //En metod som asynkront försöker skapa något (CreateAsync) och sedan svarar med sant eller falskt.
     {
         // Denna del frågar databasen asynkront om det överhuvudtaget existerar någon användare som matchar ett visst villkor.
         if (await _userManager.Users.AnyAsync(u => u.Email == form.Email))  // Inuti () är självaste villkoret: "hitta en användare vars e-postadress är exakt likadan som den som står i formuläret (form)"

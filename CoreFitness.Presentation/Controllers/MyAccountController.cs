@@ -77,7 +77,7 @@ private readonly IWebHostEnvironment _env = env;
   /* SJÄLVASTE RADERINGEN AV KONTOT */
     [HttpPost]
     [Route("removeaccount")]
-    public async Task<IActionResult> DeleteAccount(DeleteAccountFormModel formData)
+    public async Task<IActionResult> DeleteAccount(DeleteAccountFormModel model)
     {
         return View("~/Views/Account/DeleteAccount.cshtml");
     }

@@ -46,7 +46,7 @@ public class AuthController(AuthService authService) : Controller
                 }
 
                 // 2A CHECK - finns en identisk mail?
-                var emailAlreadyExists = await _authService.DoesEmailAlreadyExist(formData);
+                var emailAlreadyExists = await _authService.DoesEmailAlreadyExistAsync(formData);
 
                 if (emailAlreadyExists)
                 {
