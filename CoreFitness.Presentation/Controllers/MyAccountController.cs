@@ -3,6 +3,7 @@ using CoreFitness.Domain.Entities;
 using CoreFitness.Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.SqlServer.Server;
 using System.ComponentModel.Design;
 using System.Diagnostics.Metrics;
 using System.Reflection.PortableExecutable;
@@ -95,10 +96,18 @@ public class MyAccountController(IWebHostEnvironment env, AccountService account
             return RedirectToAction("Index", "Home");
         }
 
-        // kolla om användaren har fyllt i formuläret korrekt och följd [required] med modelstate
+        // 1A CHECK - Har användaren fyllt i formuläret korrekt? (FormModel)
         if (!ModelState.IsValid)
         {
-            return View(model);
+            return View("~/Views/Account/DeleteAccount.cshtml", model);
+        }
+        
+
+        // 2A CHECK - ÄR CHECKBOX IFYLLD?*
+        if(!model.ConfirmDelete)
+        {
+            ModelState.AddModelError("ConfirmDelete", "Please confirm that you have read the terms and conditions.");
+            return View("~/Views/Account/DeleteAccount.cshtml", model);
         }
 
 
@@ -113,9 +122,10 @@ public class MyAccountController(IWebHostEnvironment env, AccountService account
             return RedirectToAction("Index", "Home");
         }
 
-            ModelState.AddModelError("", "Unable to delete account");               // OM RADERING MISSLYCKAS
-            return View(model);
-    }
+            ModelState.AddModelError("Password", "Please fill in the correct password and try again.");               // OM RADERING MISSLYCKAS
+            ModelState.AddModelError("ConfirmPassword", "Please fill in the correct password and try again.");        // OM RADERING MISSLYCKAS
+            return View("~/Views/Account/DeleteAccount.cshtml", model);
+        }
 
 
 

@@ -73,13 +73,22 @@ public class AccountService(UserManager<AppUser> userManager)
         // userId jämförs sen med kolumnen Id i tabellen "Dbo.AspNetUsers" i min Databas som du kan SE direkt i databasen.)
         var findUser = await _userManager.FindByIdAsync(userId.ToString());
 
+
+
         // Säkerhetskoll 1: FINNS ANVÄNDAREN? (Om inte, returnera false).
         if (findUser == null)
             {
                 return false;
             }
 
-        // Säkerhetskoll 2: STÄMMER LÖSENORDET I FORMMODEL MED DET I DATABASEN?
+
+        // Säkerhetskoll 2: Checka i terms.
+        if (!form.ConfirmDelete)                                // Om terms INTE kryssas i, 
+        {
+            return false;                                       // Gå inte vidare
+        }
+
+        // Säkerhetskoll 3: STÄMMER LÖSENORDET I FORMMODEL MED DET I DATABASEN?
         // _userManager.CheckPasswordAsync = ett verktyg från Identity-ramverket. Den förstår att lösenord i databasen är krypterade. Den tar det vanliga lösenordet som användaren skrev in, krypterar det på samma sätt, och kollar om de matchar. 
         // finduser och form.Password =  vi skickar in tidigare finduser där det krypterade lösenordet finns, och jänför med "password" från DeleteAccountFormModel
         // kortfattat: jag ber Identity jämföra det inskrivna lösenordet med det som finns i databasen för just den användaren.
@@ -89,13 +98,6 @@ public class AccountService(UserManager<AppUser> userManager)
             {
                 
                 return false;
-            }
-
-            // Säkerhetskoll 3: Är CHECKBOXEN form.ConfirmDelete markerad av användaren?
-
-        if(!form.ConfirmDelete)         //Om checkboxen INTE är ikryssad >
-            {
-                return false;           // returnera falskt
             }
 
 

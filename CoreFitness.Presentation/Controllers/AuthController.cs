@@ -148,12 +148,15 @@ public class AuthController(AuthService authService) : Controller
             return View(formData);
         }
 
-        // 3A CHECK - 
+        // 3A CHECK - Stämmer lösenord med email?
         var LogInSuccessfull = await _authService.SignInAsync(formData);
 
         if (!LogInSuccessfull)
         {
-            ModelState.AddModelError("Email", "Log in unsuccessfull. Please try again.");
+            ModelState.AddModelError("Email", "Incorrect email or password. Please try again.");
+
+            ModelState.AddModelError("Password", "Incorrect email or password. Please try again. ");
+
             return View(formData); // Går tillbaka men behåller allt som användaren skrivit (formdata)
         }
 
