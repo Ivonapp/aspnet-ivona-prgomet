@@ -10,8 +10,7 @@ namespace CoreFitness.Controllers;
 /* I DENNA CONTROLLER HAR JAG 
     REGISTRERING AV KONTO,
     INLOGGNING
-    UTLOGGNING
-*/
+    UTLOGGNING */
 
 
 public class AuthController(AuthService authService) : Controller
@@ -170,11 +169,8 @@ public class AuthController(AuthService authService) : Controller
     [HttpPost]
     public async Task<IActionResult> SignOff()
     {
-
         await _authService.SignOutAsync();
-
         return RedirectToAction("Index", "Home");
-
     }
 
 }

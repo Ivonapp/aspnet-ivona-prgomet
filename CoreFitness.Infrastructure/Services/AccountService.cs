@@ -8,17 +8,21 @@ namespace CoreFitness.Infrastructure.Services;
 
 
 
-public class AccountService(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+public class AccountService(UserManager<AppUser> userManager)
 {
 
     private readonly UserManager<AppUser> _userManager = userManager;
-    private readonly SignInManager<AppUser> _signInManager = signInManager;
 
 
-    /*
+    /* 1. *SPARA ANVÄNDARENS UPPGIFTER*
+     Model: MyAccountFormModel */
 
-    1. *SPARA ANVÄNDARENS UPPGIFTER*
-     Model: MyAccountFormModel*/
+
+
+
+
+
+
 
     public async Task<bool> UpdateProfileAsync(Guid userId, MyAccountFormModel model)
     {
@@ -53,25 +57,6 @@ public class AccountService(UserManager<AppUser> userManager, SignInManager<AppU
 
         // 5. Returnera: Skicka tillbaka true eller false på om det sparades eller inte.
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -1,14 +1,21 @@
-﻿using System.ComponentModel.Design;
+﻿using CoreFitness.Application.Models;
+using CoreFitness.Domain.Entities;
+using CoreFitness.Infrastructure.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using CoreFitness.Application.Models;
+using System.ComponentModel.Design;
+using System.Diagnostics.Metrics;
 using System.Reflection.PortableExecutable;
 
 namespace CoreFitness.Presentation.Controllers;
 
-public class MyAccountController(IWebHostEnvironment env) : Controller
-{
+public class MyAccountController(IWebHostEnvironment env, AccountService accountService, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager) : Controller
+        {
 
-private readonly IWebHostEnvironment _env = env;
+    private readonly IWebHostEnvironment _env = env; // denna är specifikt för filuppladdningen "upload"
+    private readonly AccountService _accountService = accountService;
+    private readonly UserManager<AppUser> _userManager = userManager; // För att hämta ID på den inloggade användaren.
+    private readonly SignInManager<AppUser> _signInManager = signInManager; // För att logga ut användaren efter radering.
 
 
 
@@ -73,18 +80,46 @@ private readonly IWebHostEnvironment _env = env;
     }
         
 
+
+
    
-  /* SJÄLVASTE RADERINGEN AV KONTOT */
+  /* RADERA KONTO */
     [HttpPost]
     [Route("removeaccount")]
     public async Task<IActionResult> DeleteAccount(DeleteAccountFormModel model)
     {
-        return View("~/Views/Account/DeleteAccount.cshtml");
+
+        // Hämta inloggad användares ID.
+        var findUser = _userManager.GetUserId(User);    // _userManager kollar bara i User. User är en inbyggd egenskap i Controller. Den innehåller all information om personen som surfar på sidan just nu – men informationen ligger i en så kallad Cookie i webbläsaren. Denna information kallas för "Claims".
+                                                        // Ingen await = Eftersom vi endast läser webbläsarens cookie, behöver programmet inte vänta på svar från databasen för att hämta det.
+
+        if (findUser == null)                       // OM användaren inte hittas, laddas sidan om.
+        {
+            TempData["Error"] = "";
+            return RedirectToAction("Index", "Home");
+        }
+
+        // kolla om användaren har fyllt i formuläret korrekt och följd [required] med modelstate
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+
+
+        // Kör din service-metod för RADERING av kontot i databasen.
+
+        var result = await _accountService.DeleteAccountAsync(Guid.Parse(findUser), model); //Här raderas kontot
+
+
+        if(result)
+        {
+            await _signInManager.SignOutAsync(); //Loggar ut användaren             // OM RADERING LYCKAS
+            return RedirectToAction("Index", "Home");
+        }
+
+            ModelState.AddModelError("", "Unable to delete account");               // OM RADERING MISSLYCKAS
+            return View(model);
     }
-  
-
-
-
 }
 
 
