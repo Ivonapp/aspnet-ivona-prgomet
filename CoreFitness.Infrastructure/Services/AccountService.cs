@@ -17,13 +17,6 @@ public class AccountService(UserManager<AppUser> userManager)
     /* 1. *SPARA ANVÄNDARENS UPPGIFTER*
      Model: MyAccountFormModel */
 
-
-
-
-
-
-
-
     public async Task<bool> UpdateProfileAsync(Guid userId, MyAccountFormModel model)
     {
         // 1. Hitta användaren: Använd userId för att hämta användaren från databasen.
@@ -60,6 +53,15 @@ public class AccountService(UserManager<AppUser> userManager)
 
 
 
+
+
+
+
+
+
+
+
+
     /*2. RADERA KONTO (userManager - DeleteAsync(TUser)
     Model: DeleteAccountFormModel */
 
@@ -85,6 +87,7 @@ public class AccountService(UserManager<AppUser> userManager)
 
         if(!checkPassword) //Om CheckPassword är falskt
             {
+                
                 return false;
             }
 

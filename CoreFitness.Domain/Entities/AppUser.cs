@@ -2,6 +2,8 @@
 
 namespace CoreFitness.Domain.Entities;
 
+
+// Det som vi lägger till i AppUser är det som inte finns i Identity.
 public class AppUser : IdentityUser
 {
         //Email, Telefonnummer och Lösenord behöver jag inte skriva ut då dessa redan finns automatiskt i IdentityUser.

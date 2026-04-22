@@ -72,12 +72,19 @@ training.addEventListener("click", () => {
                 const imgNameDisplay = document.getElementById('img-name-display');
 
 
+
+
+
+
+
+if (fileInput && imgNameDisplay) {              // VIKTIGT! Denna IF-satsen gör att Javascript håller sig till BecomeAMember sidan och inte buggar på andra sidor som den inte ens ska göra något i. 
+
 // fileInput.addEventListener('change', ...)    = Denna delen står och väntar på att användaren har valt en fil och tryckt "OK" i filfönstret.
 // Just "addEventListener"                      = är en metod som gör att din webbsida kan "lyssna" efter att något händer och sedan reagera på det.
 // *** add: Lägg till.
 // *** Event: Händelse (t.ex. ett klick, att man skriver något, eller att man väljer en fil).
 // *** Listener: Lyssnar efter ändring.
-    fileInput.addEventListener('change', function() {
+fileInput.addEventListener('change', function () {
         
 // this.files           = är själva LÅDAN.
 // this.files.length    = är antal SAKER i lådan.
@@ -88,3 +95,4 @@ training.addEventListener("click", () => {
             }                                                   /*  Utan denna, kommer placeholderns text inte ändras
                                                                     och det blir omöjligt att se om bilden har lagts in.*/
     });
+} // < Avslutar Första IF satsen

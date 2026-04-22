@@ -22,5 +22,9 @@ public class DeleteAccountFormModel
     [DataType(DataType.Password)]
     public string ConfirmPassword { get; set; } = null!;
 
+
+
+
+    // **Skapa en modelstate i AccountController för error message istället för här ** 
     public bool ConfirmDelete { get; set; }
 }

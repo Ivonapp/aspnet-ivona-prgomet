@@ -69,7 +69,6 @@ public class MyAccountController(IWebHostEnvironment env, AccountService account
 
 
 
-
    
     [HttpGet]
     [Route("removeaccount")]
@@ -78,10 +77,7 @@ public class MyAccountController(IWebHostEnvironment env, AccountService account
     {
         return View("~/Views/Account/DeleteAccount.cshtml");
     }
-        
-
-
-
+       
    
   /* RADERA KONTO */
     [HttpPost]
@@ -120,6 +116,29 @@ public class MyAccountController(IWebHostEnvironment env, AccountService account
             ModelState.AddModelError("", "Unable to delete account");               // OM RADERING MISSLYCKAS
             return View(model);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // ***SKRIV KODEN FÖR ATT SPARA ANVÄNDARENS UPPGIFTER - SERVICE FÄRDIG***
+
+
+
+
+
+
+
+
+
 }
 
 
