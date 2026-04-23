@@ -38,7 +38,7 @@ public class MyAccountController(IWebHostEnvironment env, AccountService account
     [HttpPost]
     [Route("myaccount")]
 
-    public IActionResult MyAccount(MyAccountFormModel model)
+    public async Task<IActionResult> MyAccount(MyAccountFormModel model)
     {
         
 
@@ -55,20 +55,24 @@ public class MyAccountController(IWebHostEnvironment env, AccountService account
         //3. Validering: Kontrollera att det som skrivits i formuläret stämmer överens med dina krav i formModel.
         if(!ModelState.IsValid)
         {
-            return View("~/Views/Account/DeleteAccount.cshtml", model);
+            return View("~/Views/Account/MyAccount.cshtml", model);         //> Om fel: Stanna kvar på sidan och visa vyn igen med befintlig data.
         }
 
-
-
-        //> Om fel: Stanna kvar på sidan och visa vyn igen med befintlig data.
-
         //5. Spara den nya informationen i databasen genom att anropa Service.
-
+        var saveProfile = await _accountService.UpdateProfileAsync(Guid.Parse(findUser), model);
 
 
         //6. Resultathantering:
         //> Vid lyckat resultat: Informera användaren om att det är sparat och ladda om eller visa sidan på nytt.
+        if(saveProfile)
+        {
+            TempData["StatusMessage"] = "Your information has now been updated!";
+            return RedirectToAction("MyAccount");
+        }
+
         //> Vid misslyckat resultat: Skapa ett felmeddelande och stanna kvar på sidan för att låta användaren försöka igen.
+            ModelState.AddModelError("", "Unable to save information");               // OM RADERING MISSLYCKAS
+            return View("~/Views/Account/MyAccount.cshtml", model);
 
     }
 
@@ -126,7 +130,6 @@ public class MyAccountController(IWebHostEnvironment env, AccountService account
         {
             return View("~/Views/Account/DeleteAccount.cshtml", model);
         }
-        
        
         if(!model.ConfirmDelete)                // > 2A CHECK - ÄR CHECKBOX IFYLLD?*
         {
@@ -134,14 +137,12 @@ public class MyAccountController(IWebHostEnvironment env, AccountService account
             return View("~/Views/Account/DeleteAccount.cshtml", model);
         }
 
-        // ***************************************************************************
-
-        // Kör din service-metod för RADERING av kontot i databasen.
-
+        //5. Radera användaren från databasen genom att anropa Service.
         var result = await _accountService.DeleteAccountAsync(Guid.Parse(findUser), model); //Här raderas kontot
 
-
-        if(result)
+        //6. Resultathantering:
+        //> Vid lyckat resultat: Informera användaren om att det är sparat och ladda om eller visa sidan på nytt.
+        if (result)
         {
             await _signInManager.SignOutAsync(); //Loggar ut användaren             // OM RADERING LYCKAS
             return RedirectToAction("Index", "Home");

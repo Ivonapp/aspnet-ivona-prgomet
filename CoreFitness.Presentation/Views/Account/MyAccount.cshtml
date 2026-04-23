@@ -68,6 +68,19 @@
 
 
 
+        @* DETTA VISAS NÄR POPUP-RUTAN SYNS *@
+        @if (TempData["StatusMessage"] != null)
+        {
+            <div class="popup-overlay">
+                <div class="popup-content">
+                    <div class="popup-message"> @TempData["StatusMessage"] </div>
+
+
+                    @* KNAPPEN LADDAR OM MYACCOUNT SIDAN NÄR MAN TRYCKER PÅ "OK" SÅ ATT FORMULÄRET VISAS IGEN *@
+                    <a asp-controller="MyAccount" asp-action="MyAccount" class="message-btn">OK</a>
+                </div>
+            </div>
+        }
 
 
 
