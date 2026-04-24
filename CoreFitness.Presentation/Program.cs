@@ -37,7 +37,6 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(x => // IdentityRole är en 
 
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<AccountService>();
-builder.Services.AddScoped<FileService>();
 
 
 

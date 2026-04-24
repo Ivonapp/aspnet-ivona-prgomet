@@ -1,7 +1,9 @@
-﻿using CoreFitness.Domain.Entities;
+﻿using CoreFitness.Application.Models;
+using CoreFitness.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using CoreFitness.Application.Models;
+using static System.Net.WebRequestMethods;
 
 
 namespace CoreFitness.Infrastructure.Services;
@@ -50,6 +52,34 @@ public class AccountService(UserManager<AppUser> userManager)
 
         // 5. Returnera: Skicka tillbaka true eller false på om det sparades eller inte.
     }
+
+
+    // ** Skriv in fileUpload inuti ovan kod, så allt som hanterar sparning, är både profilinfo OCH kundens profilbild. **
+
+    // FILEUPLOAD
+
+    //      1. Parametrar: Lägg till objektet för den uppladdade filen i metoden.
+
+    //      2. Koll: Kontrollera att filen existerar och har ett innehåll.
+
+    //      3. Miljö: Se till att klassen har tillgång till serverns fysiska sökväg (injicera rätt gränssnitt i konstruktorn).
+
+    //      4. Mapp: Skapa den fullständiga vägen till din lagringsmapp och verka för att den skapas om den saknas.
+
+    //      5. Unikt namn: Generera ett namn som inte kan krocka med befintliga filer.
+
+    //      6. Spara: Öppna en ström till hårddisken och kopiera över filens innehåll asynkront.
+
+    //      7. ** Koppling:** Sätt den relativa sökvägen (strängen) på din användar-entitet.
+
+    //      Slutför: Kör den asynkrona uppdateringen av hela användarobjektet mot databasen.
+
+
+
+
+
+
+
 
 
 

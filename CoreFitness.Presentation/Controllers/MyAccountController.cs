@@ -22,82 +22,6 @@ public class MyAccountController(IWebHostEnvironment env, AccountService account
 
 
 
-    //MYACCOUNT SIDAN / SPARA SIDA
-    [HttpGet]
-    [Route("myaccount")]
-    public IActionResult MyAccount()
-    {
-        return View("~/Views/Account/MyAccount.cshtml");
-    }
-
-
-
-
-
-
-    [HttpPost]
-    [Route("myaccount")]
-
-    public async Task<IActionResult> MyAccount(MyAccountFormModel model)
-    {
-        
-
-        // 1. ID: Identifiera vilken användare som är inloggad.
-         var findUser = _userManager.GetUserId(User);    
-
-        // 2. Säkerhetskontroll: Avbryt och skicka bort besökaren om ingen användare hittas.
-        if (findUser == null)
-        {
-            TempData["Error"] = "";
-            return RedirectToAction("Index", "Home");
-        }
-
-        //3. Validering: Kontrollera att det som skrivits i formuläret stämmer överens med dina krav i formModel.
-        if(!ModelState.IsValid)
-        {
-            return View("~/Views/Account/MyAccount.cshtml", model);         //> Om fel: Stanna kvar på sidan och visa vyn igen med befintlig data.
-        }
-
-        //5. Spara den nya informationen i databasen genom att anropa Service.
-        var saveProfile = await _accountService.UpdateProfileAsync(Guid.Parse(findUser), model);
-
-
-        //6. Resultathantering:
-        //> Vid lyckat resultat: Informera användaren om att det är sparat och ladda om eller visa sidan på nytt.
-        if(saveProfile)
-        {
-            TempData["StatusMessage"] = "Your information has now been updated!";
-            return RedirectToAction("MyAccount");
-        }
-
-        //> Vid misslyckat resultat: Skapa ett felmeddelande och stanna kvar på sidan för att låta användaren försöka igen.
-            ModelState.AddModelError("", "Unable to save information");               // OM RADERING MISSLYCKAS
-            return View("~/Views/Account/MyAccount.cshtml", model);
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /* RADERA KONTO */
     [HttpGet]
     [Route("removeaccount")]
@@ -155,17 +79,140 @@ public class MyAccountController(IWebHostEnvironment env, AccountService account
 
 
 
-        //FILUPPLADDNING
-        [HttpGet]
-        public IActionResult Upload()
-        {
 
-            return View();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //MYACCOUNT SIDAN / SPARA SIDA / SPARAR PROFILBILD
+    [HttpGet]
+    [Route("myaccount")]
+    public IActionResult MyAccount()
+    {
+        return View("~/Views/Account/MyAccount.cshtml");
+    }
+
+
+    [HttpPost]
+    [Route("myaccount")]
+
+    public async Task<IActionResult> MyAccount(MyAccountFormModel model)
+    {
+
+
+        // 1. ID: Identifiera vilken användare som är inloggad.
+        var findUser = _userManager.GetUserId(User);
+
+        // 2. Säkerhetskontroll: Avbryt och skicka bort besökaren om ingen användare hittas.
+        if (findUser == null)
+        {
+            TempData["Error"] = "";
+            return RedirectToAction("Index", "Home");
+        }
+
+        //3. Validering: Kontrollera att det som skrivits i formuläret stämmer överens med dina krav i formModel.
+        if (!ModelState.IsValid)
+        {
+            return View("~/Views/Account/MyAccount.cshtml", model);         //> Om fel: Stanna kvar på sidan och visa vyn igen med befintlig data.
         }
 
 
+// BILDFIL START
+        if (model.File != null && model.File.Length > 0)
+        {
+            var uploadFolder = Path.Combine(_env.WebRootPath, "Uploads");
+            Directory.CreateDirectory(uploadFolder);
+            var filePath = Path.Combine(uploadFolder, $"{Guid.NewGuid()}_{Path.GetFileName(model.File.FileName)}");
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await model.File.CopyToAsync(stream);
+            }
+            //SE OM NÅGOT SKA SKRIVAS TILL HÄR
+        }
+// BILDFIL END
+
+
+        //5. Spara den nya informationen i databasen genom att anropa Service.
+        var saveProfile = await _accountService.UpdateProfileAsync(Guid.Parse(findUser), model);
+
+
+        //6. Resultathantering:
+        //> Vid lyckat resultat: Informera användaren om att det är sparat och ladda om eller visa sidan på nytt.
+        if (saveProfile)
+        {
+            TempData["StatusMessage"] = "Your profile has now been updated!";
+            return RedirectToAction("MyAccount");
+        }
+
+        //> Vid misslyckat resultat: Skapa ett felmeddelande och stanna kvar på sidan för att låta användaren försöka igen.
+        ModelState.AddModelError("", "Unable to save information");               // OM RADERING MISSLYCKAS
+        return View("~/Views/Account/MyAccount.cshtml", model);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // RADERA UNDERTILL OCH FLYTTA ISTÄLLET IN SÅ ALLT SOM HANTERAR FILEN I MYACCOUNT
+
         //FILUPPLADDNING
-        [HttpPost]
+        /*[HttpPost]
         public async Task<IActionResult> Upload(MyAccountFormModel formData) //Inuti Paranteserna skriver vi FormModel som styr filuppladdning. I detta fallet finns den i MyAccountFormModel.
         {
             if (!ModelState.IsValid || formData.File == null || formData.File.Length == 0)
@@ -183,7 +230,7 @@ public class MyAccountController(IWebHostEnvironment env, AccountService account
 
             ViewBag.Message = "File was uploaded successfully.";
             return View("~/Views/Account/MyAccount.cshtml", formData);
-     }
+     }*/
 }
 
 
