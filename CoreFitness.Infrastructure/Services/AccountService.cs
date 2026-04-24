@@ -1,8 +1,10 @@
 ﻿using CoreFitness.Application.Models;
 using CoreFitness.Domain.Entities;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using static System.Net.WebRequestMethods;
 
 
@@ -10,10 +12,14 @@ namespace CoreFitness.Infrastructure.Services;
 
 
 
-public class AccountService(UserManager<AppUser> userManager)
+public class AccountService(UserManager<AppUser> userManager, IWebHostEnvironment env)
 {
 
     private readonly UserManager<AppUser> _userManager = userManager;
+    private readonly IWebHostEnvironment _env = env;
+
+
+
 
 
     /* 1. *SPARA ANVÄNDARENS UPPGIFTER*
@@ -28,6 +34,25 @@ public class AccountService(UserManager<AppUser> userManager)
         {
             return false;
         }
+
+
+
+// BILDFIL START
+        if (model.File != null && model.File.Length > 0)                                    // kontrollerar att filen exisrerar och har ett innehåll
+        {
+            var uploadFolder = Path.Combine(_env.WebRootPath, "Uploads");
+            Directory.CreateDirectory(uploadFolder);
+
+            var fileName = $"{Guid.NewGuid()}_{Path.GetFileName(model.File.FileName)}";
+            var filePath = Path.Combine(uploadFolder, fileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await model.File.CopyToAsync(stream);
+            }
+            findUser.ProfileImageUrl = fileName;
+        }
+// BILDFIL END
 
 
         // 2. Skriv över fälten (firstname, lastname, email, phone etc) i användarobjektet med den NYA infon från form.
@@ -54,25 +79,6 @@ public class AccountService(UserManager<AppUser> userManager)
     }
 
 
-    // ** Skriv in fileUpload inuti ovan kod, så allt som hanterar sparning, är både profilinfo OCH kundens profilbild. **
-
-    // FILEUPLOAD
-
-    //      1. Parametrar: Lägg till objektet för den uppladdade filen i metoden.
-
-    //      2. Koll: Kontrollera att filen existerar och har ett innehåll.
-
-    //      3. Miljö: Se till att klassen har tillgång till serverns fysiska sökväg (injicera rätt gränssnitt i konstruktorn).
-
-    //      4. Mapp: Skapa den fullständiga vägen till din lagringsmapp och verka för att den skapas om den saknas.
-
-    //      5. Unikt namn: Generera ett namn som inte kan krocka med befintliga filer.
-
-    //      6. Spara: Öppna en ström till hårddisken och kopiera över filens innehåll asynkront.
-
-    //      7. ** Koppling:** Sätt den relativa sökvägen (strängen) på din användar-entitet.
-
-    //      Slutför: Kör den asynkrona uppdateringen av hela användarobjektet mot databasen.
 
 
 
@@ -80,19 +86,7 @@ public class AccountService(UserManager<AppUser> userManager)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-    /*2. RADERA KONTO (userManager - DeleteAsync(TUser)
+    /*2. HANTERAR RADERING AV KONTO (userManager - DeleteAsync(TUser)
     Model: DeleteAccountFormModel */
 
     public async Task<bool> DeleteAccountAsync(Guid userId, DeleteAccountFormModel form)

@@ -23,8 +23,14 @@
 <div class="container"> 
 <div class="account-container"> 
 
-<div class="account-left">  
-<img src="~/images/profilepic.svg" alt="Profile picture" class="profilepic-img">
+<div class="account-left">    @if (!string.IsNullOrEmpty(Model.ProfileImageUrl))
+            {
+                <img src="~/Uploads/@Model.ProfileImageUrl" alt="Profile picture" class="profilepic-img">
+            }
+            else
+            {
+                <img src="~/images/profilepic.svg" alt="Profile picture" class="profilepic-img">
+            }
 
 <div class="mini-column">
     <div class="account-menu">Menu Options</div>

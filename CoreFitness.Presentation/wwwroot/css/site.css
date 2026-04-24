@@ -5,7 +5,6 @@
   box-sizing: border-box;
   margin: 0;
 }
-
     @font-face {
     font-family: Poppins;
     src: url('../fonts/poppins/Poppins-Regular.ttf');
@@ -123,8 +122,17 @@
     }
     body {
     background-color: #f7f7f7;
-}
+    }
+
+    /* PROFILBILD */
+    .profilepic-img {
+        width: 280px;
+        height: 350px;
+        object-fit: cover; /*sträcker inte ut bilden */
+        border-radius: 20px;
+    }
   
+
     /* NAVBAR - MOBILE FIRST */
 .navbar {
     border: 2px solid var(--navbar-border);

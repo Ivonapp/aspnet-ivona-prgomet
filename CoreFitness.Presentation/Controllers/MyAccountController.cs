@@ -83,41 +83,36 @@ public class MyAccountController(IWebHostEnvironment env, AccountService account
 
 
 
+    //MYACCOUNT SIDAN / SPARA SIDA / SPARAR PROFILBILD
+    [HttpGet]
+    [Route("myaccount")]
+    public async Task<IActionResult> MyAccount()
+    {
+        // 1. Hämta användaren från databasen
+        var user = await _userManager.GetUserAsync(User);
 
+        if (user == null)
+            return RedirectToAction("Index", "Home");
 
+        // 2. Fyller i informationen FRÅN databas > view
+        var model = new MyAccountFormModel
+        {
+            FirstName = user.FirstName!,
+            LastName = user.LastName!,
+            Email = user.Email!,
+            PhoneNumber = user.PhoneNumber,
+            ProfileImageUrl = user.ProfileImageUrl // skickar in profilbilden som valts in i view
+        };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        return View("~/Views/Account/MyAccount.cshtml", model);
+    }
 
 
 
 
     //MYACCOUNT SIDAN / SPARA SIDA / SPARAR PROFILBILD
-    [HttpGet]
-    [Route("myaccount")]
-    public IActionResult MyAccount()
-    {
-        return View("~/Views/Account/MyAccount.cshtml");
-    }
-
-
     [HttpPost]
     [Route("myaccount")]
-
     public async Task<IActionResult> MyAccount(MyAccountFormModel model)
     {
 
@@ -139,22 +134,6 @@ public class MyAccountController(IWebHostEnvironment env, AccountService account
         }
 
 
-// BILDFIL START
-        if (model.File != null && model.File.Length > 0)
-        {
-            var uploadFolder = Path.Combine(_env.WebRootPath, "Uploads");
-            Directory.CreateDirectory(uploadFolder);
-            var filePath = Path.Combine(uploadFolder, $"{Guid.NewGuid()}_{Path.GetFileName(model.File.FileName)}");
-
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                await model.File.CopyToAsync(stream);
-            }
-            //SE OM NÅGOT SKA SKRIVAS TILL HÄR
-        }
-// BILDFIL END
-
-
         //5. Spara den nya informationen i databasen genom att anropa Service.
         var saveProfile = await _accountService.UpdateProfileAsync(Guid.Parse(findUser), model);
 
@@ -172,65 +151,6 @@ public class MyAccountController(IWebHostEnvironment env, AccountService account
         return View("~/Views/Account/MyAccount.cshtml", model);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // RADERA UNDERTILL OCH FLYTTA ISTÄLLET IN SÅ ALLT SOM HANTERAR FILEN I MYACCOUNT
-
-        //FILUPPLADDNING
-        /*[HttpPost]
-        public async Task<IActionResult> Upload(MyAccountFormModel formData) //Inuti Paranteserna skriver vi FormModel som styr filuppladdning. I detta fallet finns den i MyAccountFormModel.
-        {
-            if (!ModelState.IsValid || formData.File == null || formData.File.Length == 0)
-                return View("~/Views/Account/MyAccount.cshtml", formData);
-
-            var uploadFolder = Path.Combine(_env.WebRootPath, "Uploads");               //folder för bild
-            Directory.CreateDirectory(uploadFolder);                                    //Om foldern inte finns så skapas en
-
-            var filePath = Path.Combine(uploadFolder, $"{Guid.NewGuid()}_{Path.GetFileName(formData.File.FileName)}"); // bILDen användaren laddar upp sparas här, samt får den ett unikt GUID så man kan lägga in samma bild fler gånger där den får ett unikt namn
-
-            using (var stream = new FileStream(filePath, FileMode.Create))
-            {
-                await formData.File.CopyToAsync(stream);
-            }
-
-            ViewBag.Message = "File was uploaded successfully.";
-            return View("~/Views/Account/MyAccount.cshtml", formData);
-     }*/
 }
 
 

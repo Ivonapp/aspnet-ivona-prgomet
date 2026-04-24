@@ -29,8 +29,11 @@ public class MyAccountFormModel
 
 
     // NEDAN FÖR BILDFIL SOM KUND SKA LÄGGA TILL
-    [Required(ErrorMessage = "Please select a file to upload.")]
-    public IFormFile File { get; set; } = null!;
+    // För uppladdning (från formuläret)
+    public IFormFile? File { get; set; }
 
+
+    // För att visa bilden (från databasen)
+    public string? ProfileImageUrl { get; set; }
 }
 
