@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-namespace CoreFitness.Application.Models;
 using Microsoft.AspNetCore.Http;
 
+namespace CoreFitness.Presentation.Models;
 public class MyAccountFormModel
 {
     

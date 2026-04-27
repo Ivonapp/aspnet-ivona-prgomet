@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-namespace CoreFitness.Application.Models;
+namespace CoreFitness.Presentation.Models;
 
 public class CustomerServiceFormModel
 {

@@ -1,9 +1,9 @@
-﻿using CoreFitness.Application.Models;
-using CoreFitness.Infrastructure.Services;
+﻿using CoreFitness.Presentation.Models;
+using CoreFitness.Application.Services;
 using Microsoft.AspNetCore.Mvc;
 
 
-namespace CoreFitness.Controllers;
+namespace CoreFitness.Presentation.Controllers;
 
 
 
@@ -45,7 +45,7 @@ public class AuthController(AuthService authService) : Controller
                 }
 
                 // 2A CHECK - finns en identisk mail?
-                var emailAlreadyExists = await _authService.DoesEmailAlreadyExistAsync(formData);
+                var emailAlreadyExists = await _authService.DoesEmailAlreadyExistAsync(formData.Email);
 
                 if (emailAlreadyExists)
                 {
@@ -98,7 +98,7 @@ public class AuthController(AuthService authService) : Controller
 
 
         // 3A CHECKEN - 
-        var CreateAccount = await _authService.CreateAsync(formData, email);
+        var CreateAccount = await _authService.CreateAsync(formData.Password, email);
 
         if (CreateAccount)
         {
@@ -149,7 +149,7 @@ public class AuthController(AuthService authService) : Controller
         }
 
         // 3A CHECK - Stämmer lösenord med email?
-        var LogInSuccessfull = await _authService.SignInAsync(formData);
+        var LogInSuccessfull = await _authService.SignInAsync(formData.Email, formData.Password, formData.TermsAccepted);
 
         if (!LogInSuccessfull)
         {

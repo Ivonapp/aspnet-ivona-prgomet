@@ -1,6 +1,6 @@
 ﻿using CoreFitness.Domain.MembershipPlans;
 
-namespace CoreFitness.Application.MembershipPlans;
+namespace CoreFitness.Domain.MembershipPlans;
 
     public record MembershipPlanDto
     (

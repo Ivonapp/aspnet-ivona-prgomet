@@ -1,4 +1,7 @@
+using CoreFitness.Domain.MembershipPlans;
+
 namespace CoreFitness.Application.MembershipPlans
+
 {
     public interface IMembershipPlanService
     {

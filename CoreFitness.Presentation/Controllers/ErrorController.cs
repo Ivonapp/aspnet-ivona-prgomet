@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CoreFitness.Presentation.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CoreFitness.Presentation.Controllers;
 

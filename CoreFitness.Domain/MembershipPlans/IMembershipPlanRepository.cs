@@ -1,4 +1,4 @@
-namespace CoreFitness.Application.MembershipPlans;
+namespace CoreFitness.Domain.MembershipPlans;
 
 public interface IMembershipPlanRepository
 {

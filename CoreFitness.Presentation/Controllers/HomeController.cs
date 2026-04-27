@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CoreFitness.Presentation.Models;
+using Microsoft.AspNetCore.Mvc;
 using CoreFitness.Application.MembershipPlans;
 using CoreFitness.Presentation.ViewModels;
-using CoreFitness.Application.Models;
-namespace CoreFitness.Controllers;
+namespace CoreFitness.Presentation.Controllers;
 
 public class HomeController(IMembershipPlanService membershipPlanService) : Controller
 {

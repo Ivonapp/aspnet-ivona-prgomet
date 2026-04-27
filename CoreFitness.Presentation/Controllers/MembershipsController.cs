@@ -1,3 +1,4 @@
+using CoreFitness.Presentation.Models;
 using CoreFitness.Application.MembershipPlans;
 using CoreFitness.Presentation.ViewModels;
 using Microsoft.AspNetCore.Mvc;

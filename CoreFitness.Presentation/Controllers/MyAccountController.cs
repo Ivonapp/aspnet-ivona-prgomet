@@ -1,6 +1,7 @@
-﻿using CoreFitness.Application.Models;
+﻿
+using CoreFitness.Presentation.Models;
 using CoreFitness.Domain.Entities;
-using CoreFitness.Infrastructure.Services;
+using CoreFitness.Application.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.SqlServer.Server;
@@ -62,7 +63,7 @@ public class MyAccountController(IWebHostEnvironment env, AccountService account
         }
 
         //5. Radera användaren från databasen genom att anropa Service.
-        var result = await _accountService.DeleteAccountAsync(Guid.Parse(findUser), model); //Här raderas kontot
+        var result = await _accountService.DeleteAccountAsync(Guid.Parse(findUser), model.Password, model.ConfirmDelete); //Här raderas kontot
 
         //6. Resultathantering:
         //> Vid lyckat resultat: Informera användaren om att det är sparat och ladda om eller visa sidan på nytt.
@@ -135,8 +136,14 @@ public class MyAccountController(IWebHostEnvironment env, AccountService account
 
 
         //5. Spara den nya informationen i databasen genom att anropa Service.
-        var saveProfile = await _accountService.UpdateProfileAsync(Guid.Parse(findUser), model);
-
+        var saveProfile = await _accountService.UpdateProfileAsync(
+        Guid.Parse(findUser),
+        model.FirstName,
+        model.LastName,
+        model.Email,
+        model.PhoneNumber,
+        model.File
+    );
 
         //6. Resultathantering:
         //> Vid lyckat resultat: Informera användaren om att det är sparat och ladda om eller visa sidan på nytt.

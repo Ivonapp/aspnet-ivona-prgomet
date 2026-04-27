@@ -1,6 +1,7 @@
-﻿using CoreFitness.Application.Models;
+﻿
 using CoreFitness.Domain.Entities;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +9,7 @@ using System.ComponentModel.DataAnnotations;
 using static System.Net.WebRequestMethods;
 
 
-namespace CoreFitness.Infrastructure.Services;
+namespace CoreFitness.Application.Services;
 
 
 
@@ -25,7 +26,12 @@ public class AccountService(UserManager<AppUser> userManager, IWebHostEnvironmen
     /* 1. *SPARA ANVÄNDARENS UPPGIFTER*
      Model: MyAccountFormModel */
 
-    public async Task<bool> UpdateProfileAsync(Guid userId, MyAccountFormModel model)
+    public async Task<bool> UpdateProfileAsync(Guid userId,
+    string firstName,
+    string lastName,
+    string email,
+    string? phoneNumber,
+    IFormFile? file)
     {
         // 1. Hitta användaren: Använd userId för att hämta användaren från databasen.
         var findUser = await _userManager.FindByIdAsync(userId.ToString());
@@ -38,17 +44,17 @@ public class AccountService(UserManager<AppUser> userManager, IWebHostEnvironmen
 
 
 // BILDFIL START
-        if (model.File != null && model.File.Length > 0)                                    // kontrollerar att filen exisrerar och har ett innehåll
+        if (file != null && file.Length > 0)                                    // kontrollerar att filen exisrerar och har ett innehåll
         {
             var uploadFolder = Path.Combine(_env.WebRootPath, "Uploads");
             Directory.CreateDirectory(uploadFolder);
 
-            var fileName = $"{Guid.NewGuid()}_{Path.GetFileName(model.File.FileName)}";
+            var fileName = $"{Guid.NewGuid()}_{Path.GetFileName(file.FileName)}";
             var filePath = Path.Combine(uploadFolder, fileName);
 
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
-                await model.File.CopyToAsync(stream);
+                await file.CopyToAsync(stream);
             }
             findUser.ProfileImageUrl = fileName;
         }
@@ -58,11 +64,11 @@ public class AccountService(UserManager<AppUser> userManager, IWebHostEnvironmen
         // 2. Skriv över fälten (firstname, lastname, email, phone etc) i användarobjektet med den NYA infon från form.
         // UpdateNormalizedUserNameAndEmailAsync = en metod i identity
 
-        findUser.UserName = model.Email; //denna gör så kunden kan logga in med sin NYA email, för email är ju tekniskt sät usernamet vi skriver in 
-        findUser.FirstName = model.FirstName;
-        findUser.LastName = model.LastName;
-        findUser.Email = model.Email;
-        findUser.PhoneNumber = model.PhoneNumber;
+        findUser.UserName = email; //denna gör så kunden kan logga in med sin NYA email, för email är ju tekniskt sät usernamet vi skriver in 
+        findUser.FirstName = firstName;
+        findUser.LastName = lastName;
+        findUser.Email = email;
+        findUser.PhoneNumber = phoneNumber;
 
         var UpdatedProfileFields = await _userManager.UpdateAsync(findUser); //Kör UpdateAsync för att skicka ändringarna till databasen med _userManager.
 
@@ -89,7 +95,7 @@ public class AccountService(UserManager<AppUser> userManager, IWebHostEnvironmen
     /*2. HANTERAR RADERING AV KONTO (userManager - DeleteAsync(TUser)
     Model: DeleteAccountFormModel */
 
-    public async Task<bool> DeleteAccountAsync(Guid userId, DeleteAccountFormModel form)
+    public async Task<bool> DeleteAccountAsync(Guid userId, string password, bool confirmDelete)
     {
 
         // Hämta användaren: Använd userId för att slå upp användaren i databasen.
@@ -107,7 +113,7 @@ public class AccountService(UserManager<AppUser> userManager, IWebHostEnvironmen
 
 
         // Säkerhetskoll 2: Checka i terms.
-        if (!form.ConfirmDelete)                                // Om terms INTE kryssas i, 
+        if (!confirmDelete)                                // Om terms INTE kryssas i, 
         {
             return false;                                       // Gå inte vidare
         }
@@ -116,7 +122,7 @@ public class AccountService(UserManager<AppUser> userManager, IWebHostEnvironmen
         // _userManager.CheckPasswordAsync = ett verktyg från Identity-ramverket. Den förstår att lösenord i databasen är krypterade. Den tar det vanliga lösenordet som användaren skrev in, krypterar det på samma sätt, och kollar om de matchar. 
         // finduser och form.Password =  vi skickar in tidigare finduser där det krypterade lösenordet finns, och jänför med "password" från DeleteAccountFormModel
         // kortfattat: jag ber Identity jämföra det inskrivna lösenordet med det som finns i databasen för just den användaren.
-        var checkPassword = await _userManager.CheckPasswordAsync(findUser, form.Password);
+        var checkPassword = await _userManager.CheckPasswordAsync(findUser, password);
 
         if(!checkPassword) //Om CheckPassword är falskt
             {

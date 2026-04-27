@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using CoreFitness.Infrastructure.Persistence;
 using CoreFitness.Infrastructure.Persistence.Seeds;
 using Microsoft.EntityFrameworkCore;
-using CoreFitness.Infrastructure.Services;
+using CoreFitness.Application.Services;
 using CoreFitness.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 

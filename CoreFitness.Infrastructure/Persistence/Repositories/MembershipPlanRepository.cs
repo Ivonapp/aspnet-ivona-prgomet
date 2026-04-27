@@ -1,5 +1,6 @@
 using CoreFitness.Application.MembershipPlans;
 using Microsoft.EntityFrameworkCore;
+using CoreFitness.Domain.MembershipPlans;
 
 namespace CoreFitness.Infrastructure.Persistence.Repositories;
 

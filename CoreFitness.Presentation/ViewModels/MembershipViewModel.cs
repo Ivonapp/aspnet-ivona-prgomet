@@ -1,4 +1,4 @@
-using CoreFitness.Application.MembershipPlans;
+using CoreFitness.Domain.MembershipPlans;
 
 namespace CoreFitness.Presentation.ViewModels;
 
