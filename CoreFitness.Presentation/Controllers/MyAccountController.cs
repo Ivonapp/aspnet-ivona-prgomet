@@ -1,5 +1,6 @@
 ﻿
 using CoreFitness.Application.Services;
+using CoreFitness.Application.Interfaces;
 using CoreFitness.Domain.Entities;
 using CoreFitness.Presentation.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -13,11 +14,11 @@ using System.Reflection.PortableExecutable;
 
 namespace CoreFitness.Presentation.Controllers;
 
-public class MyAccountController(IWebHostEnvironment env, AccountService accountService, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager) : Controller
+public class MyAccountController(IWebHostEnvironment env, IAccountService accountService, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager) : Controller
         {
 
     private readonly IWebHostEnvironment _env = env; // denna är specifikt för filuppladdningen "upload"
-    private readonly AccountService _accountService = accountService;
+    private readonly IAccountService _accountService = accountService;
     private readonly UserManager<AppUser> _userManager = userManager; // För att hämta ID på den inloggade användaren.
     private readonly SignInManager<AppUser> _signInManager = signInManager; // För att logga ut användaren efter radering.
 

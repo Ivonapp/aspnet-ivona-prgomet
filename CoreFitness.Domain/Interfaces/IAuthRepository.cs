@@ -12,7 +12,7 @@ public interface IAuthRepository
     // public async Task<bool> DoesEmailAlreadyExistAsync(string email) 
     Task<bool> DoesEmailAlreadyExistAsync(string email);
 
-    Task<bool> CreateAsync(AppUser user, string password);
+    Task<bool> CreateAsync(AppUser appUser, string password);
 
     // Loggar in användaren
     Task<bool> PasswordSignInAsync(string email, string password, bool isPersistent);

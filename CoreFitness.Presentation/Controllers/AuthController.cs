@@ -1,5 +1,6 @@
-﻿using CoreFitness.Presentation.Models;
+﻿using CoreFitness.Application.Interfaces;
 using CoreFitness.Application.Services;
+using CoreFitness.Presentation.Models;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -13,11 +14,11 @@ namespace CoreFitness.Presentation.Controllers;
     UTLOGGNING */
 
 
-public class AuthController(AuthService authService) : Controller
+public class AuthController(IAuthService authService) : Controller
 {
 
     //KONSTRUKTORN FÖR AUTHSERVICE
-    private readonly AuthService _authService = authService;
+    private readonly IAuthService _authService = authService;
 
 
 
@@ -102,6 +103,7 @@ public class AuthController(AuthService authService) : Controller
 
         if (CreateAccount)
         {
+            await _authService.SignInAsync(email, formData.Password, true);
             // 1. Om allt är OK > Gå vidare till MyAccountController
             return RedirectToAction("MyAccount", "MyAccount"); //skickas till MyAccountController
         }

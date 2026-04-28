@@ -1,5 +1,7 @@
 ﻿
+using CoreFitness.Application.Interfaces;
 using CoreFitness.Domain.Entities;
+using CoreFitness.Domain.Interfaces;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -13,10 +15,10 @@ namespace CoreFitness.Application.Services;
 
 
 
-public class AccountService(UserManager<AppUser> userManager, IWebHostEnvironment env)
+public class AccountService(IAccountRepository accountRepository, IWebHostEnvironment env) : IAccountService
 {
 
-    private readonly UserManager<AppUser> _userManager = userManager;
+    private readonly IAccountRepository _accountRepository = accountRepository;
     private readonly IWebHostEnvironment _env = env;
 
 
@@ -34,7 +36,7 @@ public class AccountService(UserManager<AppUser> userManager, IWebHostEnvironmen
     IFormFile? file)
     {
         // 1. Hitta användaren: Använd userId för att hämta användaren från databasen.
-        var findUser = await _userManager.FindByIdAsync(userId.ToString());
+        var findUser = await _accountRepository.FindByIdAsync(userId.ToString());
 
         if (findUser == null)
         {
@@ -70,11 +72,11 @@ public class AccountService(UserManager<AppUser> userManager, IWebHostEnvironmen
         findUser.Email = email;
         findUser.PhoneNumber = phoneNumber;
 
-        var UpdatedProfileFields = await _userManager.UpdateAsync(findUser); //Kör UpdateAsync för att skicka ändringarna till databasen med _userManager.
+        var UpdatedProfileFields = await _accountRepository.UpdateProfileAsync(findUser); //Kör UpdateAsync för att skicka ändringarna till databasen med _userManager.
 
         // 4. Kontrollera om uppdateringen lyckades via Succeeded.
 
-        if(UpdatedProfileFields.Succeeded)
+        if(UpdatedProfileFields)
         {
             return true;
         }
@@ -101,7 +103,7 @@ public class AccountService(UserManager<AppUser> userManager, IWebHostEnvironmen
         // Hämta användaren: Använd userId för att slå upp användaren i databasen.
         // Identity har en egenskap som heter Id. Vi döper den sen til userID och systemet förstår kopplingen. 
         // userId jämförs sen med kolumnen Id i tabellen "Dbo.AspNetUsers" i min Databas som du kan SE direkt i databasen.)
-        var findUser = await _userManager.FindByIdAsync(userId.ToString());
+        var findUser = await _accountRepository.FindByIdAsync(userId.ToString());
 
 
 
@@ -122,7 +124,7 @@ public class AccountService(UserManager<AppUser> userManager, IWebHostEnvironmen
         // _userManager.CheckPasswordAsync = ett verktyg från Identity-ramverket. Den förstår att lösenord i databasen är krypterade. Den tar det vanliga lösenordet som användaren skrev in, krypterar det på samma sätt, och kollar om de matchar. 
         // finduser och form.Password =  vi skickar in tidigare finduser där det krypterade lösenordet finns, och jänför med "password" från DeleteAccountFormModel
         // kortfattat: jag ber Identity jämföra det inskrivna lösenordet med det som finns i databasen för just den användaren.
-        var checkPassword = await _userManager.CheckPasswordAsync(findUser, password);
+        var checkPassword = await _accountRepository.CheckPasswordAsync(findUser, password);
 
         if(!checkPassword) //Om CheckPassword är falskt
             {
@@ -134,9 +136,9 @@ public class AccountService(UserManager<AppUser> userManager, IWebHostEnvironmen
         // Utför: Om allt ovan är OK – radera användaren.
         // Eftersom allt som ni passerat ovan if-satser ÄR true, så VWET jag nu att användaren kan fortsätta till radering,
 
-        var deleteUser = await _userManager.DeleteAsync(findUser); // vi skickar nu in hela användaren (findUser) i raderings-maskinen
+        var deleteUser = await _accountRepository.DeleteAsync(findUser); // vi skickar nu in hela användaren (findUser) i raderings-maskinen
 
-        if(deleteUser.Succeeded) //Om deleteUser succeeded >
+        if(deleteUser) //Om deleteUser succeeded >
         {
             return true;        // returnera true
         }

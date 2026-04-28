@@ -1,12 +1,15 @@
 using CoreFitness.Application;
-using CoreFitness.Infrastructure;
-using Microsoft.Extensions.DependencyInjection;
-using CoreFitness.Infrastructure.Persistence;
-using CoreFitness.Infrastructure.Persistence.Seeds;
-using Microsoft.EntityFrameworkCore;
+using CoreFitness.Application.Interfaces;
 using CoreFitness.Application.Services;
 using CoreFitness.Domain.Entities;
+using CoreFitness.Domain.Interfaces;
+using CoreFitness.Infrastructure;
+using CoreFitness.Infrastructure.Persistence;
+using CoreFitness.Infrastructure.Persistence.Repositories;
+using CoreFitness.Infrastructure.Persistence.Seeds;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,10 +38,12 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(x => // IdentityRole är en 
 })
     .AddEntityFrameworkStores<ApplicationDbContext>(); // Den talar om för Identity att alla användare, lösenordshashar och roller ska sparas i den databas som sköts av ApplicationDbContext
 
-builder.Services.AddScoped<AuthService>();
-builder.Services.AddScoped<AccountService>();
 
+builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
+builder.Services.AddScoped<IAuthRepository, AuthRepository>();
+builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 
 
 
