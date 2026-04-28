@@ -1,13 +1,15 @@
 ﻿
-using CoreFitness.Presentation.Models;
-using CoreFitness.Domain.Entities;
 using CoreFitness.Application.Services;
+using CoreFitness.Domain.Entities;
+using CoreFitness.Presentation.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.SqlServer.Server;
 using System.ComponentModel.Design;
 using System.Diagnostics.Metrics;
 using System.Reflection.PortableExecutable;
+
 
 namespace CoreFitness.Presentation.Controllers;
 
@@ -24,6 +26,7 @@ public class MyAccountController(IWebHostEnvironment env, AccountService account
 
 
     /* RADERA KONTO */
+    [Authorize]
     [HttpGet]
     [Route("removeaccount")]
     public async Task<IActionResult> DeleteAccount()
@@ -31,9 +34,10 @@ public class MyAccountController(IWebHostEnvironment env, AccountService account
     {
         return View("~/Views/Account/DeleteAccount.cshtml");
     }
-       
-   
-  /* RADERA KONTO */
+
+
+    /* RADERA KONTO */
+    [Authorize]
     [HttpPost]
     [Route("removeaccount")]
     public async Task<IActionResult> DeleteAccount(DeleteAccountFormModel model)
@@ -85,6 +89,7 @@ public class MyAccountController(IWebHostEnvironment env, AccountService account
 
 
     //MYACCOUNT SIDAN / SPARA SIDA / SPARAR PROFILBILD
+    [Authorize]
     [HttpGet]
     [Route("myaccount")]
     public async Task<IActionResult> MyAccount()
@@ -112,6 +117,7 @@ public class MyAccountController(IWebHostEnvironment env, AccountService account
 
 
     //MYACCOUNT SIDAN / SPARA SIDA / SPARAR PROFILBILD
+    [Authorize]
     [HttpPost]
     [Route("myaccount")]
     public async Task<IActionResult> MyAccount(MyAccountFormModel model)
