@@ -22,12 +22,7 @@ public class AccountService(IAccountRepository accountRepository, IWebHostEnviro
     private readonly IWebHostEnvironment _env = env;
 
 
-
-
-
-    /* 1. *SPARA ANVÄNDARENS UPPGIFTER*
-     Model: MyAccountFormModel */
-
+    // 1. *SPARA ANVÄNDARENS UPPGIFTER
     public async Task<bool> UpdateProfileAsync(Guid userId,
     string firstName,
     string lastName,
@@ -85,13 +80,6 @@ public class AccountService(IAccountRepository accountRepository, IWebHostEnviro
 
         // 5. Returnera: Skicka tillbaka true eller false på om det sparades eller inte.
     }
-
-
-
-
-
-
-
 
 
     /*2. HANTERAR RADERING AV KONTO (userManager - DeleteAsync(TUser)
