@@ -1,12 +1,18 @@
 ﻿using CoreFitness.Application.Interfaces;
 using CoreFitness.Application.Services;
+using CoreFitness.Domain.Entities;
 using CoreFitness.Domain.Interfaces;
+using CoreFitness.Infrastructure.Persistence.Repositories;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Text;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CoreFitness.Tests.ServiceTests;
 
@@ -24,103 +30,64 @@ public class AccountServiceTests
     }
 
 
+
+    //TESTAR ATT DET RETURNERAS FALSKT NÄR ANVÄNDARE INTE HITTAS
     [Fact]
-    public void TestNamn()
+    public async Task UpdateProfileAsync_UserDoesNotExist_ReturnsFalse()
     {
-        //SKRIV KOD HÄR
+        //ARRANGE
+        var repoMock = new Mock<IAccountRepository>();              // Skapa mocken
+        var envMock = new Mock<IWebHostEnvironment>();
 
-        [Arrange]
+        repoMock.Setup(r => r.FindByIdAsync(It.IsAny<string>()))    // Mocken svarar här att INGEN ANVÄNDARE hittas
+                .ReturnsAsync((AppUser)null!);
+
+        var service = new AccountService(repoMock.Object, envMock.Object);  // Skapa servicen med mocken
+
+        //ACT
+        var result = await service.UpdateProfileAsync(      // Anropa UpdateProfileAsync
+         Guid.NewGuid(),                                    
+         "Test",
+         "Test",
+         "test@test.com",
+         null,
+         null);
 
 
-        [Act]
-
-
-        [Assert]
+        // ASSERT                                           // Returnerar falskt när användare ej finns. 
         Assert.False(result);
-
-
-
-        // 1. *SPARA ANVÄNDARENS UPPGIFTER
-        public async Task<bool> UpdateProfileAsync(Guid userId,
-        string firstName,
-        string lastName,
-        string email,
-        string? phoneNumber,
-        IFormFile? file)
-        {
-
-            // TEST 1
-            // 1. Om ingen användare existerar > ska det returneras false
-            var findUser = await _accountRepository.FindByIdAsync(userId.ToString());
-
-            if (findUser == null)
-            {
-                return false;
-            }
-
-        }
+    }
 
 
 
 
 
+    // ** FindByIdAsync **
+    // UpdateProfileAsync
+    // Returnerar True när användaren hittas i databasen
+    [Fact]
+    public async Task UserExist_ProfileSaved_ReturnsTrue()
+    {
+        //ARRANGE
+        var existingUser = new AppUser { Id = "1", Email = "test@test.com" }; // skapar en fake användare
 
+        _repoMock.Setup(r => r.FindByIdAsync(It.IsAny<string>()))   // Hittar användaren
+                 .ReturnsAsync(existingUser);
 
+        _repoMock.Setup(r => r.UpdateProfileAsync(It.IsAny<AppUser>()))
+                 .ReturnsAsync(true);
 
+        //ACT
+        var result = await _service.UpdateProfileAsync(
+            Guid.NewGuid(),
+            "Calle",
+            "Svensson",
+            "Calle@test.com",
+            "070000000000",
+            null);
 
-
-
-            // BILDFIL START
-            if (file != null && file.Length > 0)                                    // kontrollerar att filen exisrerar och har ett innehåll
-            {
-                var uploadFolder = Path.Combine(_env.WebRootPath, "Uploads");
-                Directory.CreateDirectory(uploadFolder);
-
-                var fileName = $"{Guid.NewGuid()}_{Path.GetFileName(file.FileName)}";
-                var filePath = Path.Combine(uploadFolder, fileName);
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await file.CopyToAsync(stream);
-                }
-                findUser.ProfileImageUrl = fileName;
-            }
-            // BILDFIL END
-
-
-            // 2. Skriv över fälten (firstname, lastname, email, phone etc) i användarobjektet med den NYA infon från form.
-            // UpdateNormalizedUserNameAndEmailAsync = en metod i identity
-
-            findUser.UserName = email; //denna gör så kunden kan logga in med sin NYA email, för email är ju tekniskt sät usernamet vi skriver in 
-            findUser.FirstName = firstName;
-            findUser.LastName = lastName;
-            findUser.Email = email;
-            findUser.PhoneNumber = phoneNumber;
-
-            var UpdatedProfileFields = await _accountRepository.UpdateProfileAsync(findUser); //Kör UpdateAsync för att skicka ändringarna till databasen med _userManager.
-
-            // 4. Kontrollera om uppdateringen lyckades via Succeeded.
-
-            if (UpdatedProfileFields)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
+        //ASSERT
+        Assert.True(result);
 
     }
 
@@ -131,10 +98,71 @@ public class AccountServiceTests
 
 
 
+    //  ** CheckPasswordAsync **
+    //  Testet kontrollerar att metoden nekar radering och returnerar FALSE när en existerande användare anger ett felaktigt lösenord.
+    [Fact]
+    public async Task DeleteAccountAsync_WrongPassword_ReturnsFalse()
+    {
+
+        // ARRANGE
+        var existingUser = new AppUser { Id = "1", Email = "test@test.com" };
+
+        _repoMock.Setup(r => r.FindByIdAsync(It.IsAny<string>()))
+                 .ReturnsAsync(existingUser);
+
+        _repoMock.Setup(r => r.CheckPasswordAsync(It.IsAny<AppUser>(), It.IsAny<string>()))
+                  .ReturnsAsync(false);
+
+        // ACT
+        var result = await _service.DeleteAccountAsync(
+            Guid.NewGuid(),
+            "password",
+            true
+            );
+
+        // ASSERT
+       Assert.False(result);
+
+
+    }
 
 
 
 
 
+    // ** FindByIdAsync **
+    // ** CheckPasswordAsync **
+    // ** DeleteAsync **
+    // Testet verifierar att hela raderingsprocessen lyckas och returnerar true när användaren finns, anger rätt lösenord och har bekräftat raderingen.
+    [Fact]
+    public async Task DeleteAccountAsync_UserExists_CorrectPassword_ReturnsTrue()
+    {
+
+        // ARRANGE
+        // Skapa variabeln: Skapa en existingUser(instans av AppUser).
+        var existingUser = new AppUser { Id = Guid.NewGuid().ToString(), Email = "test@test.com" };
+
+        _repoMock.Setup(r => r.FindByIdAsync(It.IsAny<string>()))
+        .ReturnsAsync(existingUser);
+
+        _repoMock.Setup(r => r.CheckPasswordAsync(It.IsAny<AppUser>(), It.IsAny<string>()))
+        .ReturnsAsync(true);
+
+        _repoMock.Setup(r => r.DeleteAsync(It.IsAny<AppUser>()))
+        .ReturnsAsync(true);
 
 
+        // ACT
+        // Anropa DeleteAccountAsync med rätt lösenord och confirmDelete: true.
+        var result = await _service.DeleteAccountAsync(
+            Guid.NewGuid(),
+            "password",
+            true
+            );
+
+
+        // ASSERT
+        Assert.True(result);
+    
+        }
+    }
